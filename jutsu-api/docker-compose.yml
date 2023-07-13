@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  project_service:
+    container_name: project_service
+    build:
+      context: ./project-service
+      dockerfile: docker/Dockerfile.app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./project-service/src:/app/src
+    env_file:
+      - ./project-service/.env
+    depends_on:
+      - project_database
+
+  project_database:
+    container_name: project_database
+    build:
+      context: ./project-service
+      dockerfile: docker/Dockerfile.db
+    ports:
+      - "5432:5342"
+    env_file:
+      - ./project-service/.env
