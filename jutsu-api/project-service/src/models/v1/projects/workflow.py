@@ -18,7 +18,8 @@ class Workflow(SQLModel, table=True):
     project_id: str = Field(foreign_key="project.id", nullable=False)
     project: Optional["Project"] = Relationship(back_populates="workflows")
 
-    states: Optional[List["State"]] = Relationship(back_populates="workflow")
+    states: Optional[List["State"]] = Relationship(
+        back_populates="workflow", sa_relationship_kwargs={"cascade": "delete"})
 
     work_items: Optional[List["WorkItem"]] = Relationship(
         back_populates="workflow")

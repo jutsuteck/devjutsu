@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.api.v1.project_routes import router as project_routes
-from src.api.v1.workflow_routes import router as workflow_routes
+from src.api.v1.projects.project_routes import router as project_routes
+from src.api.v1.projects.workflow_routes import router as workflow_routes
+from src.api.v1.projects.state_routes import router as state_routes
 
-from src.utils.database import init_db
+from src.core.dependencies.database.database_manager import database_manager
 
 
 app = FastAPI()
@@ -25,8 +26,11 @@ app.include_router(
 app.include_router(
     workflow_routes, prefix="/api/v1/workflows", tags=["workflow"]
 )
+app.include_router(
+    state_routes, prefix="/api/v1/states", tags=["states"]
+)
 
 
 @app.on_event("startup")
 def on_startup():
-    init_db()
+    database_manager.init_db()

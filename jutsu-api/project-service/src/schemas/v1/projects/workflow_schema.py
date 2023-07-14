@@ -7,7 +7,7 @@ class WorkflowBaseSchema(BaseModel):
     project_id: str
     name: Optional[str] = None
     goal: Optional[str] = None
-    is_active: bool
+    is_active: Optional[bool] = False
     start_date: Optional[date] = date.today()
     end_date: Optional[date] = None
 
@@ -24,6 +24,14 @@ class WorkflowCreateSchema(WorkflowBaseSchema):
                 "end_date": (date.today() + timedelta(weeks=3)).isoformat()
             }
         }
+
+
+class WorkflowUpdateSchema(BaseModel):
+    name: Optional[str] = None
+    goal: Optional[str] = None
+    is_active: Optional[bool]
+    start_date: Optional[date] = date.today()
+    end_date: Optional[date] = None
 
 
 class WorkflowReadSchema(WorkflowBaseSchema):

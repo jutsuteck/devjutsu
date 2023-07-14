@@ -1,8 +1,8 @@
 from typing import Optional
 from pydantic import BaseModel, validator
 
-from src.types.enums import Methodology, SecurityLevel
-from src.utils.helpers import generate_name_key
+from src.core.types.enums import Methodology, SecurityLevel
+from src.core.utils.helpers import generate_project_name_key
 
 
 class ProjectBaseSchema(BaseModel):
@@ -32,7 +32,7 @@ class ProjectCreateSchema(ProjectBaseSchema):
     def set_name_key(cls, name_key, values):
         if name_key is None:
             name = values.get('name', '')
-            name_key = generate_name_key(name)
+            name_key = generate_project_name_key(name)
         return name_key
 
 

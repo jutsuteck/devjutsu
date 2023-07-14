@@ -4,7 +4,7 @@ from datetime import date
 from typing import List, Optional
 from sqlmodel import Column, Enum, Field, Relationship, SQLModel
 
-from src.types.enums import Methodology, SecurityLevel
+from src.core.types.enums import Methodology, SecurityLevel
 
 
 class Project(SQLModel, table=True):
@@ -19,9 +19,10 @@ class Project(SQLModel, table=True):
     security_level: SecurityLevel = Field(
         default=SecurityLevel.LEVEL_1, sa_column=Column(Enum(SecurityLevel)))
 
-    epics: Optional[List["Epic"]] = Relationship(back_populates="project")
+    epics: Optional[List["Epic"]] = Relationship(
+        back_populates="project", sa_relationship_kwargs={"cascade": "delete"})
     workflows: Optional[List["Workflow"]] = Relationship(
-        back_populates="project")
+        back_populates="project", sa_relationship_kwargs={"cascade": "delete"})
 
     created_on: Optional[date] = Field(default=date.today())
 

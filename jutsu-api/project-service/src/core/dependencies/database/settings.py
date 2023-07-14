@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     postgres_port: str
 
     class Config:
-        env_file = '../../.env'
+        env_file = '../../../.env'
 
 
 settings = Settings()  # type: ignore
