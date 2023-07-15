@@ -9,7 +9,7 @@ class LabelCreateSchema(BaseModel):
         schema_extra = {
             "example": {
                 "name": "UI",
-                "work_item_item": "{work_item_id}"
+                "work_item_id": "{work_item_id}"
             }
         }
 

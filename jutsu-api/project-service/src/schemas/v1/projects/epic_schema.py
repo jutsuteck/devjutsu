@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 from typing import Optional
 from pydantic import BaseModel, validator
 
@@ -23,7 +23,7 @@ class EpicCreateSchema(EpicBaseSchema):
                 "name": "Epic 1",
                 "description": "Some description",
                 "start_date": date.today().isoformat(),
-                "end_date": "",
+                "end_date": (date.today() + timedelta(days=90)).isoformat(),
                 "project_id": "{project_id}"
             }
         }

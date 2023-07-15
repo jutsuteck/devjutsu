@@ -58,7 +58,7 @@ class EpicService:
 
         return epic
 
-    def delete_epic(self, epic_id: str) -> Epic:
+    def delete_epic(self, epic_id: str) -> None:
         epic = self.session.query(Epic).get(epic_id)
 
         if not epic:
@@ -66,5 +66,3 @@ class EpicService:
 
         self.session.delete(epic)
         self.session.commit()
-
-        return epic
