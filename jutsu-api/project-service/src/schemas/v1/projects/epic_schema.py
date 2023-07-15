@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 from typing import Optional
-from pydantic import BaseModel, validator
+from pydantic import BaseModel
 
 
 class EpicBaseSchema(BaseModel):
@@ -9,10 +9,6 @@ class EpicBaseSchema(BaseModel):
     start_date: Optional[date] = None
     end_date: Optional[date] = None
     project_id: str
-
-    @validator('end_date', pre=True)
-    def emptr_str_none(cls, v):
-        return None if v == "" else v
 
 
 class EpicCreateSchema(EpicBaseSchema):
