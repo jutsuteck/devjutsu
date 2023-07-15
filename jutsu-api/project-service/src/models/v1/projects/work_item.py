@@ -14,13 +14,14 @@ class WorkItem(SQLModel, table=True):
     description: Optional[str] = Field(default=None, max_length=1000)
     effort: Optional[int] = Field(default=0)
     ready_for_development: bool = Field(default=False)
-    work_item_type: WorkItemType = Field(
+    work_item_type: Optional[WorkItemType] = Field(
         default=WorkItemType.USER_STORY, sa_column=Column(Enum(WorkItemType)))
 
     tasks: Optional[List["Task"]] = Relationship(back_populates="work_item")
     labels: Optional[List["Label"]] = Relationship(back_populates="work_item")
 
-    epic_id: str = Field(foreign_key="epic.id", nullable=False)
+    epic_id: Optional[str] = Field(
+        default=None, foreign_key="epic.id", nullable=True)
     epic: Optional["Epic"] = Relationship(back_populates="work_items")
 
     workflow_id: str = Field(foreign_key="workflow.id", nullable=False)

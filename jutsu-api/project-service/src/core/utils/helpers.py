@@ -65,3 +65,7 @@ def generate_workflow_name(project_name_key: str, number: int = 1, name: str = "
         sanitized_name = f'{project_name_key}-{formatted_number}-{current_year}'
 
     return sanitized_name
+
+
+def format_datetime(dt: datetime) -> str:
+    return dt.strftime('%Y-%m-%d %H:%M:%S')

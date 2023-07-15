@@ -1,24 +1,24 @@
 from pydantic import BaseModel
 
 
-class StateCreateSchema(BaseModel):
+class LabelCreateSchema(BaseModel):
     name: str
-    workflow_id: str
+    work_item_id: str
 
     class Config:
         schema_extra = {
             "example": {
-                "name": "To Do",
-                "workflow_id": ""
+                "name": "UI",
+                "work_item_item": "{work_item_id}"
             }
         }
 
 
-class StateUpdateSchema(BaseModel):
+class LabelUpdateSchema(BaseModel):
     name: str
 
 
-class StateReadSchema(BaseModel):
+class LabelReadSchema(BaseModel):
     id: str
     name: str
 
