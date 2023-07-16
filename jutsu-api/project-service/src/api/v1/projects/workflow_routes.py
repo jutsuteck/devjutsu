@@ -30,6 +30,6 @@ def project_workflow_update(workflow_id: str, workflow_update_schema: WorkflowUp
         workflow_id, workflow_update_schema.dict(exclude_unset=True))
 
 
-@router.delete('/delete/{project_id}', response_model=WorkflowReadSchema)
+@router.delete('/delete/{project_id}')
 def project_workflow_delete(workflow_id: str, service: WorkflowService = Depends(WorkflowService)):
     return service.delete_workflow(workflow_id)

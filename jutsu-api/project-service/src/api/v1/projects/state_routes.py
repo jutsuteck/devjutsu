@@ -25,6 +25,6 @@ def state_update(state_id: str, state_update_schema: StateUpdateSchema, service:
         state_id, state_update_schema.dict(exclude_unset=True))
 
 
-@router.delete('/delete/{state_id}', response_model=StateReadSchema)
+@router.delete('/delete/{state_id}')
 def state_delete(state_id: str, service: StateService = Depends(StateService)):
     return service.delete_state(state_id)

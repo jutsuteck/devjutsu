@@ -77,7 +77,7 @@ class WorkflowService:
 
         return workflow
 
-    def delete_workflow(self, workflow_id: str):
+    def delete_workflow(self, workflow_id: str) -> None:
         workflow = self.session.query(Workflow).get(workflow_id)
 
         if not workflow:
@@ -85,5 +85,3 @@ class WorkflowService:
 
         self.session.delete(workflow)
         self.session.commit()
-
-        return workflow

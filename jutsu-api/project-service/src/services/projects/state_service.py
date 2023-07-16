@@ -50,7 +50,7 @@ class StateService:
 
         return state
 
-    def delete_state(self, state_id: str) -> State:
+    def delete_state(self, state_id: str) -> None:
         state = self.session.query(State).get(state_id)
 
         if not state:
@@ -58,5 +58,3 @@ class StateService:
 
         self.session.delete(state)
         self.session.commit()
-
-        return state

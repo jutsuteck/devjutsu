@@ -24,7 +24,7 @@ def project_update(project_id: str, project_update_schema: ProjectUpdateSchema, 
         project_id, project_update_schema.dict(exclude_unset=True))
 
 
-@router.delete('/delete/{project_id}', response_model=ProjectReadSchema)
+@router.delete('/delete/{project_id}')
 def project_delete(project_id: str, project_delete_schema: ProjectDeleteSchema, service: ProjectService = Depends(ProjectService)):
     return service.delete_project(
         project_id, project_delete_schema.name_key)

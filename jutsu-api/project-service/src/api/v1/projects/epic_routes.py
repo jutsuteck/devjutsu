@@ -29,6 +29,6 @@ def epic_update(epic_id: str, epic_update_schema: EpicUpdateSchema, service: Epi
         epic_id, epic_update_schema.dict(exclude_unset=True))
 
 
-@router.delete('/delete/{epic_id}', response_model=EpicReadSchema)
+@router.delete('/delete/{epic_id}')
 def epic_delete(epic_id: str, service: EpicService = Depends(EpicService)):
     return service.delete_epic(epic_id)

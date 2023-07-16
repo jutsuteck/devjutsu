@@ -44,7 +44,7 @@ class ProjectService:
 
         return project
 
-    def delete_project(self, project_id: str, name_key: str) -> Project:
+    def delete_project(self, project_id: str, name_key: str) -> None:
         project: Project = self.session.query(
             Project).get(project_id)  # type: ignore
 
@@ -56,8 +56,6 @@ class ProjectService:
 
         self.session.delete(project)
         self.session.commit()
-
-        return project
 
     def create_default_project_workflow(self, project: Project) -> Workflow:
         workflow_data = WorkflowCreateSchema(
