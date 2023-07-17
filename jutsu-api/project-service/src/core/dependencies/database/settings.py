@@ -12,4 +12,11 @@ class Settings(BaseSettings):
         env_file = '../../../.env'
 
 
-settings = Settings()  # type: ignore
+settings = None
+
+
+def get_settings():
+    global settings
+    if settings is None:
+        settings = Settings()  # type: ignore
+    return settings

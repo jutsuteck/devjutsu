@@ -1,6 +1,6 @@
 from sqlmodel import SQLModel, Session, create_engine
 
-from src.core.dependencies.database.settings import settings
+from src.core.dependencies.database.settings import get_settings
 
 
 class DatabaseManager:
@@ -35,6 +35,7 @@ class DatabaseManager:
     @property
     def engine(self):
         if self._engine is None:
+            settings = get_settings()
             DB_USER = settings.postgres_user
             DB_PASSWORD = settings.postgres_password
             DB_NAME = settings.postgres_db
