@@ -3,21 +3,22 @@ from fastapi import Depends, HTTPException
 from sqlmodel import Session
 
 from src.core.dependencies.database.database_manager import db_session
+from src.core.exceptions.projects.workflow_exceptions import WorklowNotFoundException
 from src.core.types.enums import Methodology
 from src.core.utils.helpers import generate_workflow_name
-from src.models.v1.projects.project import Project
 from src.models.v1.projects.workflow import Workflow
+from src.repositories.projects.work_flow_repository import WorkflowRepository
+from src.services.projects.project_service import ProjectService
 
 
 class WorkflowService:
     def __init__(self, session: Session = Depends(db_session)):
         self.session = session
+        self.workflow_repository = WorkflowRepository(self.session)
+        self.project_service = ProjectService(self.session)
 
-    def create_scrum_workflow(self, project_id: str, workflow_data: dict) -> Workflow:
-        project = self.session.query(Project).get(project_id)
-
-        if not project:
-            raise HTTPException(status_code=404, detail="Project not found")
+    def create_workflow(self, project_id: str, workflow_data: dict) -> Workflow:
+        project = self.project_service.get_project_or_404(project_id)
 
         if project.methodology != Methodology.SCRUM:
             raise HTTPException(
@@ -26,62 +27,48 @@ class WorkflowService:
         workflow = Workflow(**workflow_data)
 
         if "name" not in workflow_data:
-            workflow.name = generate_workflow_name(project.name_key)
+            workflow.name = generate_workflow_name(
+                project.name_key)  # type: ignore
 
-        self.session.add(workflow)
-        self.session.commit()
-        self.session.refresh(workflow)
+        self.workflow_repository.add(workflow)
 
         return workflow
 
-    def get_all_project_scrum_workflows(self, project_id: str) -> List[Workflow]:
-        project = self.session.query(Project).get(project_id)
+    def get_all(self, project_id: str) -> List[Workflow]:
+        project = self.project_service.get_project_or_404(project_id)
 
-        if not project:
-            raise HTTPException(status_code=404, detail="Project not found")
+        workflow_list = self.workflow_repository.get_all(
+            project.id)  # type: ignore
 
-        if project.methodology != Methodology.SCRUM:
-            raise HTTPException(
-                status_code=400, detail="Only scrum projects have multiple workflows")
+        return workflow_list
 
-        project_workflows = self.session.query(
-            Workflow).filter_by(project_id=project.id).all()
+    def get_workflow_or_404(self, workflow_id: str) -> Workflow:
+        workflow = self.workflow_repository.get(workflow_id)
 
-        return project_workflows
+        if not workflow:
+            raise WorklowNotFoundException(workflow_id)
 
-    def get_project_active_workflow(self, project_id: str) -> Workflow:
-        project = self.session.query(Project).get(project_id)
+        return workflow
 
-        if not project:
-            raise HTTPException(status_code=404, detail="Project not found")
+    def get_active_workflow(self, project_id: str) -> Workflow:
+        project = self.project_service.get_project_or_404(project_id)
 
-        active_workflow = self.session.query(Workflow).filter_by(
-            project_id=project.id, is_active=True).first()
+        active_workflow = self.workflow_repository.get_active_workflow(
+            project_id=project.id)
 
         if not active_workflow:
             raise HTTPException(status_code=404, detail="Workflow not found")
 
         return active_workflow
 
-    def update_project_workflow(self, workflow_id: str, workflow_update_data: dict) -> Workflow:
-        workflow = self.session.query(Workflow).get(workflow_id)
+    def update_workflow(self, workflow_id: str, workflow_update_data: dict) -> Workflow:
+        workflow = self.get_workflow_or_404(workflow_id)
 
-        if not workflow:
-            raise HTTPException(status_code=404, detail="Workflow not found")
+        updated_workflow = self.workflow_repository.update(
+            workflow, workflow_update_data)  # type: ignore
 
-        for key, value in workflow_update_data.items():
-            setattr(workflow, key, value)
-
-        self.session.commit()
-        self.session.refresh(workflow)
-
-        return workflow
+        return updated_workflow
 
     def delete_workflow(self, workflow_id: str) -> None:
-        workflow = self.session.query(Workflow).get(workflow_id)
-
-        if not workflow:
-            raise HTTPException(status_code=404, detail="Workflow not found")
-
-        self.session.delete(workflow)
-        self.session.commit()
+        workflow = self.get_workflow_or_404(workflow_id)
+        self.workflow_repository.delete(workflow)

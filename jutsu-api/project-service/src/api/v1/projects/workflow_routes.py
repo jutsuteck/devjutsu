@@ -9,24 +9,24 @@ router = APIRouter()
 
 
 @router.post('/new', response_model=WorkflowReadSchema)
-def project_scrum_workflow_create(project_id: str, workflow_create_schema: WorkflowCreateSchema, service: WorkflowService = Depends(WorkflowService)):
-    return service.create_scrum_workflow(
+def workflow_create(project_id: str, workflow_create_schema: WorkflowCreateSchema, service: WorkflowService = Depends(WorkflowService)):
+    return service.create_workflow(
         project_id, workflow_create_schema.dict())
 
 
 @router.get('/all', response_model=List[WorkflowReadSchema])
-def project_scrum_workflows(project_id: str, service: WorkflowService = Depends(WorkflowService)):
-    return service.get_all_project_scrum_workflows(project_id)
+def work_flow_list(project_id: str, service: WorkflowService = Depends(WorkflowService)):
+    return service.get_all(project_id)
 
 
 @router.get('/current', response_model=WorkflowReadSchema)
 def project_active_workflow(project_id: str, service: WorkflowService = Depends(WorkflowService)):
-    return service.get_project_active_workflow(project_id)
+    return service.get_active_workflow(project_id)
 
 
 @router.patch('/update/{workfow_id}', response_model=WorkflowReadSchema)
 def project_workflow_update(workflow_id: str, workflow_update_schema: WorkflowUpdateSchema, service: WorkflowService = Depends(WorkflowService)):
-    return service.update_project_workflow(
+    return service.update_workflow(
         workflow_id, workflow_update_schema.dict(exclude_unset=True))
 
 

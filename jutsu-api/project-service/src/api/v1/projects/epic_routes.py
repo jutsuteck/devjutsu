@@ -15,12 +15,12 @@ def epic_create(project_id: str, epic_create_schema: EpicCreateSchema, service: 
 
 @router.get('/all', response_model=List[EpicReadSchema])
 def epic_list(project_id: str, service: EpicService = Depends(EpicService)):
-    return service.get_all_project_epics(project_id)
+    return service.get_all(project_id)
 
 
 @router.get('/{epic_id}', response_model=EpicReadSchema)
 def epic_detail(epic_id: str, service: EpicService = Depends(EpicService)):
-    return service.get_epic_detail(epic_id)
+    return service.get_epic_or_404(epic_id)
 
 
 @router.patch('/update/{epic_id}', response_model=EpicReadSchema)

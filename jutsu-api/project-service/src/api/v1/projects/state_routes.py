@@ -10,7 +10,7 @@ router = APIRouter()
 
 @router.post('/new', response_model=StateReadSchema)
 def state_create(workflow_id: str, state_create_schema: StateCreateSchema, service: StateService = Depends(StateService)):
-    return service.create_workflow_state(
+    return service.create_state(
         workflow_id, state_create_schema.dict())
 
 

@@ -9,6 +9,7 @@ from src.models.v1.projects.project import Project
 from src.models.v1.projects.state import State
 from src.models.v1.projects.workflow import Workflow
 from src.repositories.projects.project_repository import ProjectRepository
+from src.repositories.projects.work_flow_repository import WorkflowRepository
 from src.schemas.v1.projects.workflow_schema import WorkflowCreateSchema
 
 
@@ -16,6 +17,7 @@ class ProjectService:
     def __init__(self, session: Session = Depends(db_session)):
         self.session = session
         self.project_repository = ProjectRepository(self.session)
+        self.workflow_repository = WorkflowRepository(self.session)
 
     def create_project(self, project_data: dict) -> Project:
         project = Project(**project_data)
@@ -42,7 +44,8 @@ class ProjectService:
         project = self.project_repository.get_project_or_404(project_id)
 
         if project.name_key != name_key:
-            raise IncorrectProjectNameKeyException(project.name_key)
+            raise IncorrectProjectNameKeyException(
+                project.name_key)  # type: ignore
 
         self.project_repository.delete(project)
 
@@ -53,9 +56,7 @@ class ProjectService:
             project.name_key)  # type: ignore
 
         workflow = Workflow(**workflow_data.dict())
-        self.session.add(workflow)
-        self.session.commit()
-        self.session.refresh(workflow)
+        self.workflow_repository.add(workflow)
 
         return workflow
 

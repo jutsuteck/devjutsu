@@ -16,7 +16,7 @@ def label_create(work_item_id: str, label_create_schema: LabelCreateSchema, serv
 
 @router.get('/all/{work_item_id}', response_model=List[LabelReadSchema])
 def label_list(work_item_id: str, service: LabelService = Depends(LabelService)):
-    return service.get_all_work_item_labels(work_item_id)
+    return service.filter_by_work_item(work_item_id)
 
 
 @router.patch('/update/{label_id}', response_model=LabelReadSchema)

@@ -19,7 +19,7 @@ class ProjectRepository:
     def get_all(self) -> List[Project]:
         return self.session.query(Project).all()
 
-    def get_project_or_404(self, project_id: str) -> Project:
+    def get(self, project_id: str) -> Project:
         project = self.session.query(Project).get(project_id)
 
         if not project:

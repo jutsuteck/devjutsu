@@ -21,7 +21,7 @@ def state_work_items(state_id: str, service: WorkItemService = Depends(WorkItemS
 
 @router.get('/{work_item_id}', response_model=WorkItemReadSchema)
 def work_item_detail(work_item_id: str, service: WorkItemService = Depends(WorkItemService)):
-    return service.get_work_item_detail(work_item_id)
+    return service.get_work_item_or_404(work_item_id)
 
 
 @router.patch('/update_state/{work_item_id}', response_model=WorkItemReadSchema)
