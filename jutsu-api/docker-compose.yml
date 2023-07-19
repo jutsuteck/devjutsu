@@ -24,3 +24,25 @@ services:
       - "5432:5342"
     env_file:
       - ./project-service/.env
+
+  auth_service:
+    container_name: auth_service
+    build:
+      context: ./auth-service
+      dockerfile: docker/Dockerfile.app
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./auth-service/src:/app/src
+    env_file:
+      - ./auth-service/.env
+
+  user_database:
+    container_name: user_database
+    build:
+      context: ./auth-service
+      dockerfile: docker/Dockerfile.postgres
+    ports:
+      - "5433:5342"
+    env_file:
+      - ./auth-service/.env
