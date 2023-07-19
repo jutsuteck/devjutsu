@@ -11,9 +11,10 @@ pytest-mock = "*"
 coverage = "*"
 pytest-cov = "*"
 tox = "*"
-fastapi-users = {version = "*", extras = ["redis", "sqlalchemy"]}
 asyncpg = "*"
 pydantic-settings = "*"
+async-timeout = "*"
+fastapi-users = {version = "*", extras = ["sqlalchemy", "redis"]}
 
 [dev-packages]
 

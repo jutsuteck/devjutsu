@@ -46,3 +46,11 @@ services:
       - "5433:5342"
     env_file:
       - ./auth-service/.env
+
+  user_token_database:
+    container_name: user_token_database
+    build:
+      context: ./auth-service
+      dockerfile: docker/Dockerfile.redis
+    ports:
+      - "6379:6379"
