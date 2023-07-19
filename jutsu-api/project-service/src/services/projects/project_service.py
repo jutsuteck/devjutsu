@@ -3,7 +3,7 @@ from fastapi import Depends
 from sqlmodel import Session
 
 from src.core.dependencies.database.database_manager import db_session
-from src.core.exceptions.projects.project_exceptions import IncorrectProjectNameKeyException
+from src.core.exceptions.projects.project_exceptions import IncorrectProjectNameKeyException, ProjectNotFoundException
 from src.core.utils.helpers import generate_workflow_name
 from src.models.v1.projects.project import Project
 from src.models.v1.projects.state import State
@@ -32,8 +32,16 @@ class ProjectService:
     def get_all_projects(self) -> List[Project]:
         return self.project_repository.get_all()
 
+    def get_project_or_404(self, project_id: str) -> Project:
+        project = self.project_repository.get(project_id)
+
+        if not project:
+            raise ProjectNotFoundException(project_id)
+
+        return project
+
     def update_project(self, project_id: str, project_update_data: dict) -> Project:
-        project = self.project_repository.get_project_or_404(project_id)
+        project = self.get_project_or_404(project_id)
 
         updated_project = self.project_repository.update(
             project, project_update_data)
@@ -41,7 +49,7 @@ class ProjectService:
         return updated_project
 
     def delete_project(self, project_id: str, name_key: str) -> None:
-        project = self.project_repository.get_project_or_404(project_id)
+        project = self.get_project_or_404(project_id)
 
         if project.name_key != name_key:
             raise IncorrectProjectNameKeyException(

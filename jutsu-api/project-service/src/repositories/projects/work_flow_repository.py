@@ -1,7 +1,6 @@
 from typing import List
 from sqlmodel import Session
 
-from src.core.exceptions.projects.workflow_exceptions import WorklowNotFoundException
 from src.models.v1.projects.workflow import Workflow
 
 
