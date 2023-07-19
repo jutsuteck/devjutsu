@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a8cf10412660cdcf7fa9923dfef68fff5c324172d088034cbad1d8331ea78f34"
+            "sha256": "83a4b6cf5b32a9f20b685ee663a4f87097abe73c208c029fd7dd02dd9e66a86a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -348,6 +348,7 @@
         },
         "fastapi-users": {
             "extras": [
+                "oauth",
                 "redis",
                 "sqlalchemy"
             ],
@@ -454,6 +455,21 @@
             ],
             "markers": "python_version >= '3.8'",
             "version": "==0.17.3"
+        },
+        "httpx": {
+            "hashes": [
+                "sha256:06781eb9ac53cde990577af654bd990a4949de37a28bdb4a230d434f3a30b9bd",
+                "sha256:5853a43053df830c20f8110c5e69fe44d035d850b2dfe795e196f00fdb774bdd"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==0.24.1"
+        },
+        "httpx-oauth": {
+            "hashes": [
+                "sha256:245f04bc8340da4184d26ec0d589e35e7e8f5af6157f30b6e012c0896f80f875",
+                "sha256:ed7359053ac1b1652adbb18b074b6709bcee54e28fb76dd8062c408cfc4589c3"
+            ],
+            "version": "==0.13.0"
         },
         "idna": {
             "hashes": [

@@ -8,6 +8,8 @@ class Settings(BaseSettings):
     postgres_host: str
     postgres_port: str
     jwt_secret: str
+    github_client_id: str
+    github_client_secret: str
 
     class Config:
         env_file = '../.././env'

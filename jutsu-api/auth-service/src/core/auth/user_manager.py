@@ -4,12 +4,12 @@ from fastapi import Depends
 from fastapi_users import BaseUserManager, UUIDIDMixin
 from fastapi_users.db import SQLAlchemyUserDatabase
 
-from src.core.config import get_settings
+from src.core.config.settings import get_settings
 from src.core.dependencies.database.database_manager import get_user_db
-from src.models.v1.user import User
+from src.models.v1.user import Member
 
 
-class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
+class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.settings = get_settings()

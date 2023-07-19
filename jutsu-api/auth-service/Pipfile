@@ -14,7 +14,7 @@ tox = "*"
 asyncpg = "*"
 pydantic-settings = "*"
 async-timeout = "*"
-fastapi-users = {version = "*", extras = ["sqlalchemy", "redis"]}
+fastapi-users = {version = "*", extras = ["sqlalchemy", "redis", "oauth"]}
 
 [dev-packages]
 
