@@ -24,7 +24,6 @@ Here is the roadmap section for the README file on the Devjutsu GitHub repositor
   - `[ ]` Model definitions
 
 - `[ ]` **Payment Service**: Will handle all the transactions in the application. Yet to be implemented.
-
 - `[ ]` **Dojo Service**: Will manage the educational platform and the learning resources. Yet to be implemented.
 
 #### Front-End
