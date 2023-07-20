@@ -10,4 +10,7 @@ include_routes(app)
 
 @app.on_event("startup")
 async def on_startup():
-    await create_db_and_tables()
+    try:
+        await create_db_and_tables()
+    except Exception as e:
+        print(e)
