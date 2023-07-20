@@ -4,13 +4,40 @@
 
 Devjutsu is a powerful project management tool designed for software developers to streamline secure coding practices. In a world where data security is paramount, Devjutsu integrates globally recognized security standards into its framework, enabling developers to create more secure software applications with ease and precision.
 
+Here is the roadmap section for the README file on the Devjutsu GitHub repository:
+
+## Roadmap
+
+#### Back-End
+
+- `[x]` **Project Service**: Houses the business logic for creating projects, workflows, states, and work items. Unit tests, integration tests, and some model modifications are pending.
+
+  - `[x]` Business logic
+  - `[ ]` Unit tests
+  - `[ ]` Integration tests
+  - `[ ]` Model definitions modifications
+  - `[~]` Custom ASVS dataset (in progress)
+
+- `[~]` **Member Service**: Responsible for member registration, authentication, and authorization. This service is currently in progress.
+
+  - `[ ]` Business logic
+  - `[ ]` Model definitions
+
+- `[ ]` **Payment Service**: Will handle all the transactions in the application. Yet to be implemented.
+
+- `[ ]` **Dojo Service**: Will manage the educational platform and the learning resources. Yet to be implemented.
+
+#### Front-End
+
+- `[ ]` **Next.js Application**: Front-end development using Next.js is planned.
+
 ## Features
 
-### Security Standards Mapping
+#### Security Standards Mapping
 
 One of Devjutsu's distinguishing features is the ability to map security standards to user stories. By integrating recognized security protocols into the development lifecycle from the earliest stage, our tool helps you ensure each user story is built on a solid, secure foundation.
 
-### Dojo - Learn and Grow
+#### Dojo - Learn and Grow
 
 A Dojo for software developers is a unique feature of Devjutsu. The Dojo is a learning hub where developers can gain insights into the basics of software security, stay updated on the latest trends, and continue to hone their skills. The ultimate goal is to foster a culture of learning and continuous improvement, helping developers increase their proficiency in secure coding.
 
