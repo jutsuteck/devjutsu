@@ -6,7 +6,7 @@ from fastapi_users.db import SQLAlchemyUserDatabase
 
 from src.core.config.settings import get_settings
 from src.core.dependencies.database.database_manager import get_user_db
-from src.models.v1.user import Member
+from src.models.v1.member import Member
 
 
 class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):

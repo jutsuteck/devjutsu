@@ -21,7 +21,7 @@ services:
       context: ./project-service
       dockerfile: docker/Dockerfile.db
     ports:
-      - "5432:5342"
+      - "5432:5432"
     env_file:
       - ./project-service/.env
 
@@ -43,7 +43,7 @@ services:
       context: ./auth-service
       dockerfile: docker/Dockerfile.postgres
     ports:
-      - "5433:5342"
+      - "5433:5432"
     env_file:
       - ./auth-service/.env
 

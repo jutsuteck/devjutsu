@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from src.core.config.settings import get_settings
 from src.models.v1.base import Base
 from src.models.v1.oauth_account import OAuthAccount
-from src.models.v1.user import Member
+from src.models.v1.member import Member
 
 settings = get_settings()
 
