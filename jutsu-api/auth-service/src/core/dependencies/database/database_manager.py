@@ -6,6 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from src.core.config.settings import get_settings
 from src.models.v1.users import Base, Member, OAuthAccount
 
+
 settings = get_settings()
 
 DB_USER = settings.postgres_user

@@ -15,6 +15,7 @@ asyncpg = "*"
 pydantic-settings = "*"
 async-timeout = "*"
 fastapi-users = {version = "*", extras = ["sqlalchemy", "redis", "oauth"]}
+alembic = "*"
 
 [dev-packages]
 
