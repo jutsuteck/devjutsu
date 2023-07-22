@@ -1,7 +1,7 @@
 from sqlalchemy import UUID, Column, String, text
 from sqlalchemy.orm import relationship
 
-from src.models.v1.base import Base
+from src.models.v1.member import Base
 
 
 class Team(Base):
