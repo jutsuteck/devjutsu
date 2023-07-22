@@ -13,7 +13,7 @@ class OAuthAccount(SQLAlchemyBaseOAuthAccountTableUUID, Base):
 class Member(SQLAlchemyBaseUserTableUUID, Base):
     __tablename__ = "members"
 
-    oirst_name = Column(String, nullable=False)
+    first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
 
     tenant_id = Column(UUID(as_uuid=True), ForeignKey('tenants.id'))
@@ -35,6 +35,8 @@ class Role(Base):
     name = Column(String, unique=True, nullable=False)
     permissions = relationship(
         'Permission', secondary="role_permissions", back_populates="roles")
+    members = relationship(
+        'Member', secondary="member_roles", back_populates="roles")
 
 
 class Permission(Base):
@@ -68,6 +70,12 @@ class Team(Base):
     members = relationship(
         'Member', secondary='team_members', back_populates='teams')
 
+
+member_roles = Table(
+    'member_roles', Base.metadata,
+    Column('member_id', UUID(as_uuid=True), ForeignKey('members.id')),
+    Column('role_id', UUID(as_uuid=True), ForeignKey('roles.id'))
+)
 
 role_permissions = Table(
     'role_permissions', Base.metadata,

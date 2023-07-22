@@ -10,7 +10,6 @@ class MemberReadSchema(schemas.BaseUser[uuid.UUID]):
 
 
 class MemberCreateSchema(schemas.BaseUserCreate):
-    email: EmailStr
     first_name: str
     last_name: str
 
@@ -19,7 +18,6 @@ class MemberCreateSchema(schemas.BaseUserCreate):
             "example": {
                 "first_name": "Clark",
                 "last_name": "Kent",
-                "email": "clarkkent@superman.com"
             }
         }
 

@@ -10,9 +10,8 @@ from src.models.v1.users import Member
 
 
 class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.settings = get_settings()
+    reset_password_token_secret = "SECRET"
+    verification_token_secret = "SECRET"
 
 
 async def get_user_manager(user_db: SQLAlchemyUserDatabase = Depends(get_user_db)):
