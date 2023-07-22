@@ -2,7 +2,7 @@ from typing import List, Optional, Sequence
 from sqlalchemy import delete, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.models.v1.member import Member, Role
+from src.models.v1.users import Member, Role
 
 
 class RoleRepository:

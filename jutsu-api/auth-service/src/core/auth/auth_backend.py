@@ -5,7 +5,7 @@ from fastapi_users import FastAPIUsers
 from fastapi_users.authentication import AuthenticationBackend, BearerTransport, RedisStrategy
 
 from src.core.auth.user_manager import get_user_manager
-from src.models.v1.member import Member
+from src.models.v1.users import Member
 
 bearer_transport = BearerTransport(tokenUrl="auth/jwt/login")
 

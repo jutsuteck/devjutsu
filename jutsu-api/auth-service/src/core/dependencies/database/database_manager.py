@@ -4,7 +4,7 @@ from fastapi_users.db import SQLAlchemyUserDatabase
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 from src.core.config.settings import get_settings
-from src.models.v1.member import Base, Member, OAuthAccount
+from src.models.v1.users import Base, Member, OAuthAccount
 
 settings = get_settings()
 

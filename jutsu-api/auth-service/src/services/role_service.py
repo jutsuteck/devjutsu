@@ -3,7 +3,7 @@ from fastapi import Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.core.dependencies.database.database_manager import get_async_session
-from src.models.v1.member import Role
+from src.models.v1.users import Role
 from src.repositories.role_repository import RoleRepository
 
 

@@ -1,7 +1,7 @@
 from sqlalchemy import delete, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.models.v1.team import Team
+from src.models.v1.users import Team
 
 
 class TeamRepository:
