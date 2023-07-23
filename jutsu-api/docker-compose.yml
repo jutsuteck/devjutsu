@@ -5,7 +5,7 @@ services:
     container_name: project_database
     build:
       context: ./project-service
-      dockerfile: docker/Dockerfile.db
+      dockerfile: docker/postgres/Dockerfile
     ports:
       - "5432:5432"
     env_file:
@@ -15,11 +15,11 @@ services:
     container_name: project_service
     build:
       context: ./project-service
-      dockerfile: docker/Dockerfile.app
+      dockerfile: docker/app/Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - ./project-service/src:/app/src
+      - ./project-service:/app
     env_file:
       - ./project-service/.env
     restart: on-failure
@@ -30,7 +30,7 @@ services:
     container_name: user_database
     build:
       context: ./auth-service
-      dockerfile: docker/Dockerfile.postgres
+      dockerfile: docker/postgres/Dockerfile
     ports:
       - "5433:5432"
     env_file:
@@ -40,15 +40,17 @@ services:
     container_name: user_token_database
     build:
       context: ./auth-service
-      dockerfile: docker/Dockerfile.redis
+      dockerfile: docker/redis/Dockerfile
     ports:
       - "6379:6379"
+    env_file:
+      - ./auth-service/.env
   
   auth_service:
     container_name: auth_service
     build:
       context: ./auth-service
-      dockerfile: docker/Dockerfile.app
+      dockerfile: docker/app/Dockerfile
     ports:
       - "8001:8000"
     volumes:

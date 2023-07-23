@@ -1,8 +1,0 @@
-FROM redis:7.0.11
-
-USER redis
-
-EXPOSE 6379
-
-CMD ["redis-server"]
-
