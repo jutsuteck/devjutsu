@@ -1,0 +1,26 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout code
+
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        name: Build and push Docker image
+        with:
+          image: jutsuteck/pyjutsu-base
+          tags: latest
+          registry: docker.io
+          dockerfile: ./docker/python/Dockerfile
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+

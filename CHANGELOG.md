@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Docker Build and Push GitHub Actions workflow: Introduced a new CI/CD workflow that automatically builds and pushes the Python Docker image to Docker Hub. This automation will enhance the project's development and deployment processes.
+
 - Settings Configuration: Refactored the settings configuration in the project to improve the structure and ease of use. The settings are now divided into several separate classes including `Base`, `PostgresSettings`, `RedisSettings`, `JWTSettings`, and `GithubSettings`. This division allows for better organization and individual handling of various settings based on their respective services.
 
 - Environment Variables in Docker: Adjusted the Python Dockerfile to support dynamic assignment of the environment variable `ENVIRONMENT`. This allows the container to determine if it is running in a development or production environment. The `ENVIRONMENT` variable is also used in the refactored settings configuration to load appropriate values.
