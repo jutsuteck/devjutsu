@@ -1,5 +1,8 @@
 # Devjutsu
 
+![Docker Build and Push](https://github.com/jutsuteck/devjutsu/actions/workflows/docker-build-push.yml/badge.svg)
+
+
 ## Overview
 
 Devjutsu is a powerful project management tool designed for software developers to streamline secure coding practices. In a world where data security is paramount, Devjutsu integrates globally recognized security standards into its framework, enabling developers to create more secure software applications with ease and precision.
