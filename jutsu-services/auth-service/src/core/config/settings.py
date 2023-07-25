@@ -72,8 +72,6 @@ class Settings(BaseSettings):
             settings.github.github_client_secret = os.getenv(
                 'GITHUB_CLIENT_SECRET')
         else:
-            # In production mode, values are taken from Vault or other
-            # secret managers
             pass
 
 

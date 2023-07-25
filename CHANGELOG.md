@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Dockerfile and docker directories: Dockerfiles and related directories previously residing within individual services have been removed and centralized in the root directory of the project. The Python, PostgreSQL, and Redis Dockerfiles now act as base images for potential future Docker images. This restructuring facilitates easier management of Docker images and better supports the possibility of scaling and expanding the application in the future.
+
 ### Added
 
 - Settings Configuration: Refactored the settings configuration in the project to improve the structure and ease of use. The settings are now divided into several separate classes including `Base`, `PostgresSettings`, `RedisSettings`, `JWTSettings`, and `GithubSettings`. This division allows for better organization and individual handling of various settings based on their respective services.
@@ -19,7 +23,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Auth Service: Started developing the auth service using the FastAPI users library for user management. This includes OAuth accounts and general authentication/authorization. This service uses three Docker containers - a Python container, a PostgreSQL container, and a Redis container for token management. Began experimenting with Alembic for database migrations.
 
 - Auth Service Models: Defined the following models: OAuthAccount, Member, Tenant, Team, Role, and Permission.
-
 
 ## [0.0.1] - 2023-07-23
 

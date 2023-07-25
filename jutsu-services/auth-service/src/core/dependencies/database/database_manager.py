@@ -19,8 +19,14 @@ DB_NAME = settings.postgres.postgres_db
 DB_HOST = settings.postgres.postgres_host
 DB_PORT = settings.postgres.postgres_port
 
-URL = f"{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-DB_URL = f"postgresql+asyncpg://{URL}"
+DB_URL = (
+    f"postgresql+asyncpg://"
+    f"{DB_USER}:"
+    f"{DB_PASSWORD}@"
+    f"{DB_HOST}:"
+    f"{DB_PORT}/"
+    f"{DB_NAME}"
+)
 
 engine = create_async_engine(DB_URL)
 async_session_maker = async_sessionmaker(engine, expire_on_commit=False)
