@@ -7,15 +7,16 @@ on:
     branches: [ master ]
 
 jobs:
-  docker:
+  docker-python:
     runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.modified, 'docker/python/Dockerfile')
   
     steps:
       - uses: actions/checkout@v3
         name: Checkout code
 
       - uses: mr-smithers-excellent/docker-build-push@v6
-        name: Build and push Docker image
+        name: Build and push Python Docker image
         with:
           image: jutsuteck/pyjutsu-base
           tags: latest
@@ -24,3 +25,38 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+  docker-postgres:
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.modified, 'docker/postgres/Dockerfile')
+  
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout code
+
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        name: Build and push PostgreSQL Docker image
+        with:
+          image: jutsuteck/jutsu-postgres-base
+          tags: latest
+          registry: docker.io
+          dockerfile: ./docker/postgres/Dockerfile
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+  docker-redis:
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.modified, 'docker/redis/Dockerfile')
+  
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout code
+
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        name: Build and push Redis Docker image
+        with:
+          image: jutsuteck/jutsu-redis-base
+          tags: latest
+          registry: docker.io
+          dockerfile: ./docker/redis/Dockerfile
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
