@@ -1,0 +1,20 @@
+# Ignore Python byte-compiled files
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.Python
+**/.pytest_cache
+
+# Ignore TypeScript build artifacts
+**/dist
+**/node_modules
+
+# Ignore common logs and databases
+*.log
+*.sqlite
+
+# Ignore git history and environment files
+.git
+.env
+.env.*
