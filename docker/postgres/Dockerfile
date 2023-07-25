@@ -1,6 +1,7 @@
 # This Dockerfile is used to build an image for the PostgreSQL database service of the 'jutsu' project.
 # 
 # Owner: JutsuTeck
+# Email: imanuelfebie@devjutsu.io
 # 
 # This Dockerfile is based on the official PostgreSQL 13 image.
 # It installs additional packages necessary for the operation of our specific use case.

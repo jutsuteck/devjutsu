@@ -1,6 +1,7 @@
 # This Dockerfile is used to build an image for the auth-service of the 'jutsu' project.
 # 
 # Owner: JutsuTeck
+# Email: imanuelfebie@devjutsu.io
 # 
 # This Dockerfile is based on the Python 3.10 slim-buster image. It sets up the environment and
 # system packages, then creates a specific user with appropriate permissions for our use case.

@@ -1,6 +1,7 @@
 # This Dockerfile is used to build an image for the Redis instance of the 'jutsu' project.
 # 
 # Owner: JutsuTeck
+# Email: imanuelfebie@devjutsu.io
 # 
 # This Dockerfile is based on the Redis 7.0.11 image. It sets up the environment and
 # system packages, then installs gettext for environment variable substitution in the 

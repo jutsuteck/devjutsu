@@ -3,13 +3,21 @@ name: Docker Build and Push
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'docker/python/Dockerfile'
+      - 'docker/postgres/Dockerfile'
+      - 'docker/redis/Dockerfile'
   pull_request:
     branches: [ master ]
+    paths:
+      - 'docker/python/Dockerfile'
+      - 'docker/postgres/Dockerfile'
+      - 'docker/redis/Dockerfile'
+
 
 jobs:
   docker-python:
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.modified, 'docker/python/Dockerfile')
   
     steps:
       - uses: actions/checkout@v3
@@ -27,7 +35,6 @@ jobs:
 
   docker-postgres:
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.modified, 'docker/postgres/Dockerfile')
   
     steps:
       - uses: actions/checkout@v3
@@ -45,7 +52,6 @@ jobs:
 
   docker-redis:
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.modified, 'docker/redis/Dockerfile')
   
     steps:
       - uses: actions/checkout@v3
