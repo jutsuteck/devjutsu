@@ -1,5 +1,8 @@
 from typing import List
-from fastapi_users.db import SQLAlchemyBaseOAuthAccountTableUUID, SQLAlchemyBaseUserTableUUID
+from fastapi_users.db import (
+    SQLAlchemyBaseOAuthAccountTableUUID,
+    SQLAlchemyBaseUserTableUUID
+)
 from sqlalchemy import UUID, Column, ForeignKey, String, Table, text
 from sqlalchemy.orm import Mapped, declarative_base, relationship
 
@@ -7,7 +10,8 @@ Base = declarative_base()
 
 
 class OAuthAccount(SQLAlchemyBaseOAuthAccountTableUUID, Base):
-    user_id = Column(UUID(as_uuid=True), ForeignKey("members.id"))
+    user_id = Column(UUID(as_uuid=True), ForeignKey(
+        "members.id"))  # type: ignore
 
 
 class Member(SQLAlchemyBaseUserTableUUID, Base):

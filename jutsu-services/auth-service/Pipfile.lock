@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "03cbb6fcc5f0d3f9639666b90a3cf78b57e58d500bda276c786a4df3cd236b3f"
+            "sha256": "ef7c214377d817389eef2ed6cc469110a96a084048355b68db8330c10ac4f6a8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -778,8 +778,16 @@
                 "sha256:a8df96034aae6d2d50a4ebe8216326c61c3eb64836776504fcca410e5937a3ba",
                 "sha256:f5971a9226b701070a4bf2c38c89e5a3f0d64de8debda981d1db98583009122a"
             ],
-            "markers": "python_version >= '3.8'",
+            "index": "pypi",
             "version": "==1.0.0"
+        },
+        "python-http-client": {
+            "hashes": [
+                "sha256:ad371d2bbedc6ea15c26179c6222a78bc9308d272435ddf1d5c84f068f249a36",
+                "sha256:bf841ee45262747e00dec7ee9971dfb8c7d83083f5713596488d67739170cea0"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==3.3.7"
         },
         "python-multipart": {
             "hashes": [
@@ -796,6 +804,14 @@
             ],
             "version": "==4.6.0"
         },
+        "sendgrid": {
+            "hashes": [
+                "sha256:522b30fc98306496208c5d8bdd5642cd6a2fd65cad487475f57f9098ce880604",
+                "sha256:9b15050c6f8826ee576f76a786efb15d956639f485478cbddd79ed69e8350ab8"
+            ],
+            "index": "pypi",
+            "version": "==6.10.0"
+        },
         "sniffio": {
             "hashes": [
                 "sha256:e60305c5e5d314f5389259b7f22aaa33d8f7dee49763119234af3755c55b9101",
@@ -805,7 +821,6 @@
             "version": "==1.3.0"
         },
         "sqlalchemy": {
-            "extras": [],
             "hashes": [
                 "sha256:024d2f67fb3ec697555e48caeb7147cfe2c08065a4f1a52d93c3d44fc8e6ad1c",
                 "sha256:0bf0fd65b50a330261ec7fe3d091dfc1c577483c96a9fa1e4323e932961aa1b5",
@@ -852,6 +867,12 @@
             "markers": "python_version >= '3.7'",
             "version": "==2.0.19"
         },
+        "starkbank-ecdsa": {
+            "hashes": [
+                "sha256:9399c3371b899d4a235b68a1ed7919d202fbf024bd2c863ae8ebdad343c2a63a"
+            ],
+            "version": "==2.2.0"
+        },
         "starlette": {
             "hashes": [
                 "sha256:6a6b0d042acb8d469a01eba54e9cda6cbd24ac602c4cd016723117d6a7e73b75",
@@ -886,11 +907,11 @@
         },
         "virtualenv": {
             "hashes": [
-                "sha256:01aacf8decd346cf9a865ae85c0cdc7f64c8caa07ff0d8b1dfc1733d10677442",
-                "sha256:2ef6a237c31629da6442b0bcaa3999748108c7166318d1f55cc9f8d7294e97bd"
+                "sha256:43a3052be36080548bdee0b42919c88072037d50d56c28bd3f853cbe92b953ff",
+                "sha256:fd8a78f46f6b99a67b7ec5cf73f92357891a7b3a40fd97637c27f854aae3b9e0"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==20.24.1"
+            "version": "==20.24.2"
         }
     },
     "develop": {}

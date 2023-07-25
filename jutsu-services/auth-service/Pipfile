@@ -16,6 +16,8 @@ pydantic-settings = "*"
 async-timeout = "*"
 fastapi-users = {version = "*", extras = ["sqlalchemy", "redis", "oauth"]}
 alembic = "*"
+sendgrid = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

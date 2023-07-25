@@ -1,10 +1,8 @@
 FROM redis:7.0.11
 
-ARG REDIS_USER
-ARG REDIS_PASSWORD
-
-ENV REDIS_USER=${REDIS_USER}
-ENV REDIS_PASSWORD=${REDIS_PASSWORD}
+# Define the environment
+ARG ENVIRONMENT
+ENV ENVIRONMENT=${ENVIRONMENT}
 
 COPY docker/redis/redis.conf.template /tmp/redis.conf.template
 

@@ -1,7 +1,6 @@
 import uuid
 
 from fastapi_users import schemas
-from pydantic import EmailStr
 
 
 class MemberReadSchema(schemas.BaseUser[uuid.UUID]):
@@ -14,7 +13,7 @@ class MemberCreateSchema(schemas.BaseUserCreate):
     last_name: str
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "first_name": "Clark",
                 "last_name": "Kent",

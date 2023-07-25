@@ -3,7 +3,11 @@ from fastapi import FastAPI
 from src.api.v1.role_routes import router as role_routes
 from src.api.v1.team_routes import router as team_routes
 from src.core.auth.auth_backend import users as fastapi_users
-from src.schemas.v1.member_schemas import MemberCreateSchema, MemberReadSchema, MemberUpdateSchema
+from src.schemas.v1.member_schemas import (
+    MemberCreateSchema,
+    MemberReadSchema,
+    MemberUpdateSchema
+)
 from src.core.config.settings import get_settings
 
 from src.core.auth.auth_backend import auth_backend
@@ -27,7 +31,10 @@ def include_routes(app: FastAPI) -> None:
     )
     app.include_router(
         fastapi_users.get_oauth_router(
-            github_oauth_client, auth_backend, settings.jwt_secret),
+            github_oauth_client,
+            auth_backend,
+            settings.jwt.jwt_secret  # type: ignore
+        ),
         prefix="/auth/github",
         tags=["auth"]
     )

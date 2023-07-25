@@ -10,7 +10,7 @@ router = APIRouter()
 
 @router.post('/new', response_model=RoleReadSchema)
 async def create_role(role_create_schema: RoleCreateSchema, service: RoleService = Depends(RoleService)):
-    return await service.create_role(role_create_schema.dict())
+    return await service.create_role(role_create_schema.model_dump())
 
 
 @router.get('/all', response_model=List[RoleReadSchema])
@@ -30,7 +30,7 @@ async def get_role_by_id(role_id: str, service: RoleService = Depends(RoleServic
 
 @router.patch('/update/{role_id}', response_model=RoleReadSchema)
 async def update_role(role_id: str, role_update_schema: RoleUpdateSchema, service: RoleService = Depends(RoleService)):
-    return await service.update_role(role_id, role_update_schema.dict())
+    return await service.update_role(role_id, role_update_schema.model_dump())
 
 
 @router.delete('/delete/{role_id}')
