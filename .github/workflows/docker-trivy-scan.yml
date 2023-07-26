@@ -16,7 +16,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/jutsuteck/pyjutsu-base ./docker/python
+          docker build -t docker.io/jutsuteck/pyjutsu-base -f docker/python/Dockerfile .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
