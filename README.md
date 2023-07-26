@@ -1,7 +1,7 @@
 # Devjutsu
 
 ![Docker Build and Push](https://github.com/jutsuteck/devjutsu/actions/workflows/docker-build-push.yml/badge.svg)
-
+![Docker Build and Push](https://github.com/jutsuteck/devjutsu/actions/workflows/docker-trivy-scan.yml/badge.svg)
 
 ## Overview
 
