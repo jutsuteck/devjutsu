@@ -16,7 +16,7 @@
 #
 # Please reach out to the owner before making significant changes.
 #
-FROM redis:7.0.11
+FROM redis:7.2-rc-alpine
 
 # Define the environment
 ARG ENVIRONMENT
@@ -24,7 +24,11 @@ ENV ENVIRONMENT=${ENVIRONMENT}
 
 COPY docker/redis/redis.conf.template /tmp/redis.conf.template
 
-RUN apt-get update && apt-get install -y gettext && apt-get clean
+# Update system packages, install gettext, and cleanup
+RUN apk update && \
+    apk add --no-cache gettext && \
+    apk add --no-cache bash && \
+    rm -rf /var/cache/apk/*
 
 USER redis
 

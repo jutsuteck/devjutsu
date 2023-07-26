@@ -13,7 +13,7 @@
 #
 # Please reach out to the owner before making significant changes.
 #
-FROM python:3.10-slim-buster
+FROM python:3.11.4-alpine
 
 # Define the environment
 ARG ENVIRONMENT
@@ -24,14 +24,14 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# Update system packages and cleanup
-RUN apt update && \
-    apt upgrade -y && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/*
+# Update system packages, install bash and cleanup
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache bash && \
+    rm -rf /var/cache/apk/*
 
 # Create a user with a specific UID and GID
-RUN groupadd -g 999 appuser && useradd -r -u 999 -g appuser appuser
+RUN addgroup appuser && adduser -D -u 999 -G appuser appuser
 
 # Switch to the new user
 USER appuser

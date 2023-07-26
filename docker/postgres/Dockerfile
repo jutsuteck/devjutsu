@@ -9,14 +9,14 @@
 # 
 # Please reach out to the owner before making significant changes.
 #
-FROM postgres:13
+FROM postgres:13-alpine
 
 ARG ENVIRONMENT
 ENV ENVIRONMENT=${ENVIRONMENT}
 
-RUN apt-get update && \
-    apt-get install -y gettext && \
-    apt-get clean
+RUN apk update && \
+    apk upgrade && \
+    rm -rf /var/cache/apk/*
 
 CMD ["postgres"]
 
