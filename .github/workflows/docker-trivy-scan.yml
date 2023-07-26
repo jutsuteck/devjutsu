@@ -16,12 +16,12 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/jutsuteck/pyjutsu-base:${{ github.sha }} .
+          docker build -t docker.io/jutsuteck/pyjutsu-base
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: "docker.io/jutsuteck/pyjutsu-base:${{ github.sha }}"
+          image-ref: "docker.io/jutsuteck/pyjutsu-base"
           format: "table"
           exit-code: "1"
           ignore-unfixed: true
