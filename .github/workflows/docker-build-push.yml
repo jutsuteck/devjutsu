@@ -2,26 +2,25 @@ name: Docker Build and Push
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
     paths:
-      - 'docker/python/Dockerfile'
-      - 'docker/postgres/Dockerfile'
-      - 'docker/redis/Dockerfile'
+      - "docker/python/Dockerfile"
+      - "docker/postgres/Dockerfile"
+      - "docker/redis/Dockerfile"
   pull_request:
-    branches: [ master ]
+    branches: [master]
     paths:
-      - 'docker/python/Dockerfile'
-      - 'docker/postgres/Dockerfile'
-      - 'docker/redis/Dockerfile'
-
+      - "docker/python/Dockerfile"
+      - "docker/postgres/Dockerfile"
+      - "docker/redis/Dockerfile"
 
 jobs:
   docker-python:
-    runs-on: ubuntu-latest
-  
+    runs-on: ubuntu-20.04
+
     steps:
       - uses: actions/checkout@v3
-        name: Checkout code
+        name: Build an image from checkout
 
       - uses: mr-smithers-excellent/docker-build-push@v6
         name: Build and push Python Docker image
@@ -35,7 +34,7 @@ jobs:
 
   docker-postgres:
     runs-on: ubuntu-latest
-  
+
     steps:
       - uses: actions/checkout@v3
         name: Checkout code
@@ -52,7 +51,7 @@ jobs:
 
   docker-redis:
     runs-on: ubuntu-latest
-  
+
     steps:
       - uses: actions/checkout@v3
         name: Checkout code
