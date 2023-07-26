@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Docker Security Scan Actions workflow: Introduced a new CI/CD workflow that automatically scans for security vulnerabilities using Trivy. This automation will enhance the project's development and security processes.
+
 - Docker Build and Push GitHub Actions workflow: Introduced a new CI/CD workflow that automatically builds and pushes the Python Docker image to Docker Hub. This automation will enhance the project's development and deployment processes.
 
 - Settings Configuration: Refactored the settings configuration in the project to improve the structure and ease of use. The settings are now divided into several separate classes including `Base`, `PostgresSettings`, `RedisSettings`, `JWTSettings`, and `GithubSettings`. This division allows for better organization and individual handling of various settings based on their respective services.
@@ -31,4 +33,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Initial project setup and repository creation. The basic architecture for the microservices (auth-service and project-service) and frontend (jutsu-ui) have been setup.
 
 ## Project started on 2023-07-09
-
