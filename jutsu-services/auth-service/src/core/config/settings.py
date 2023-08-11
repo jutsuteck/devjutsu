@@ -39,12 +39,20 @@ class GithubSettings(BaseSettings):
     github_client_secret: Optional[str] = None
 
 
+class SMTPSettings(BaseSettings):
+    smtp_server: Optional[str] = None
+    smtp_port: Optional[int] = None
+    smtp_username: Optional[str] = None
+    smtp_password: Optional[str] = None
+
+
 class Settings(BaseSettings):
     base: Base = Base()
     postgres: PostgresSettings = PostgresSettings()
     redis: RedisSettings = RedisSettings()
     jwt: JWTSettings = JWTSettings()
     github: GithubSettings = GithubSettings()
+    smtp: SMTPSettings = SMTPSettings()
 
     @staticmethod
     def fetch_secrets():
@@ -71,6 +79,11 @@ class Settings(BaseSettings):
             settings.github.github_client_id = os.getenv('GITHUB_CLIENT_ID')
             settings.github.github_client_secret = os.getenv(
                 'GITHUB_CLIENT_SECRET')
+
+            settings.smtp.smtp_server = os.getenv('SMTP_SERVER')
+            settings.smtp.smtp_port = os.getenv('SMTP_PORT')
+            settings.smtp.smtp_username = os.getenv('SMTP_USERNAME')
+            settings.smtp.smtp_password = os.getenv('SMTP_PASSWORD')
         else:
             pass
 

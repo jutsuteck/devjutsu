@@ -2,11 +2,17 @@ import re
 import uuid
 
 from typing import Optional, Union
-from fastapi import Depends, Request
-from fastapi_users import BaseUserManager, InvalidPasswordException, UUIDIDMixin
+from fastapi import BackgroundTasks, Depends, Request
+from fastapi_mail import FastMail, MessageSchema, MessageType
+from fastapi_users import (
+    BaseUserManager,
+    InvalidPasswordException,
+    UUIDIDMixin
+)
 from fastapi_users.db import SQLAlchemyUserDatabase
 
 from src.core.dependencies.database.database_manager import get_user_db
+from src.core.config.mail import smtp_connection
 from src.models.v1.users import Member
 
 
@@ -32,7 +38,18 @@ class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
             self,
             member: Member,
             request: Optional[Request] = None):
-        pass
+
+        print(member.email)
+
+        message = MessageSchema(
+            subject="Test mail module",
+            recipients=[member.email],
+            body="<p>Test mail body</p>",
+            subtype="html"
+        )
+
+        fm = FastMail(smtp_connection)
+        await fm.send_message(message)
 
     async def on_after_verify(
             self,

@@ -18,6 +18,8 @@ fastapi-users = {version = "*", extras = ["sqlalchemy", "redis", "oauth"]}
 alembic = "*"
 sendgrid = "*"
 python-dotenv = "*"
+pytest-asyncio = "*"
+fastapi-mail = "*"
 
 [dev-packages]
 
