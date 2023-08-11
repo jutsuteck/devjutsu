@@ -17,6 +17,8 @@ class MemberCreateSchema(schemas.BaseUserCreate):
             "example": {
                 "first_name": "Clark",
                 "last_name": "Kent",
+                "email": "clarkkent@email.com",
+                "password": "iamavalidpassword"
             }
         }
 
