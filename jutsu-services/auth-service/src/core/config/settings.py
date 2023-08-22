@@ -30,8 +30,10 @@ class RedisSettings(BaseSettings):
     redis_port: Optional[int] = None
 
 
-class JWTSettings(BaseSettings):
-    jwt_secret: Optional[str] = None
+class TokenSecretSettings(BaseSettings):
+    oauth_jwt_secret: Optional[str] = None
+    reset_password_token: Optional[str] = None
+    verification_token_secret: Optional[str] = None
 
 
 class GithubSettings(BaseSettings):
@@ -50,7 +52,7 @@ class Settings(BaseSettings):
     base: Base = Base()
     postgres: PostgresSettings = PostgresSettings()
     redis: RedisSettings = RedisSettings()
-    jwt: JWTSettings = JWTSettings()
+    token: TokenSecretSettings = TokenSecretSettings()
     github: GithubSettings = GithubSettings()
     smtp: SMTPSettings = SMTPSettings()
 
@@ -74,7 +76,11 @@ class Settings(BaseSettings):
             settings.redis.redis_host = os.getenv('REDIS_HOST')
             settings.redis.redis_port = os.getenv('REDIS_PORT')  # type: ignore
 
-            settings.jwt.jwt_secret = os.getenv('JWT_SECRET')
+            settings.token.oauth_jwt_secret = os.getenv('OAUTH_JWT_SECRET')
+            settings.token.reset_password_token_secret = os.getenv(
+                'RESET_TOKEN_PASSWORD_SECRET')
+            settings.token.verification_token_secret = os.getenv(
+                'VERIFICATION_TOKEN_SECRET')
 
             settings.github.github_client_id = os.getenv('GITHUB_CLIENT_ID')
             settings.github.github_client_secret = os.getenv(

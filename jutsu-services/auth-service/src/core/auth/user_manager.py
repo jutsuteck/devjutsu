@@ -2,14 +2,14 @@ import re
 import uuid
 
 from typing import Optional, Union
-from fastapi import BackgroundTasks, Depends, Request
-from fastapi_mail import FastMail, MessageSchema, MessageType
+from fastapi import Depends, Request
 from fastapi_users import (
     BaseUserManager,
     InvalidPasswordException,
     UUIDIDMixin
 )
 from fastapi_users.db import SQLAlchemyUserDatabase
+from src.core.config.settings import get_settings
 
 from src.core.dependencies.database.database_manager import get_user_db
 from src.core.config.mail import smtp_connection
@@ -17,13 +17,16 @@ from src.models.v1.users import Member
 
 
 class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
-    reset_password_token_secret = "SECRET"
-    verification_token_secret = "SECRET"
+    settings = get_settings()
+    reset_password_token_secret = settings.token.reset_password_token
+    verification_token_secret = settings.token.verification_token_secret
 
     async def validate_password(
             self, password: str,
             user: Union[Member, uuid.UUID]) -> None:
-        # replace consecutive spaces with a single space
+        """
+        Validates user set password
+        """
         password = re.sub('\s+', ' ', password)
 
         if not password.isprintable():
@@ -41,20 +44,13 @@ class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
 
         print(member.email)
 
-        message = MessageSchema(
-            subject="Test mail module",
-            recipients=[member.email],
-            body="<p>Test mail body</p>",
-            subtype="html"
-        )
-
-        fm = FastMail(smtp_connection)
-        await fm.send_message(message)
-
-    async def on_after_verify(
+    async def on_after_request_verify(
             self,
             member: Member,
             token: str, request: Optional[Request] = None) -> None:
+        """
+        TODO: Generate and send verification token after user sign up
+        """
         pass
 
 
