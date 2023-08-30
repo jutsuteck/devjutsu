@@ -3,6 +3,8 @@ import uuid
 
 from typing import Optional, Union
 from fastapi import Depends, Request
+from fastapi.responses import JSONResponse
+from fastapi_mail import FastMail, MessageSchema, MessageType
 from fastapi_users import (
     BaseUserManager,
     InvalidPasswordException,
@@ -18,7 +20,7 @@ from src.models.v1.users import Member
 
 class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
     settings = get_settings()
-    reset_password_token_secret = settings.token.reset_password_token
+    reset_password_token_secret = settings.token.reset_password_token_secret
     verification_token_secret = settings.token.verification_token_secret
 
     async def validate_password(
@@ -48,10 +50,17 @@ class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
             self,
             member: Member,
             token: str, request: Optional[Request] = None) -> None:
-        """
-        TODO: Generate and send verification token after user sign up
-        """
-        pass
+        print(member.email, token)
+
+        """ message = MessageSchema( """
+        """     subject="Verify", """
+        """     recipients=[member.email], """
+        """     body=html, """
+        """     subtype=MessageType.html """
+        """ ) """
+
+        """ fm = FastMail(smtp_connection) """
+        """ await fm.send_message(message) """
 
 
 async def get_user_manager(

@@ -32,7 +32,7 @@ class RedisSettings(BaseSettings):
 
 class TokenSecretSettings(BaseSettings):
     oauth_jwt_secret: Optional[str] = None
-    reset_password_token: Optional[str] = None
+    reset_password_token_secret: Optional[str] = None
     verification_token_secret: Optional[str] = None
 
 

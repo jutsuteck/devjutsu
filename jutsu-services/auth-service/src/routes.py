@@ -33,7 +33,7 @@ def include_routes(app: FastAPI) -> None:
         fastapi_users.get_oauth_router(
             github_oauth_client,
             auth_backend,
-            settings.jwt.jwt_secret  # type: ignore
+            settings.token.oauth_jwt_secret  # type: ignore
         ),
         prefix="/auth/github",
         tags=["auth"]
