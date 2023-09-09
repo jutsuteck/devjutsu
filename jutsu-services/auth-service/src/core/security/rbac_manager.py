@@ -1,30 +1,11 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import joinedload
+
+from src.core.enums import PermissionsEnum, RolesEnum
 from src.models.v1.users import Role, Permission
-
-DEFAULT_ROLES = [
-    "Individual User",
-    "Team Member",
-    "Team Lead",
-    "Organization Member",
-    "Organization Admin"
-]
-
-DEFAULT_PERMISSIONS = [
-    "create_personal_project",
-    "manage_personal_project",
-    "view_team_project",
-    "edit_team_project",
-    "create_team",
-    "manage_team",
-    "manage_all_team_projects",
-    "view_org_projects",
-    "edit_assigned_org_project",
-    "create_organization",
-    "manage_organization",
-    "manage_all_organization"
-]
+from src.repositories.permission_repository import PermissionRepository
+from src.repositories.role_repository import RoleRepository
 
 
 async def seed_roles(session: AsyncSession):
@@ -40,16 +21,15 @@ async def seed_roles(session: AsyncSession):
     Returns:
         None
     """
-    for role_name in DEFAULT_ROLES:
-        result = await (
-            session.execute(select(Role).filter_by(name=role_name))
-        )
-        role = result.scalars().first()
+    role_repo = RoleRepository(session)
 
-        if not role:
-            session.add(Role(name=role_name))
+    for role in RolesEnum:
+        existing_role = await role_repo.get_by_name(role.value)
 
-    await session.commit()
+        if not existing_role:
+            session.add(Role(name=role.value))
+
+        await session.commit()
 
 
 async def seed_permissions(session: AsyncSession):
@@ -65,14 +45,13 @@ async def seed_permissions(session: AsyncSession):
     Returns:
         None
     """
-    for perm_name in DEFAULT_PERMISSIONS:
-        result = await (
-            session.execute(select(Permission).filter_by(name=perm_name))
-        )
-        perm = result.scalars().first()
+    permission_repo = PermissionRepository(session)
 
-        if not perm:
-            session.add(Permission(name=perm_name))
+    for perm in PermissionsEnum:
+        existing_perm = await permission_repo.get_by_name(perm.value)
+
+        if not existing_perm:
+            session.add(Permission(name=perm.value))
 
     await session.commit()
 
@@ -95,18 +74,14 @@ async def assign_permissions_to_role(
     Returns:
         None
     """
-    result = await session.execute(
-        select(Role).options(joinedload(Role.permissions)
-                             ).filter_by(name=role_name)
-    )
-    role = result.scalars().first()
+    role_repo = RoleRepository(session)
+    permission_repo = PermissionRepository(session)
+
+    role = await role_repo.get_by_name_with_permissions(role_name)
 
     if role:
         for perm_name in permissions:
-            result = await (
-                session.execute(select(Permission).filter_by(name=perm_name))
-            )
-            perm = result.scalars().first()
+            perm = await permission_repo.get_by_name(perm_name)
             if perm:
                 role.permissions.append(perm)
 

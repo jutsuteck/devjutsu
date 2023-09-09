@@ -14,5 +14,7 @@ async def get_all_permission(
 
 
 @router.get('/{permission_id}', response_model=PermissionReadSchema)
-async def get_permission_or_404(permission_id: str, service: PermissionService = Depends(PermissionService)):
-    return await service.get_permission_or_404(permission_id)
+async def get_permission_or_404(
+        permission_id: str,
+        service: PermissionService = Depends(PermissionService)):
+    return await service.get_permission_by_id_or_404(permission_id)

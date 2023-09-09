@@ -14,7 +14,9 @@ class TeamRepository:
         return team
 
     async def get(self, team_id: str) -> Team | None:
-        query = await self.session.execute(select(Team).where(Team.id == team_id))
+        query = await (
+            self.session.execute(select(Team).where(Team.id == team_id))
+        )
         team = query.scalars().first()
 
         return team

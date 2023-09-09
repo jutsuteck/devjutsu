@@ -1,6 +1,7 @@
 from typing import List, Optional, Sequence
 from sqlalchemy import delete, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import joinedload
 
 from src.models.v1.users import Member, Role
 
@@ -41,6 +42,16 @@ class RoleRepository:
             self.session.execute(select(Role).filter_by(name=role_name))
         )
         return query.scalars().first()
+
+    async def get_by_name_with_permissions(
+            self, role_name: str) -> Role | None:
+        result = await self.session.execute(
+            select(Role)
+            .options(joinedload(Role.permissions))
+            .filter_by(name=role_name)
+        )
+
+        return result.unique().scalar_one_or_none()
 
     async def update(self, role_id: str, role_data: dict) -> Role:
         query = (

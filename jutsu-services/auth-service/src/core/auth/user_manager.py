@@ -3,25 +3,35 @@ import uuid
 
 from typing import Optional, Union
 from fastapi import Depends, Request
-from fastapi.responses import JSONResponse
-from fastapi_mail import FastMail, MessageSchema, MessageType
 from fastapi_users import (
     BaseUserManager,
     InvalidPasswordException,
     UUIDIDMixin
 )
 from fastapi_users.db import SQLAlchemyUserDatabase
-from src.core.config.settings import get_settings
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import joinedload
 
-from src.core.dependencies.database.database_manager import get_user_db
-from src.core.config.mail import smtp_connection
+from src.core.config.settings import get_settings
+from src.core.dependencies.database.database_manager import (
+    get_async_session,
+    get_user_db
+)
+from src.core.enums import RolesEnum
 from src.models.v1.users import Member
+from src.repositories.role_repository import RoleRepository
+from src.services.member_service import MemberService
 
 
 class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
     settings = get_settings()
     reset_password_token_secret = settings.token.reset_password_token_secret
     verification_token_secret = settings.token.verification_token_secret
+
+    def __init__(self, user_db, member_service: MemberService):
+        super().__init__(user_db)
+        self.member_service = member_service
 
     async def validate_password(
             self, password: str,
@@ -40,11 +50,16 @@ class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
                 reason="Password should be atleast 12 characters")
 
     async def on_after_register(
-            self,
-            member: Member,
-            request: Optional[Request] = None):
-
-        print(member.email)
+        self,
+        member: Member,
+        request: Optional[Request] = None
+    ):
+        # update the role after registration to "Individual User"
+        await (
+            self.member_service
+            .update_member_role(
+                member.id, RolesEnum.INDIVIDUAL_USER.value)  # type: ignore
+        )
 
     async def on_after_request_verify(
             self,
@@ -52,17 +67,9 @@ class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
             token: str, request: Optional[Request] = None) -> None:
         print(member.email, token)
 
-        """ message = MessageSchema( """
-        """     subject="Verify", """
-        """     recipients=[member.email], """
-        """     body=html, """
-        """     subtype=MessageType.html """
-        """ ) """
-
-        """ fm = FastMail(smtp_connection) """
-        """ await fm.send_message(message) """
-
 
 async def get_user_manager(
-        user_db: SQLAlchemyUserDatabase = Depends(get_user_db)):
-    yield UserManager(user_db)
+        user_db: SQLAlchemyUserDatabase = Depends(get_user_db),
+        session: AsyncSession = Depends(get_async_session)):
+    member_service = MemberService(user_db, session)
+    yield UserManager(user_db, member_service)
