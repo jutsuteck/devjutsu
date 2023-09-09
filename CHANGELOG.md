@@ -12,6 +12,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Introduced the `rbac_manager` in the auth service to handle role-based access control logic.
+
+- Added a `seed_database.py` script to seed the database with default roles and permissions.
+
+- Integrated the seeding script into the `startup.sh` to ensure the database is seeded upon service startup.
+
+- Refactored the seeding process in the auth service to streamline the initialization of roles and permissions.
+
 - Docker Security Scan Actions workflow: Introduced a new CI/CD workflow that automatically scans for security vulnerabilities using Trivy. This automation will enhance the project's development and security processes.
 
 - Docker Build and Push GitHub Actions workflow: Introduced a new CI/CD workflow that automatically builds and pushes the Python Docker image to Docker Hub. This automation will enhance the project's development and deployment processes.
