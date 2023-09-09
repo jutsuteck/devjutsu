@@ -19,18 +19,28 @@ class RoleRepository:
         return result.scalars().all()
 
     async def filter_by_member(self, member_id: str) -> Optional[List[Role]]:
-        member = await self.session.execute(select(Member).filter_by(id=member_id))
+        member = await (
+            self.session.execute(select(Member).filter_by(id=member_id))
+        )
         member = member.scalars().first()
 
         await self.session.refresh(member, ['roles'])
 
         return member.roles if member else None
 
-    async def get(self, role_id: str) -> Role | None:
-        query = await self.session.execute(select(Role).where(Role.id == role_id))
+    async def get_by_id(self, role_id: str) -> Role | None:
+        query = await (
+            self.session.execute(select(Role).where(Role.id == role_id))
+        )
         role = query.scalars().first()
 
         return role
+
+    async def get_by_name(self, role_name: str) -> Role | None:
+        query = await (
+            self.session.execute(select(Role).filter_by(name=role_name))
+        )
+        return query.scalars().first()
 
     async def update(self, role_id: str, role_data: dict) -> Role:
         query = (
