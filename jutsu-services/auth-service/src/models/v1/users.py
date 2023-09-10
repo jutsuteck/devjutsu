@@ -17,8 +17,8 @@ class OAuthAccount(SQLAlchemyBaseOAuthAccountTableUUID, Base):
 class Member(SQLAlchemyBaseUserTableUUID, Base):
     __tablename__ = "members"
 
-    first_name = Column(String, nullable=False)
-    last_name = Column(String, nullable=False)
+    first_name = Column(String, nullable=True)
+    last_name = Column(String, nullable=True)
 
     tenant_id = Column(UUID(as_uuid=True), ForeignKey('tenants.id'))
     tenant = relationship('Tenant', back_populates='members')

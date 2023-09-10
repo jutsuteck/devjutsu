@@ -12,6 +12,7 @@ const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_API_URL;
  */
 export const signUp = async (email: string, password: string) => {
   try {
+    console.log({ email, password });
     const response = await axios.post(`http://127.0.0.1:8001/auth/register`, {
       email,
       password,
@@ -19,6 +20,7 @@ export const signUp = async (email: string, password: string) => {
     return response.data;
   } catch (error: any) {
     let errorMessage = "An unexpected error occurred. Please try again.";
+    console.log("Error:", error);
 
     if (error.response) {
       if (error.response.message === 400) {
@@ -26,7 +28,8 @@ export const signUp = async (email: string, password: string) => {
       } else if (error.response.status === 409) {
         errorMessage = "An account with this email already exists.";
       } else if (error.response.status == 422) {
-        errorMessage = "Data can not be processed.";
+        errorMessage =
+          error.response.data.message || "Data cannot be processed";
       } else if (error.response.status === 500) {
         errorMessage = "Server error. Please try again later";
       } else {

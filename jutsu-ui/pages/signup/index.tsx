@@ -2,8 +2,8 @@ import { signUp } from "@/api/auth";
 import { NextPage } from "next";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 interface SignUpFormData {
   email: string;
@@ -31,14 +31,18 @@ const SignUpPage: NextPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUpFormData>();
+  } = useForm<SignUpFormData>({
+    resolver: yupResolver(schema),
+  });
 
-  const mutation = useMutation(signUp);
+  const mutation = useMutation(({ email, password }) =>
+    signUp(email, password)
+  );
 
   const onSubmit = (data: SignUpFormData) => {
     mutation.mutate(data, {
       onSuccess: () => {
-        console.log("Registration successfull");
+        console.log("Registration successful");
       },
       onError: (error: Error) => {
         console.log(error.message);
@@ -63,7 +67,7 @@ const SignUpPage: NextPage = () => {
         <div>
           <label>Confirm password</label>
           <input type="password" {...register("confirmPassword")} />
-          {errors.password && <p>{errors.confirmPassword.message}</p>}
+          {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
         </div>
         <button type="submit">Sign Up</button>
       </form>
