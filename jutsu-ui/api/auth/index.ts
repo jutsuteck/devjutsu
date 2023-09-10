@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_API_URL;
+const AUTH_SERVICE_URL = process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL;
 
 /**
  * Registers a new user.
@@ -13,7 +13,7 @@ const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_API_URL;
 export const signUp = async (email: string, password: string) => {
   try {
     console.log({ email, password });
-    const response = await axios.post(`http://127.0.0.1:8001/auth/register`, {
+    const response = await axios.post(`${AUTH_SERVICE_URL}/auth/register`, {
       email,
       password,
     });
