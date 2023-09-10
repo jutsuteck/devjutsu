@@ -9,9 +9,7 @@ from fastapi_users import (
     UUIDIDMixin
 )
 from fastapi_users.db import SQLAlchemyUserDatabase
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import joinedload
 
 from src.core.config.settings import get_settings
 from src.core.dependencies.database.database_manager import (
@@ -20,14 +18,13 @@ from src.core.dependencies.database.database_manager import (
 )
 from src.core.enums import RolesEnum
 from src.models.v1.users import Member
-from src.repositories.role_repository import RoleRepository
 from src.services.member_service import MemberService
 
 
 class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
     settings = get_settings()
-    reset_password_token_secret = settings.token.reset_password_token_secret
-    verification_token_secret = settings.token.verification_token_secret
+    reset_password_token_secret = settings.token.reset_password_token_secret  # type: ignore
+    verification_token_secret = settings.token.verification_token_secret  # type: ignore
 
     def __init__(self, user_db, member_service: MemberService):
         super().__init__(user_db)
@@ -36,9 +33,6 @@ class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
     async def validate_password(
             self, password: str,
             user: Union[Member, uuid.UUID]) -> None:
-        """
-        Validates user set password
-        """
         password = re.sub('\s+', ' ', password)
 
         if not password.isprintable():
