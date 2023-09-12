@@ -1,9 +1,18 @@
-import { signUp } from "@/api/auth";
 import { NextPage } from "next";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
+import { AiFillGithub, AiFillGoogleCircle, AiFillMail } from "react-icons/ai";
+import Cookies from "js-cookie";
+import * as yup from "yup";
+
+import { signUpService } from "@/services/auth";
+import CenteredContainer from "@/components/layout/CenteredContainer";
+import Button from "@/components/ui/Button";
+import Card from "@/components/ui/Card";
+import FormGroup from "@/components/forms/FormGroup";
+import CustomInput from "@/components/forms/CustomInput";
 
 interface SignUpFormData {
   email: string;
@@ -34,15 +43,17 @@ const SignUpPage: NextPage = () => {
   } = useForm<SignUpFormData>({
     resolver: yupResolver(schema),
   });
+  const router = useRouter();
 
   const mutation = useMutation(({ email, password }) =>
-    signUp(email, password)
+    signUpService(email, password)
   );
 
   const onSubmit = (data: SignUpFormData) => {
     mutation.mutate(data, {
       onSuccess: () => {
-        console.log("Registration successful");
+        Cookies.set("userRegistered", "true", { expires: 1 });
+        router.push("/signup/success");
       },
       onError: (error: Error) => {
         console.log(error.message);
@@ -51,29 +62,63 @@ const SignUpPage: NextPage = () => {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>Email</label>
-          <input type="email" {...register("email")} />
-          {errors.email && <p>{errors.email.message}</p>}
-        </div>
-        <div>
-          <label>Password</label>
-          <input type="password" {...register("password")} />
-          {errors.password && <p>{errors.password.message}</p>}
-        </div>
-        <div>
-          <label>Confirm password</label>
-          <input type="password" {...register("confirmPassword")} />
-          {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
-        </div>
-        <button type="submit">Sign Up</button>
-      </form>
+    <CenteredContainer>
+      <Card transparent>
+        <h1 className="text-5xl text-nord-snowstorm-light mb-6 text-center">
+          Sign Up
+        </h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormGroup label="Work email">
+            <CustomInput
+              placeholder="work email ..."
+              name="email"
+              type="email"
+              register={register}
+              error={errors.email?.message}
+            />
+          </FormGroup>
+          <FormGroup label="Password">
+            <CustomInput
+              placeholder="password ..."
+              name="password"
+              type="password"
+              register={register}
+              error={errors.password?.message}
+            />
+          </FormGroup>
+          <FormGroup label="Confirm password">
+            <CustomInput
+              placeholder="confirm password ..."
+              name="confirmPassword"
+              type="password"
+              register={register}
+              error={errors.confirmPassword?.message}
+            />
+          </FormGroup>
+          <Button icon={<AiFillMail />} type="submit" text="Sign Up" />
+        </form>
 
-      {mutation.isError ? <div>Error: {mutation.error?.message}</div> : null}
-    </>
+        {mutation.isError ? (
+          <div className="mt-4 text-nord-aurora-red">
+            Error: {mutation.error?.message}
+          </div>
+        ) : null}
+
+        <hr className="my-6 border-t border-nord-polar-night-light" />
+
+        <Button
+          icon={<AiFillGithub />}
+          text="Continue with Github"
+          transparent
+        />
+        <Button
+          icon={<AiFillGoogleCircle />}
+          text="Continue with Google"
+          className="mt-2"
+          transparent
+        />
+      </Card>
+    </CenteredContainer>
   );
 };
 

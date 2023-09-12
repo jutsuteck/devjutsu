@@ -10,9 +10,8 @@ const AUTH_SERVICE_URL = process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL;
  * @returns The data returned from the registration endpoint.
  * @throws Throws an error if registration fails.
  */
-export const signUp = async (email: string, password: string) => {
+export const signUpService = async (email: string, password: string) => {
   try {
-    console.log({ email, password });
     const response = await axios.post(`${AUTH_SERVICE_URL}/auth/register`, {
       email,
       password,
@@ -20,10 +19,9 @@ export const signUp = async (email: string, password: string) => {
     return response.data;
   } catch (error: any) {
     let errorMessage = "An unexpected error occurred. Please try again.";
-    console.log("Error:", error);
 
     if (error.response) {
-      if (error.response.message === 400) {
+      if (error.response.status === 400) {
         errorMessage = "Invalid data provided. Please check your input";
       } else if (error.response.status === 409) {
         errorMessage = "An account with this email already exists.";
@@ -44,13 +42,31 @@ export const signUp = async (email: string, password: string) => {
   }
 };
 
-export const loginUser = async (email: string, password: string) => {
+export const loginService = async (username: string, password: string) => {
+  // TODO: add qs - see chatgpt
+
   try {
-    const response = await axios.post(`${AUTH_SERVICE_URL}/auth/login`, {
-      email,
+    const response = await axios.post(`${AUTH_SERVICE_URL}/auth/jwt/login`, {
+      username,
       password,
     });
+
+    const token = response.data.access_token;
+
+    console.log(token);
   } catch (error) {
     let errorMessage = "An unexpected error occured Please try again.";
+
+    throw new Error(errorMessage);
+  }
+};
+
+export const logoutService = async () => {
+  try {
+    const response = await axios.post(`${AUTH_SERVICE_URL}/auth/logout`);
+  } catch (error) {
+    let errorMessage = "";
+
+    throw new Error(errorMessage);
   }
 };
