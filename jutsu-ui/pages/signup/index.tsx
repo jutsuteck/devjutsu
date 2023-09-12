@@ -6,8 +6,7 @@ import { useRouter } from "next/router";
 import { AiFillGithub, AiFillGoogleCircle, AiFillMail } from "react-icons/ai";
 import Cookies from "js-cookie";
 import * as yup from "yup";
-
-import { signUpService } from "@/services/auth";
+import authService from "@/services/auth";
 import CenteredContainer from "@/components/layout/CenteredContainer";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
@@ -46,7 +45,7 @@ const SignUpPage: NextPage = () => {
   const router = useRouter();
 
   const mutation = useMutation(({ email, password }) =>
-    signUpService(email, password)
+    authService.signUp(email, password)
   );
 
   const onSubmit = (data: SignUpFormData) => {
@@ -70,7 +69,7 @@ const SignUpPage: NextPage = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormGroup label="Work email">
             <CustomInput
-              placeholder="work email ..."
+              placeholder="Enter your email address ..."
               name="email"
               type="email"
               register={register}
@@ -117,6 +116,10 @@ const SignUpPage: NextPage = () => {
           className="mt-2"
           transparent
         />
+
+        <p className="text-center underline mt-6">
+          Already an account? Login here
+        </p>
       </Card>
     </CenteredContainer>
   );
