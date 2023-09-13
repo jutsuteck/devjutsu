@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { AiFillGithub, AiFillGoogleCircle, AiFillMail } from "react-icons/ai";
 import Cookies from "js-cookie";
 import * as yup from "yup";
+
 import authService from "@/services/auth";
 import CenteredContainer from "@/components/layout/CenteredContainer";
 import Button from "@/components/ui/Button";
@@ -51,7 +52,9 @@ const SignUpPage: NextPage = () => {
   const onSubmit = (data: SignUpFormData) => {
     mutation.mutate(data, {
       onSuccess: () => {
+        authService.requestVerifyToken(data.email);
         Cookies.set("userRegistered", "true", { expires: 1 });
+        Cookies.set("registeredEmail", data.email, { expires: 1 });
         router.push("/signup/success");
       },
       onError: (error: Error) => {
@@ -94,7 +97,11 @@ const SignUpPage: NextPage = () => {
               error={errors.confirmPassword?.message}
             />
           </FormGroup>
-          <Button icon={<AiFillMail />} type="submit" text="Sign Up" />
+          <Button
+            icon={<AiFillMail />}
+            type="submit"
+            text="Continue with email"
+          />
         </form>
 
         {mutation.isError ? (

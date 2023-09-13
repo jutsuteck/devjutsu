@@ -13,7 +13,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <main className={questrial.className}>
+        <main className={`${questrial.className} tracking-wider`}>
           <Component {...pageProps} />
         </main>
       </AuthProvider>

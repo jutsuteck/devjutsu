@@ -25,8 +25,18 @@ def include_routes(app: FastAPI) -> None:
         tags=["auth"]
     )
     app.include_router(
+        fastapi_users.get_verify_router(MemberReadSchema),
+        prefix="/auth",
+        tags=["auth"]
+    )
+    app.include_router(
+        fastapi_users.get_reset_password_router(),
+        prefix="/auth",
+        tags=["auth"],
+    )
+    app.include_router(
         fastapi_users.get_auth_router(auth_backend),
-        prefix="/auth/jwt",
+        prefix="/auth",
         tags=["auth"]
     )
     app.include_router(

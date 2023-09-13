@@ -17,6 +17,7 @@ from src.core.dependencies.database.database_manager import (
     get_user_db
 )
 from src.core.enums import RolesEnum
+from src.core.auth.utils import create_verification_token
 from src.models.v1.users import Member
 from src.services.member_service import MemberService
 
@@ -59,7 +60,10 @@ class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
             self,
             member: Member,
             token: str, request: Optional[Request] = None) -> None:
-        print(member.email, token)
+
+        verification_link = f"http://localhost:3000/login?token={token}"
+
+        print(verification_link)
 
 
 async def get_user_manager(

@@ -13,6 +13,8 @@ module.exports = {
           medium: "#6ba3b2",
           dark: "#276271",
         },
+        meadow: "#a3be8c",
+        golden: "#ebcb8b",
         aurora: {
           red: "#BF616A",
           pink: "#fff5fb",

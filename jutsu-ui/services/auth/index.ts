@@ -12,7 +12,7 @@ class AuthService {
     this.login = this.login.bind(this);
 
     this.axiosInstance.interceptors.request.use((config: any) => {
-      const token = localStorage.getItem("access_token)");
+      const token = localStorage.getItem("access_token");
 
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -30,6 +30,7 @@ class AuthService {
       });
       return response.data;
     } catch (error: any) {
+      /* console.log(error); */
       this.catchError(error);
     }
   }
@@ -45,69 +46,73 @@ class AuthService {
     };
     try {
       const response = await this.axiosInstance.post(
-        "/auth/jwt/login",
+        "/auth/login",
         data,
         config
       );
 
       return response.data;
     } catch (error: any) {
-      console.error("Full error: ", error);
-      let errorMessage = "An unexpected error occurred. Please try again.";
-
-      if (error.response) {
-        if (error.response.status === 400) {
-          errorMessage = "Invalid data provided. Please check your input";
-        } else if (error.response.status === 409) {
-          errorMessage = "An account with this email already exists.";
-        } else if (error.response.status == 422) {
-          errorMessage =
-            error.response.data.message || "Data cannot be processed";
-        } else if (error.response.status === 500) {
-          errorMessage = "Server error. Please try again later";
-        } else {
-          errorMessage = error.response.data.message || errorMessage;
-        }
-      } else if (error.request) {
-        errorMessage =
-          "No response from the server. Please check your connection.";
-      }
-
-      throw new Error(errorMessage);
+      this.catchError(error);
     }
   }
 
   async logout() {
     try {
-      const response = await this.axiosInstance.post("/auth/jwt/logout");
+      const response = await this.axiosInstance.post("/auth/logout");
       return response.data;
     } catch (error: any) {
       this.catchError(error);
     }
   }
 
+  async requestVerifyToken(email: string) {
+    try {
+      const response = await this.axiosInstance.post(
+        "/auth/request-verify-token",
+        {
+          email,
+        }
+      );
+
+      return response.data;
+    } catch (error: any) {
+      this.catchError(error);
+    }
+  }
+
+  async verifyUser(token: string) {
+    try {
+      const response = await this.axiosInstance.post("/auth/verify", {
+        token,
+      });
+
+      return response;
+    } catch (error: any) {
+      this.catchError(error);
+    }
+  }
+
   private catchError(error: any) {
-    let errorMessage = "An unexpected error occurred. Please try again.";
+    let errorMessage = "Unexpected error. Try again.";
 
     if (error.response) {
       if (error.response.status === 400) {
-        errorMessage = "Invalid data provided. Please check your input";
+        errorMessage = "Invalid data.";
       } else if (error.response.status === 409) {
-        errorMessage = "An account with this email already exists.";
+        errorMessage = "Email already exists.";
       } else if (error.response.status == 422) {
-        errorMessage =
-          error.response.data.message || "Data cannot be processed";
+        errorMessage = error.response.data.message || "Data error.";
       } else if (error.response.status === 500) {
-        errorMessage = "Server error. Please try again later";
+        errorMessage = "Server error. Try again.";
       } else {
         errorMessage = error.response.data.message || errorMessage;
       }
     } else if (error.request) {
-      errorMessage =
-        "No response from the server. Please check your connection.";
+      errorMessage = "No server response. Check connection.";
     }
 
-    throw new Error(errorMessage);
+    throw errorMessage;
   }
 }
 
