@@ -30,8 +30,7 @@ class AuthService {
       });
       return response.data;
     } catch (error: any) {
-      /* console.log(error); */
-      this.catchError(error);
+      this.defaultErrorMessages(error);
     }
   }
 
@@ -53,7 +52,7 @@ class AuthService {
 
       return response.data;
     } catch (error: any) {
-      this.catchError(error);
+      this.defaultErrorMessages(error);
     }
   }
 
@@ -62,7 +61,7 @@ class AuthService {
       const response = await this.axiosInstance.post("/auth/logout");
       return response.data;
     } catch (error: any) {
-      this.catchError(error);
+      this.defaultErrorMessages(error);
     }
   }
 
@@ -77,7 +76,7 @@ class AuthService {
 
       return response.data;
     } catch (error: any) {
-      this.catchError(error);
+      this.defaultErrorMessages(error);
     }
   }
 
@@ -89,11 +88,38 @@ class AuthService {
 
       return response;
     } catch (error: any) {
-      this.catchError(error);
+      this.defaultErrorMessages(error);
     }
   }
 
-  private catchError(error: any) {
+  async requestResetPassword(email: string) {
+    try {
+      const response = await this.axiosInstance.post("/auth/forgot-password", {
+        email,
+      });
+
+      return response;
+    } catch (error: any) {
+      this.defaultErrorMessages(error);
+    }
+  }
+
+  async resetPassword(token: string, password: string) {
+    try {
+      const response = await this.axiosInstance.post("/auth/reset-password", {
+        token,
+        password,
+      });
+
+      console.log(response);
+
+      return response;
+    } catch (error: any) {
+      this.defaultErrorMessages(error);
+    }
+  }
+
+  private defaultErrorMessages(error: any) {
     let errorMessage = "Unexpected error. Try again.";
 
     if (error.response) {

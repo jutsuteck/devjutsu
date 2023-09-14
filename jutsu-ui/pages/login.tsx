@@ -4,6 +4,8 @@ import { NextPage } from "next";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useState } from "react";
+import { AiFillGithub } from "react-icons/ai";
 
 import { useVerifyUser } from "@/hooks/useVerifyUser";
 
@@ -13,39 +15,79 @@ import CenteredContainer from "@/components/layout/CenteredContainer";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import Alert from "@/components/ui/Alert";
-import { useState } from "react";
-import { AiFillGithub, AiFillGoogleCircle } from "react-icons/ai";
+import authService from "@/services/auth";
+import { useMutation } from "react-query";
 
 interface LoginFormProps {
   username: string;
   password: string;
 }
 
-interface ForgotPasswordFormProps {}
+interface ForgotPasswordFormProps {
+  email: string;
+}
 
-const schema = yup.object().shape({});
+const loginSchema = yup.object().shape({
+  username: yup
+    .string()
+    .required("Email is required")
+    .email("Invalid email format"),
+  password: yup.string().required("Password is required"),
+});
+
+const forgotPasswordSchema = yup.object().shape({
+  email: yup.string().required().email("Invalid email format"),
+});
 
 const LoginPage: NextPage = () => {
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormProps>({ resolver: yupResolver(schema) });
+    register: registerLogin,
+    handleSubmit: handleSubmitLogin,
+    formState: { errors: loginErrors },
+  } = useForm<LoginFormProps>({
+    resolver: yupResolver(loginSchema),
+    mode: "onChange",
+  });
+  const {
+    register: registerForgoPassword,
+    handleSubmit: handleSubmitForgotPassword,
+    formState: { errors: forgotPasswordErrors },
+  } = useForm<ForgotPasswordFormProps>({
+    resolver: yupResolver(forgotPasswordSchema),
+    mode: "onChange",
+  });
   const router = useRouter();
   const { token } = router.query;
+
+  const { login, isAuthenticated, errorMessage } = useAuth();
+
   const { isVerified, message } = useVerifyUser(token as string);
-  const { login, isAuthenticated } = useAuth();
   const [forgotPassword, setForgotPassword] = useState(false);
+
+  const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
   const onSubmitLogin = (data: LoginFormProps) => {
     try {
       login(data.username, data.password);
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  const onSubmitRequestForgetPassword = () => {};
+  const forgetPasswordMutation = useMutation(({ email }) =>
+    authService.requestResetPassword(email)
+  );
+
+  const onSubmitRequestForgotPassword = (data: ForgotPasswordFormProps) => {
+    forgetPasswordMutation.mutate(data, {
+      onSuccess: () => {
+        setAlertMessage("Check your inbox for further instructions");
+      },
+      onError: (error: any) => {
+        setAlertMessage(error);
+      },
+    });
+  };
 
   const onClickHandleForgotPassword = () => {
     setForgotPassword(!forgotPassword);
@@ -57,6 +99,8 @@ const LoginPage: NextPage = () => {
         (message && (
           <Alert message={message} severity={isVerified ? `info` : `error`} />
         ))}
+      {errorMessage && <Alert message={errorMessage} severity="error" />}
+      {alertMessage && <Alert message={alertMessage} severity="success" />}
       <Card transparent>
         <h1 className="text-5xl text-nord-snowstorm-light mb-6 text-center">
           {isAuthenticated ? "Logged in" : "Login"}
@@ -66,35 +110,33 @@ const LoginPage: NextPage = () => {
           text="Continue with Github"
           transparent
         />
-        <Button
-          icon={<AiFillGoogleCircle />}
-          text="Continue with Google"
-          className="mt-2"
-          transparent
-        />
 
         <hr className="my-6 border-t border-nord-polar-night-light" />
 
         {forgotPassword ? (
-          <form onSubmit={handleSubmit(onSubmitRequestForgetPassword)}>
+          <form
+            onSubmit={handleSubmitForgotPassword(onSubmitRequestForgotPassword)}
+          >
             <FormGroup label="Email">
               <CustomInput
                 placeholder="Enter your email address ..."
                 name="email"
                 type="email"
-                register={register}
+                register={registerForgoPassword}
+                error={forgotPasswordErrors.email?.message}
               />
             </FormGroup>
             <Button type="submit" text="Send reset link" />
           </form>
         ) : (
-          <form onSubmit={handleSubmit(onSubmitLogin)}>
+          <form onSubmit={handleSubmitLogin(onSubmitLogin)}>
             <FormGroup label="Email">
               <CustomInput
                 placeholder="Enter your email address ..."
                 name="username"
                 type="email"
-                register={register}
+                register={registerLogin}
+                error={loginErrors.username?.message}
               />
             </FormGroup>
             <FormGroup label="Password">
@@ -102,7 +144,8 @@ const LoginPage: NextPage = () => {
                 placeholder="password ..."
                 name="password"
                 type="password"
-                register={register}
+                register={registerLogin}
+                error={loginErrors.password?.message}
               />
             </FormGroup>
             <Button type="submit" text="Login" />

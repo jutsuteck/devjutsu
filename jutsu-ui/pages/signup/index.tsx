@@ -42,6 +42,7 @@ const SignUpPage: NextPage = () => {
     formState: { errors },
   } = useForm<SignUpFormData>({
     resolver: yupResolver(schema),
+    mode: "onChange",
   });
   const router = useRouter();
 
@@ -117,14 +118,11 @@ const SignUpPage: NextPage = () => {
           text="Continue with Github"
           transparent
         />
-        <Button
-          icon={<AiFillGoogleCircle />}
-          text="Continue with Google"
-          className="mt-2"
-          transparent
-        />
 
-        <p className="text-center underline mt-6">
+        <p
+          className="text-center underline mt-6 cursor-pointer"
+          onClick={() => router.push("/login")}
+        >
           Already an account? Login here
         </p>
       </Card>

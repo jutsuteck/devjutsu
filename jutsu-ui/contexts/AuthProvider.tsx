@@ -6,6 +6,7 @@ interface AuthContextType {
   token: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  errorMessage: string | null;
   login: (username: string, passwword: string) => void;
   logout: () => void;
 }
@@ -28,6 +29,7 @@ export const AuthProvider: FC<ProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("access_token");
@@ -47,12 +49,12 @@ export const AuthProvider: FC<ProviderProps> = ({ children }) => {
       localStorage.setItem("access_token", data.access_token);
     },
     onError: (error: any) => {
-      throw new Error(error);
+      setErrorMessage(error);
     },
   });
 
   const login = (username: string, password: string) => {
-    loginMutation.mutate({ username, password });
+    return loginMutation.mutateAsync({ username, password });
   };
 
   const logout = () => {
@@ -64,7 +66,14 @@ export const AuthProvider: FC<ProviderProps> = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ token, isAuthenticated, login, logout, isLoading }}
+      value={{
+        token,
+        isAuthenticated,
+        login,
+        logout,
+        isLoading,
+        errorMessage,
+      }}
     >
       {children}
     </AuthContext.Provider>

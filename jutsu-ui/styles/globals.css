@@ -6,7 +6,3 @@ body {
   @apply bg-nord-polar-night-dark;
   @apply text-nord-snowstorm-light;
 }
-
-.input {
-  @apply bg-nord-polar-night-medium text-nord-snowstorm-light rounded-md px-4 py-2 w-full focus:outline-none focus:border-nord-frost-dark;
-}

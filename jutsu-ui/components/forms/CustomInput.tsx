@@ -15,11 +15,17 @@ const CustomInput: FC<Props> = ({
   type = "text",
   error,
 }) => {
+  const defaultStyle =
+    "bg-nord-polar-night-medium text-nord-snowstorm-light rounded-md px-4 py-2 w-full focus:outline-none border-nord-polar-night-light border-2";
+  const borderStyle = error
+    ? "focus:border-nord-aurora-red"
+    : "focus:border-nord-meadow";
+
   return (
     <>
       <input
         placeholder={placeholder}
-        className="input"
+        className={`${defaultStyle} ${borderStyle}`}
         type={type}
         {...register(name)}
       />

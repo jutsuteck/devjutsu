@@ -17,7 +17,6 @@ from src.core.dependencies.database.database_manager import (
     get_user_db
 )
 from src.core.enums import RolesEnum
-from src.core.auth.utils import create_verification_token
 from src.models.v1.users import Member
 from src.services.member_service import MemberService
 
@@ -62,6 +61,11 @@ class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
             token: str, request: Optional[Request] = None) -> None:
 
         verification_link = f"http://localhost:3000/login?token={token}"
+
+        print(verification_link)
+
+    async def on_after_forgot_password(self, member: Member, token: str, request: Optional[Request] = None) -> None:
+        verification_link = f"http://localhost:3000/reset-password?token={token}"
 
         print(verification_link)
 
