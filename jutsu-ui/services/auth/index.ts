@@ -111,8 +111,6 @@ class AuthService {
         password,
       });
 
-      console.log(response);
-
       return response;
     } catch (error: any) {
       this.defaultErrorMessages(error);

@@ -3,9 +3,8 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
-import { AiFillGithub, AiFillGoogleCircle, AiFillMail } from "react-icons/ai";
+import { AiFillMail } from "react-icons/ai";
 import Cookies from "js-cookie";
-import * as yup from "yup";
 
 import authService from "@/services/auth";
 import CenteredContainer from "@/components/layout/CenteredContainer";
@@ -13,6 +12,8 @@ import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import FormGroup from "@/components/forms/FormGroup";
 import CustomInput from "@/components/forms/CustomInput";
+import { signUpSchema } from "@/utils/validationSchemas/auth";
+import OAuth from "@/components/auth/OAuth";
 
 interface SignUpFormData {
   email: string;
@@ -20,28 +21,13 @@ interface SignUpFormData {
   confirmPassword: string;
 }
 
-const schema = yup.object().shape({
-  email: yup
-    .string()
-    .required("Email is required")
-    .email("Invalid email format"),
-  password: yup
-    .string()
-    .required("Password is required")
-    .min(12, "Password should be at least 12 characters")
-    .matches(/^\S*$/, "Password should not contain any spaces"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match"),
-});
-
 const SignUpPage: NextPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpFormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signUpSchema),
     mode: "onChange",
   });
   const router = useRouter();
@@ -113,11 +99,7 @@ const SignUpPage: NextPage = () => {
 
         <hr className="my-6 border-t border-nord-polar-night-light" />
 
-        <Button
-          icon={<AiFillGithub />}
-          text="Continue with Github"
-          transparent
-        />
+        <OAuth />
 
         <p
           className="text-center underline mt-6 cursor-pointer"
