@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Added login page, signup page and password reset page in the frontend including the logic to handle verification after signup and requesting for a password reset.
+
 - Introduced the `rbac_manager` in the auth service to handle role-based access control logic.
 
 - Added a `seed_database.py` script to seed the database with default roles and permissions.
