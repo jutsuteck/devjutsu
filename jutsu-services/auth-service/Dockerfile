@@ -1,5 +1,7 @@
 FROM jutsuteck/pyjutsu-base:latest
 
+WORKDIR /app
+
 # Copy the Pipfile and Pipfile.lock
 COPY --chown=appuser:appuser jutsu-services/auth-service/Pipfile jutsu-services/auth-service/Pipfile.lock /app/
 

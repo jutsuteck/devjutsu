@@ -7,7 +7,6 @@ ENV ENVIRONMENT=${ENVIRONMENT}
 # These environment variables are specific to Python.
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 
-WORKDIR /app
 
 # Update system packages, install bash and cleanup
 RUN apk update && \
