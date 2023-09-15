@@ -60,7 +60,7 @@ class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
             member: Member,
             token: str, request: Optional[Request] = None) -> None:
 
-        verification_link = f"http://localhost:3000/login?token={token}"
+        verification_link = f"http://localhost:3000/verify?token={token}"
 
         print(verification_link)
 
