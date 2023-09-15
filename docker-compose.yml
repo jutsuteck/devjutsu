@@ -11,6 +11,16 @@ services:
     env_file:
       - ./jutsu-services/auth-service/.env
 
+  project_database:
+    container_name: project_database
+    build:
+      context: .
+      dockerfile: containers/postgres/Dockerfile
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./jutsu-services/project-service/.env
+
   user_token_database:
     container_name: user_token_database
     build:
@@ -25,7 +35,7 @@ services:
     container_name: auth_service
     build:
       context: .
-      dockerfile: jutsu-services/auth-service/Dockerfile
+      dockerfile: containers/auth-service/Dockerfile
     ports:
       - "8001:8000"
     volumes:
@@ -33,6 +43,20 @@ services:
     restart: on-failure
     env_file:
       - ./jutsu-services/auth-service/.env
+    command: ["./scripts/startup.sh"]
+
+  project_service:
+    container_name: project_service
+    build:
+      context: .
+      dockerfile: containers/project-service/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./jutsu-services/project-service:/app
+    restart: on-failure
+    env_file:
+      - ./jutsu-services/project-service/.env
     command: ["./scripts/startup.sh"]
 
   mailhog:
