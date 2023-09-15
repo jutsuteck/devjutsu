@@ -5,7 +5,7 @@ services:
     container_name: user_database
     build:
       context: .
-      dockerfile: docker/postgres/Dockerfile
+      dockerfile: containers/postgres/Dockerfile
     ports:
       - "5433:5432"
     env_file:
@@ -15,7 +15,7 @@ services:
     container_name: user_token_database
     build:
       context: .
-      dockerfile: docker/redis/Dockerfile
+      dockerfile: containers/redis/Dockerfile
     ports:
       - "6379:6379"
     env_file:
@@ -25,7 +25,7 @@ services:
     container_name: auth_service
     build:
       context: .
-      dockerfile: docker/python/Dockerfile
+      dockerfile: containers/python/Dockerfile
     ports:
       - "8001:8000"
     volumes:

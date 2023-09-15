@@ -16,7 +16,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/jutsuteck/jutsu-redis-base -f docker/redis/Dockerfile .
+          docker build -t docker.io/jutsuteck/jutsu-redis-base -f containers/redis/Dockerfile .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
@@ -37,7 +37,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/jutsuteck/jutsu-postgres-base -f docker/postgres/Dockerfile .
+          docker build -t docker.io/jutsuteck/jutsu-postgres-base -f containers/postgres/Dockerfile .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
@@ -58,7 +58,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/jutsuteck/pyjutsu-base -f docker/python/Dockerfile .
+          docker build -t docker.io/jutsuteck/pyjutsu-base -f containers/python/Dockerfile .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
