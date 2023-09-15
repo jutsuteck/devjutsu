@@ -22,7 +22,7 @@ FROM redis:7.2-rc-alpine
 ARG ENVIRONMENT
 ENV ENVIRONMENT=${ENVIRONMENT}
 
-COPY docker/redis/redis.conf.template /tmp/redis.conf.template
+COPY containers/redis/redis.conf.template /tmp/redis.conf.template
 
 # Update system packages, install gettext, and cleanup
 RUN apk update && \

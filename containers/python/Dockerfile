@@ -40,6 +40,5 @@ USER appuser
 USER root
 RUN pip install --upgrade pip
 RUN pip install pipenv
-RUN pipenv install --system --deploy
 USER appuser
 
