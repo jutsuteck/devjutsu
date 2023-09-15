@@ -1,12 +1,5 @@
-import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/router";
 import { NextPage } from "next";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { useMutation } from "react-query";
-
-import { useVerifyUser } from "@/hooks/useVerifyUser";
 
 import CenteredContainer from "@/components/layout/CenteredContainer";
 import Card from "@/components/ui/Card";
@@ -15,10 +8,6 @@ import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
 import LoginForm from "@/components/auth/LoginForm";
 
 const LoginPage: NextPage = () => {
-  const router = useRouter();
-  const { token } = router.query;
-
-  const { isVerified, message } = useVerifyUser(token as string);
   const [forgotPassword, setForgotPassword] = useState(false);
 
   const onClickHandleForgotPassword = () => {
