@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 # Navigate to the app directory
 cd /app || exit
 
