@@ -1,0 +1,33 @@
+_format_version: "1.1"
+
+services:
+  - name: auth-service
+    url: http://auth_service:8000
+    routes:
+      - name: auth-register-route
+        paths:
+          - /auth/register
+
+      - name: auth-login-route
+        paths:
+          - /auth/login
+
+      - name: auth-logout
+        paths:
+          - /auth/logout
+
+      - name: auth-request-verify-token-route
+        paths:
+          - /auth-request-verify-token
+
+      - name: auth-verify-route
+        paths:
+          - /auth-verify
+
+      - name: auth-forgot-password-route
+        paths:
+          - /auth/forgot-password
+
+      - name: auth-reset-password
+        paths:
+          - /auth/reset-password

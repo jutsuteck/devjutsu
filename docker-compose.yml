@@ -25,7 +25,7 @@ services:
     container_name: auth_service
     build:
       context: .
-      dockerfile: containers/python/Dockerfile
+      dockerfile: jutsu-services/auth-service/Dockerfile
     ports:
       - "8001:8000"
     volumes:
@@ -39,3 +39,13 @@ services:
     image: mailhog/mailhog
     ports:
       - "8025:8025"
+
+  kong:
+    container_name: kong_gateway
+    build:
+      context: .
+      dockerfile: containers/kong/Dockerfile
+    ports:
+      - "9000:8000" # Proxy port
+      - "8443:8443" # Proxy SSL port
+      - "9001:8001" # Admin API port
