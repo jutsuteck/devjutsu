@@ -64,6 +64,9 @@ class UserManager(UUIDIDMixin, BaseUserManager[Member, uuid.UUID]):
 
         print(verification_link)
 
+    async def on_after_verify(self, member: Member, request: Optional[Request] = None) -> None:
+        pass
+
     async def on_after_forgot_password(self, member: Member, token: str, request: Optional[Request] = None) -> None:
         verification_link = f"http://localhost:3000/reset-password?token={token}"
 
