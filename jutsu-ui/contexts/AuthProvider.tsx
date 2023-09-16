@@ -1,4 +1,5 @@
 import authService from "@/services/auth";
+import { useRouter } from "next/router";
 import { FC, ReactNode, createContext, useEffect, useState } from "react";
 import { useMutation } from "react-query";
 
@@ -30,6 +31,7 @@ export const AuthProvider: FC<ProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("access_token");
@@ -47,6 +49,7 @@ export const AuthProvider: FC<ProviderProps> = ({ children }) => {
       setToken(data.access_token);
       setIsAuthenticated(true);
       localStorage.setItem("access_token", data.access_token);
+      router.push("/projects");
     },
     onError: (error: any) => {
       setErrorMessage(error);
