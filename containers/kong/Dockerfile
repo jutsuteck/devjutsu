@@ -1,4 +1,4 @@
-FROM kong:3.3.1-alpine
+FROM kong:latest
 
 COPY containers/kong/kong.yml /etc/kong/kong.yml
 

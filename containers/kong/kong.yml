@@ -1,4 +1,5 @@
-_format_version: "1.1"
+_format_version: "3.0"
+_transform: true
 
 services:
   - name: auth-service
@@ -7,27 +8,61 @@ services:
       - name: auth-register-route
         paths:
           - /auth/register
+        strip_path: false
 
       - name: auth-login-route
         paths:
           - /auth/login
+        strip_path: false
 
       - name: auth-logout
         paths:
           - /auth/logout
+        strip_path: false
 
       - name: auth-request-verify-token-route
         paths:
-          - /auth-request-verify-token
+          - /auth/request-verify-token
+        strip_path: false
 
       - name: auth-verify-route
         paths:
-          - /auth-verify
+          - /auth/verify
+        strip_path: false
 
       - name: auth-forgot-password-route
         paths:
           - /auth/forgot-password
+        strip_path: false
 
       - name: auth-reset-password
         paths:
           - /auth/reset-password
+        strip_path: false
+
+      - name: get-current-user
+        paths:
+          - /users/me
+        strip_path: false
+
+  - name: project-service
+    url: http://project_service:8000
+    routes:
+      - name: create-project
+        paths:
+          - /api/v1/projects/new
+        strip_path: false
+
+      - name: project-list
+        paths:
+          - /api/v1/projects
+        strip_path: false
+
+      - name: update-project
+        paths:
+          - /api/v1/projects/patch/
+        strip_path: false
+
+      - name: delete-project
+        paths:
+          - /api/v1/projects/delete/

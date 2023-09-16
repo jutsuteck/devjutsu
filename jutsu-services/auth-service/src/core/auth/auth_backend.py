@@ -21,7 +21,7 @@ redis_port = settings.redis.redis_port
 
 REDIS_URL = f"redis://{redis_user}:{redis_password}@{redis_host}:{redis_port}"
 
-bearer_transport = BearerTransport(tokenUrl="auth/jwt/login")
+bearer_transport = BearerTransport(tokenUrl="auth/login")
 
 redis = redis.asyncio.from_url(REDIS_URL, decode_responses=True)
 
