@@ -1,30 +1,11 @@
-import axios from "axios";
 import qs from "qs";
 
-class AuthService {
-  private axiosInstance: any;
+import JutsuService from "../jutsu-service";
 
-  constructor() {
-    this.axiosInstance = axios.create({
-      baseURL: process.env.NEXT_PUBLIC_AUTH_SERVICE_API_URL,
-    });
-
-    this.login = this.login.bind(this);
-
-    this.axiosInstance.interceptors.request.use((config: any) => {
-      const token = localStorage.getItem("access_token");
-
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
-
-      return config;
-    });
-  }
-
-  async signUp(email: string, password: string) {
+class AuthService extends JutsuService {
+  signUp = async (email: string, password: string) => {
     try {
-      const response = await this.axiosInstance.post("/auth/register", {
+      const response = await this.api.post("/auth/register", {
         email,
         password,
       });
@@ -32,9 +13,15 @@ class AuthService {
     } catch (error: any) {
       this.defaultErrorMessages(error);
     }
-  }
+  };
 
-  async login({ username, password }: { username: string; password: string }) {
+  login = async ({
+    username,
+    password,
+  }: {
+    username: string;
+    password: string;
+  }) => {
     const data = qs.stringify({
       username,
       password,
@@ -44,45 +31,39 @@ class AuthService {
       headers: { "content-type": "application/x-www-form-urlencoded" },
     };
     try {
-      const response = await this.axiosInstance.post(
-        "/auth/login",
-        data,
-        config
-      );
+      const response = await this.api.post("/auth/login", data, config);
+
+      return response.data;
+    } catch (error: any) {
+      console.log(error);
+      /* this.defaultErrorMessages(error); */
+    }
+  };
+
+  logout = async () => {
+    try {
+      const response = await this.api.post("/auth/logout");
+      return response.data;
+    } catch (error: any) {
+      this.defaultErrorMessages(error);
+    }
+  };
+
+  requestVerifyToken = async (email: string) => {
+    try {
+      const response = await this.api.post("/auth/request-verify-token", {
+        email,
+      });
 
       return response.data;
     } catch (error: any) {
       this.defaultErrorMessages(error);
     }
-  }
+  };
 
-  async logout() {
+  verifyUser = async (token: string) => {
     try {
-      const response = await this.axiosInstance.post("/auth/logout");
-      return response.data;
-    } catch (error: any) {
-      this.defaultErrorMessages(error);
-    }
-  }
-
-  async requestVerifyToken(email: string) {
-    try {
-      const response = await this.axiosInstance.post(
-        "/auth/request-verify-token",
-        {
-          email,
-        }
-      );
-
-      return response.data;
-    } catch (error: any) {
-      this.defaultErrorMessages(error);
-    }
-  }
-
-  async verifyUser(token: string) {
-    try {
-      const response = await this.axiosInstance.post("/auth/verify", {
+      const response = await this.api.post("/auth/verify", {
         token,
       });
 
@@ -90,11 +71,11 @@ class AuthService {
     } catch (error: any) {
       this.defaultErrorMessages(error);
     }
-  }
+  };
 
-  async requestResetPassword(email: string) {
+  requestResetPassword = async (email: string) => {
     try {
-      const response = await this.axiosInstance.post("/auth/forgot-password", {
+      const response = await this.api.post("/auth/forgot-password", {
         email,
       });
 
@@ -102,11 +83,11 @@ class AuthService {
     } catch (error: any) {
       this.defaultErrorMessages(error);
     }
-  }
+  };
 
-  async resetPassword(token: string, password: string) {
+  resetPassword = async (token: string, password: string) => {
     try {
-      const response = await this.axiosInstance.post("/auth/reset-password", {
+      const response = await this.api.post("/auth/reset-password", {
         token,
         password,
       });
@@ -115,28 +96,16 @@ class AuthService {
     } catch (error: any) {
       this.defaultErrorMessages(error);
     }
-  }
+  };
 
-  private defaultErrorMessages(error: any) {
-    let errorMessage = "Unexpected error. Try again.";
+  getCurrentUser = async () => {
+    try {
+      const response = await this.api.get('/users/me')
 
-    if (error.response) {
-      if (error.response.status === 400) {
-        errorMessage = "Invalid data.";
-      } else if (error.response.status === 409) {
-        errorMessage = "Email already exists.";
-      } else if (error.response.status == 422) {
-        errorMessage = error.response.data.message || "Data error.";
-      } else if (error.response.status === 500) {
-        errorMessage = "Server error. Try again.";
-      } else {
-        errorMessage = error.response.data.message || errorMessage;
-      }
-    } else if (error.request) {
-      errorMessage = "No server response. Check connection.";
+    return response;
+    } catch(error: any) {
+    this.defaultErrorMessages(error)
     }
-
-    throw errorMessage;
   }
 }
 
