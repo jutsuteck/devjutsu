@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormGroup from "../forms/FormGroup";
 import CustomInput from "../forms/CustomInput";
 import Button from "../ui/Button";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/auth/useAuth";
 import { loginSchema } from "@/utils/validationSchemas/auth";
 
 interface LoginFormProps {
@@ -22,14 +22,13 @@ const LoginForm: FC = () => {
     resolver: yupResolver(loginSchema),
     mode: "onChange",
   });
-
   const { login } = useAuth();
 
   const onSubmitLogin = (data: LoginFormProps) => {
     try {
       login(data.username, data.password);
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   };
 

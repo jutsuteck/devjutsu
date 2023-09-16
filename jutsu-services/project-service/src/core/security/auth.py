@@ -8,9 +8,6 @@ def get_current_user(authorization: str = Header(None)) -> dict:
         "http://auth_service:8000/users/me",
         headers={"Authorization": authorization})
 
-    print(response.headers)
-    print(response.text)
-
     if response.status_code == 200:
         return response.json()
 

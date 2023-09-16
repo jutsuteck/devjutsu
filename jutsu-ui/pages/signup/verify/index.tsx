@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 import CenteredContainer from "@/components/layout/CenteredContainer";
-import { useVerifyUser } from "@/hooks/useVerifyUser";
+import { useVerifyUser } from "@/hooks/auth/useVerifyUser";
 import { useRouter } from "next/router";
 import Card from "@/components/ui/Card";
 
