@@ -3,15 +3,16 @@ import Sidebar from "./Sidebar";
 
 interface Props {
   children: ReactNode;
+  projectId: string;
 }
 
-const Dashboard: FC<Props> = ({ children }) => {
+const Dashboard: FC<Props> = ({ children, projectId }) => {
   return (
-      <>
-        <Sidebar />
-        {children}
-      </>
-      )
-}
+    <>
+      <Sidebar projectId={projectId} />
+      {children}
+    </>
+  );
+};
 
 export default Dashboard;

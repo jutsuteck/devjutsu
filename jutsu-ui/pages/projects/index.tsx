@@ -30,6 +30,7 @@ const ProjectPage: NextPage = () => {
             key={project.id}
             nameKey={project.name_key}
             methodology={project.methodology}
+            projectId={project.id}
           />
         ))}
       </Container>

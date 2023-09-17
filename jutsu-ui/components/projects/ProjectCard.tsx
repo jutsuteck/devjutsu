@@ -8,6 +8,7 @@ import Link from "next/link";
 interface Props {
   nameKey: string;
   methodology: Methodology;
+  projectId: string;
 }
 
 const fadeIn = {
@@ -15,14 +16,19 @@ const fadeIn = {
   visible: { opacity: 1, transition: { duration: 0.8 } },
 };
 
-const ProjectCard: FC<Props> = ({ nameKey, methodology }) => {
+const ProjectCard: FC<Props> = ({ nameKey, methodology, projectId }) => {
   const iconSrc =
     methodology === Methodology.SCRUM
       ? "/icons/scrum.svg"
       : "/icons/kanban.png";
 
   return (
-    <Link href={`/projects/${nameKey}/journal`}>
+    <Link
+      href={{
+        pathname: `/projects/${nameKey}/journal`,
+        query: { projectId: projectId },
+      }}
+    >
       <motion.div initial="hidden" animate="visible" variants={fadeIn}>
         <Card
           maxSize="fit"
