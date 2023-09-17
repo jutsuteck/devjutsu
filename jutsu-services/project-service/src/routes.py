@@ -13,20 +13,20 @@ def include_routes(app: FastAPI) -> None:
         project_routes, tags=["projects"]
     )
     app.include_router(
-        workflow_routes, prefix="/api/v1/workflows", tags=["workflow"]
+        workflow_routes, tags=["workflow"]
     )
     app.include_router(
-        epic_routes, prefix="/api/v1/epics", tags=["epics"]
+        epic_routes, tags=["epics"]
     )
     app.include_router(
-        state_routes, prefix="/api/v1/states", tags=["states"]
+        state_routes, tags=["states"]
     )
     app.include_router(
-        work_item_routes, prefix="/api/v1/work_items", tags=["work items"]
+        work_item_routes, tags=["work items"]
     )
     app.include_router(
-        task_routes, prefix="/api/v1/tasks", tags=["tasks"]
+        task_routes, tags=["tasks"]
     )
     app.include_router(
-        label_routes, prefix="/api/v1/labels", tags=["labels"]
+        label_routes, tags=["labels"]
     )

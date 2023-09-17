@@ -6,10 +6,10 @@ from src.schemas.v1.projects.task_schema import TaskCreateSchema, TaskReadSchema
 from src.services.projects.task_service import TaskService
 
 
-router = APIRouter()
+router = APIRouter(prefix="/api/v1")
 
 
-@router.post('/new', response_model=TaskReadSchema)
+@router.post('/tasks/new', response_model=TaskReadSchema)
 def task_create(
         work_item_id: str,
         task_create_schema: TaskCreateSchema,
@@ -19,7 +19,7 @@ def task_create(
         work_item_id, task_create_schema.dict())
 
 
-@router.get('/all/{work_item_id}', response_model=List[TaskReadSchema])
+@router.get('/tasks/all/{work_item_id}', response_model=List[TaskReadSchema])
 def task_list(
         work_item_id: str,
         service: TaskService = Depends(TaskService),
@@ -27,7 +27,7 @@ def task_list(
     return service.filter_by_work_item(work_item_id)
 
 
-@router.patch('/update/{task_id}', response_model=TaskReadSchema)
+@router.patch('/tasks/update/{task_id}', response_model=TaskReadSchema)
 def task_update(
         task_id: str,
         task_update_schema: TaskUpdateSchema,
@@ -37,7 +37,7 @@ def task_update(
         task_id, task_update_schema.dict(exclude_unset=True))
 
 
-@router.delete('/delete/{task_id}')
+@router.delete('/tasks/delete/{task_id}')
 def task_delete(
         task_id: str,
         service: TaskService = Depends(TaskService),

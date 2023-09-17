@@ -6,10 +6,10 @@ from src.schemas.v1.projects.work_item_schema import WorkItemCreateSchema, WorkI
 from src.services.projects.work_item_service import WorkItemService
 
 
-router = APIRouter()
+router = APIRouter(prefix="/api/v1")
 
 
-@router.post('/new', response_model=WorkItemReadSchema)
+@router.post('/work-items/new', response_model=WorkItemReadSchema)
 def work_item_create(
         workflow_id: str,
         state_id: str,
@@ -20,7 +20,7 @@ def work_item_create(
         workflow_id, state_id, work_item_create_schema.dict())
 
 
-@router.get('/state/{state_id}', response_model=List[WorkItemReadSchema])
+@router.get('/work-items/state/{state_id}', response_model=List[WorkItemReadSchema])
 def state_work_items(
         state_id: str,
         service: WorkItemService = Depends(WorkItemService),
@@ -28,7 +28,7 @@ def state_work_items(
     return service.get_all_state_work_items(state_id)
 
 
-@router.get('/{work_item_id}', response_model=WorkItemReadSchema)
+@router.get('/work-items/{work_item_id}', response_model=WorkItemReadSchema)
 def work_item_detail(
         work_item_id: str,
         service: WorkItemService = Depends(WorkItemService),
@@ -36,7 +36,7 @@ def work_item_detail(
     return service.get_work_item_or_404(work_item_id)
 
 
-@router.patch('/update_state/{work_item_id}', response_model=WorkItemReadSchema)
+@router.patch('/work-items/update-state/{work_item_id}', response_model=WorkItemReadSchema)
 def work_item_state_update(
         work_item_id: str,
         work_item_state_update_schema: WorkItemStateUpdateSchema,
@@ -46,7 +46,7 @@ def work_item_state_update(
         work_item_id, work_item_state_update_schema.state_id)
 
 
-@router.patch('/update/{work_item_id}', response_model=WorkItemReadSchema)
+@router.patch('/work-items/update/{work_item_id}', response_model=WorkItemReadSchema)
 def work_item_update(
         work_item_id: str,
         work_item_update_schema: WorkItemUpdateSchema,
@@ -56,7 +56,7 @@ def work_item_update(
         work_item_id, work_item_update_schema.dict(exclude_unset=True))
 
 
-@router.delete('/delete/{work_item_id}')
+@router.delete('/work-items/delete/{work_item_id}')
 def work_item_delete(
         work_item_id: str,
         service: WorkItemService = Depends(WorkItemService),

@@ -6,10 +6,10 @@ from src.schemas.v1.projects.epic_schema import EpicCreateSchema, EpicReadSchema
 from src.services.projects.epic_service import EpicService
 
 
-router = APIRouter()
+router = APIRouter(prefix="/api/v1")
 
 
-@router.post('/new', response_model=EpicReadSchema)
+@router.post('/epics/new', response_model=EpicReadSchema)
 def epic_create(
         project_id: str,
         epic_create_schema: EpicCreateSchema,
@@ -18,7 +18,7 @@ def epic_create(
     return service.create_epic(project_id, epic_create_schema.dict())
 
 
-@router.get('/all', response_model=List[EpicReadSchema])
+@router.get('/epics/all', response_model=List[EpicReadSchema])
 def epic_list(
         project_id: str,
         service: EpicService = Depends(EpicService),
@@ -26,7 +26,7 @@ def epic_list(
     return service.get_all(project_id)
 
 
-@router.get('/{epic_id}', response_model=EpicReadSchema)
+@router.get('/epics/{epic_id}', response_model=EpicReadSchema)
 def epic_detail(
         epic_id: str,
         service: EpicService = Depends(EpicService),
@@ -34,7 +34,7 @@ def epic_detail(
     return service.get_epic_or_404(epic_id)
 
 
-@router.patch('/update/{epic_id}', response_model=EpicReadSchema)
+@router.patch('/epics/update/{epic_id}', response_model=EpicReadSchema)
 def epic_update(
         epic_id: str,
         epic_update_schema: EpicUpdateSchema,
@@ -44,7 +44,7 @@ def epic_update(
         epic_id, epic_update_schema.dict(exclude_unset=True))
 
 
-@router.delete('/delete/{epic_id}')
+@router.delete('/epics/delete/{epic_id}')
 def epic_delete(
         epic_id: str,
         service: EpicService = Depends(EpicService),

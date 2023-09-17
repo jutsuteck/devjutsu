@@ -6,10 +6,10 @@ from src.schemas.v1.projects.label_schema import LabelCreateSchema, LabelReadSch
 from src.services.projects.label_service import LabelService
 
 
-router = APIRouter()
+router = APIRouter(prefix="/api/v1")
 
 
-@router.post("/new", response_model=LabelReadSchema)
+@router.post("/labels/new", response_model=LabelReadSchema)
 def label_create(
         work_item_id: str,
         label_create_schema: LabelCreateSchema,
@@ -19,7 +19,7 @@ def label_create(
         work_item_id, label_create_schema.dict())
 
 
-@router.get('/all/{work_item_id}', response_model=List[LabelReadSchema])
+@router.get('/labels/all/{work_item_id}', response_model=List[LabelReadSchema])
 def label_list(
         work_item_id: str,
         service: LabelService = Depends(LabelService),
@@ -27,7 +27,7 @@ def label_list(
     return service.filter_by_work_item(work_item_id)
 
 
-@router.patch('/update/{label_id}', response_model=LabelReadSchema)
+@router.patch('/labels/update/{label_id}', response_model=LabelReadSchema)
 def label_update(
         label_id: str,
         label_update_schema: LabelUpdateSchema,
@@ -36,7 +36,7 @@ def label_update(
     return service.update_label(label_id, label_update_schema.name)
 
 
-@router.delete('/delete/{label_id}')
+@router.delete('/labels/delete/{label_id}')
 def label_delete(
         label_id: str,
         service: LabelService = Depends(LabelService),
