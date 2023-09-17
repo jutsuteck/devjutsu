@@ -16,7 +16,7 @@ const CustomInput: FC<Props> = ({
   error,
 }) => {
   const defaultStyle =
-    "bg-nord-polar-night-medium text-nord-snowstorm-light rounded-md px-4 py-2 w-full focus:outline-none border-nord-polar-night-light border-2";
+    "bg-nord-polar-night-medium text-nord-snowstorm-light rounded-md px-4 py-2 w-full focus:outline-none border-nord-polar-night-medium border-2";
   const borderStyle = error
     ? "focus:border-nord-aurora-red"
     : "focus:border-nord-meadow";
@@ -29,7 +29,9 @@ const CustomInput: FC<Props> = ({
         type={type}
         {...register(name)}
       />
-      {error && <p className="text-nord-aurora-red mt-1">{error}</p>}
+      <div className="h-3 mt-1">
+        {error && <p className="text-sm text-nord-aurora-red">{error}</p>}
+      </div>
     </>
   );
 };

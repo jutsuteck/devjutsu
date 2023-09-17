@@ -9,7 +9,7 @@ from src.services.projects.project_service import ProjectService
 router = APIRouter(prefix="/api/v1")
 
 
-@router.post('/project/new', response_model=ProjectReadSchema)
+@router.post('/projects/new', response_model=ProjectReadSchema)
 def project_create(
         project_create_schema: ProjectCreateSchema,
         service: ProjectService = Depends(ProjectService),
@@ -22,6 +22,11 @@ def project_list(
         service: ProjectService = Depends(ProjectService),
         current_user=Depends(get_current_user)):
     return service.get_all_projects()
+
+
+@router.get('/projects/{project_id}', response_model=ProjectReadSchema)
+def project_detail(project_id: str, service: ProjectService = Depends(ProjectService), current_user=Depends(get_current_user)):
+    return service.get_project_or_404(project_id)
 
 
 @ router.patch('/projects/patch/{project_id}', response_model=ProjectReadSchema)

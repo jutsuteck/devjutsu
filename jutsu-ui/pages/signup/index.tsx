@@ -53,7 +53,7 @@ const SignUpPage: NextPage = () => {
   return (
     <CenteredContainer>
       <Card transparent>
-        <h1 className="text-5xl text-nord-snowstorm-light mb-6 text-center">
+        <h1 className="text-5xl font-extrabold text-nord-snowstorm-light mb-6 text-center">
           Sign Up
         </h1>
         <form onSubmit={handleSubmit(onSubmit)}>

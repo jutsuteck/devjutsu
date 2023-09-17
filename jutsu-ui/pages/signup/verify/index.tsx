@@ -12,15 +12,17 @@ const VerifyPage: NextPage = () => {
 
   return (
     <CenteredContainer>
-      <Card className="text-center">
-        <h1 className="text-xl font-bold mb-2">Verification Successful!</h1>
+      <Card>
+        <h1 className="text-4xl font-extrabold mb-4">
+          Verification Successful!
+        </h1>
         <p>
           Thank you for verifying your email address. Your account is now
           active.
         </p>
         <p
-          className="underline text-center mt-6 cursor-pointer"
-          onClick={() => router.push("login")}
+          className="underline mt-6 cursor-pointer"
+          onClick={() => router.push("/login")}
         >
           Login here
         </p>

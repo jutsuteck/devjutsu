@@ -2,9 +2,10 @@ import { FC, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
-  maxSize?: "sm" | "md" | "lg" | "xl" | "2xl";
+  maxSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "fit";
   transparent?: boolean;
   className?: string;
+  onClick?: () => void;
 }
 
 const Card: FC<Props> = ({
@@ -12,9 +13,12 @@ const Card: FC<Props> = ({
   maxSize = "md",
   transparent,
   className,
+  onClick,
 }) => {
   const baseClasses = "p-8 w-full rounded";
   const sizeClasses = {
+    fit: "max-w-fit",
+    xs: "max-w-xs",
     sm: "max-w-sm",
     md: "max-w-md",
     lg: "max-w-lg",
@@ -22,11 +26,15 @@ const Card: FC<Props> = ({
     "2xl": "max-w-2xl",
   };
 
-  const bgColor = transparent ? "" : "bg-nord-polar-night-light";
+  const bgColor = transparent ? "" : "bg-nord-polar-night-medium";
 
   const finalClasses = `${baseClasses} ${sizeClasses[maxSize]} ${bgColor} ${className}`;
 
-  return <div className={finalClasses}>{children}</div>;
+  return (
+    <div className={finalClasses} onClick={onClick}>
+      {children}
+    </div>
+  );
 };
 
 export default Card;

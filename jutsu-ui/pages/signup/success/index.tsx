@@ -15,8 +15,10 @@ const SignUpSuccessPage: NextPage = () => {
 
   return (
     <CenteredContainer>
-      <Card className="text-center">
-        <h1 className="text-xl font-bold mb-2">Registration successful!</h1>
+      <Card>
+        <h1 className="text-4xl font-extrabold mb-4">
+          Registration successful!
+        </h1>
         <p>
           Thank you for registering. A verification link has been sent to{" "}
           <span className="underline">{email}</span>

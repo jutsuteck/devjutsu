@@ -1,6 +1,10 @@
-import projectService from "@/services/projects/ProjectService";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
+
+import { Project } from "@/models/projects";
+import projectService from "@/services/projects/ProjectService";
+import Container from "@/components/layout/Container";
+import ProjectCard from "@/components/projects/ProjectCard";
 
 const ProjectPage: NextPage = () => {
   const [projects, setProjects] = useState([]);
@@ -11,8 +15,6 @@ const ProjectPage: NextPage = () => {
         const fetchProjects = await projectService.getAllProjects();
 
         setProjects(fetchProjects);
-
-        console.log(fetchProjects);
       } catch (error) {
         console.log(error);
       }
@@ -21,7 +23,16 @@ const ProjectPage: NextPage = () => {
 
   return (
     <>
-      <h1>{projects}</h1>
+      <Container>
+        <h1 className="text-4xl font-extrabold mb-8">My Projects</h1>
+        {projects.map((project: Project) => (
+          <ProjectCard
+            key={project.id}
+            nameKey={project.name_key}
+            methodology={project.methodology}
+          />
+        ))}
+      </Container>
     </>
   );
 };

@@ -53,7 +53,7 @@ services:
           - /api/v1/projects/new
         strip_path: false
 
-      - name: project-list
+      - name: projects
         paths:
           - /api/v1/projects
         strip_path: false

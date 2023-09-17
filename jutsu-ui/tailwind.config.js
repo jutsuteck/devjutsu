@@ -9,9 +9,9 @@ module.exports = {
     colors: {
       nord: {
         frost: {
-          light: "#88C0D0",
-          medium: "#6ba3b2",
-          dark: "#276271",
+          light: "#7BACBF", // Slightly desaturated and darkened
+          medium: "#5A949B", // More desaturated and darkened
+          dark: "#23565E", // Darkened a bit more
         },
         meadow: "#a3be8c",
         golden: "#ebcb8b",
@@ -20,8 +20,8 @@ module.exports = {
           pink: "#fff5fb",
         },
         snowstorm: {
-          light: "#ECEFF4",
-          medium: "#ced0d5",
+          light: "#EADFD9", // Slightly desaturated with a hint of warmth
+          medium: "#C9CCBF", // More desaturated with a touch of warmth
         },
         "polar-night": {
           dark: "#2E3440",
