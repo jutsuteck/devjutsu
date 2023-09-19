@@ -60,11 +60,15 @@ export const AuthProvider: FC<ProviderProps> = ({ children }) => {
     return loginMutation.mutateAsync({ username, password });
   };
 
-  const logout = () => {
-    authService.logout();
-    setToken(null);
-    setIsAuthenticated(false);
-    localStorage.removeItem("access_token");
+  const logout = async () => {
+    try {
+      await authService.logout();
+      setIsAuthenticated(false);
+      localStorage.removeItem("access_token");
+      router.push("/login");
+    } catch (error) {
+      throw error;
+    }
   };
 
   return (

@@ -5,6 +5,7 @@ import { Project } from "@/models/projects";
 import projectService from "@/services/projects/ProjectService";
 import Container from "@/components/layout/Container";
 import ProjectCard from "@/components/projects/ProjectCard";
+import TopBar from "@/components/ui/TopBar";
 
 const ProjectPage: NextPage = () => {
   const [projects, setProjects] = useState([]);
@@ -23,6 +24,7 @@ const ProjectPage: NextPage = () => {
 
   return (
     <>
+      <TopBar />
       <Container>
         <h1 className="text-4xl font-extrabold mb-8">My Projects</h1>
         {projects.map((project: Project) => (

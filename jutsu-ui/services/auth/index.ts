@@ -35,15 +35,13 @@ class AuthService extends JutsuService {
 
       return response.data;
     } catch (error: any) {
-      console.log(error);
-      /* this.defaultErrorMessages(error); */
+      this.defaultErrorMessages(error);
     }
   };
 
   logout = async () => {
     try {
-      const response = await this.api.post("/auth/logout");
-      return response.data;
+      await this.api.post("/auth/logout");
     } catch (error: any) {
       this.defaultErrorMessages(error);
     }
@@ -100,13 +98,13 @@ class AuthService extends JutsuService {
 
   getCurrentUser = async () => {
     try {
-      const response = await this.api.get('/users/me')
+      const response = await this.api.get("/users/me");
 
-    return response;
-    } catch(error: any) {
-    this.defaultErrorMessages(error)
+      return response;
+    } catch (error: any) {
+      this.defaultErrorMessages(error);
     }
-  }
+  };
 }
 
 const authService = new AuthService();
