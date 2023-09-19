@@ -1,23 +1,25 @@
 from typing import List
-from fastapi import Depends, HTTPException
+from fastapi import Depends
 from sqlmodel import Session
 
 from src.core.dependencies.database.database_manager import db_session
-from src.core.exceptions.projects.state_exceptions import StateNotFoundException
+from src.core.exceptions.projects.state_exceptions import (
+    StateNotFoundException
+)
 from src.models.v1.projects.state import State
-from src.models.v1.projects.workflow import Workflow
 from src.repositories.projects.state_repository import StateRepository
-from src.repositories.projects.work_flow_repository import WorkflowRepository
+from src.services.projects.workflow_service import WorkflowService
 
 
 class StateService:
     def __init__(self, session: Session = Depends(db_session)):
         self.session = session
         self.state_repository = StateRepository(self.session)
-        self.workflow_repository = WorkflowRepository(self.session)
+        self.workflow_service = WorkflowService(self.session)
 
-    def create_state(self, workflow_id: str, state_data: dict) -> State:
-        self.workflow_repository.get_workflow_or_404(workflow_id)
+    def create_state(self, state_data: dict) -> State:
+        workflow_id = state_data["workflow_id"]
+        self.workflow_service.get_workflow_or_404(workflow_id)
 
         state = State(**state_data)
 
@@ -26,7 +28,7 @@ class StateService:
         return state
 
     def get_all_workflow_states(self, workflow_id: str) -> List[State]:
-        workflow = self.workflow_repository.get_workflow_or_404(workflow_id)
+        workflow = self.workflow_service.get_workflow_or_404(workflow_id)
 
         state_list = self.state_repository.filter_by_workflow(
             workflow.id)  # type: ignore

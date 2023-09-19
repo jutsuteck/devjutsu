@@ -60,10 +60,10 @@ class WorkItemUpdateSchema(BaseModel):
 class WorkItemReadSchema(BaseModel):
     id: str
     name: str
-    description: str
+    description: Optional[str] = None
     effort: int
     ready_for_development: bool
-    work_item_type: WorkItemType
+    work_item_type: Optional[WorkItemType] = None
     created_on: datetime
 
     """ workflow: WorkflowReadSchema """

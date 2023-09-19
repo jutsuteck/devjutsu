@@ -22,7 +22,7 @@ def include_routes(app: FastAPI) -> None:
         state_routes, tags=["states"]
     )
     app.include_router(
-        work_item_routes, tags=["work items"]
+        work_item_routes, tags=["work-items"]
     )
     app.include_router(
         task_routes, tags=["tasks"]

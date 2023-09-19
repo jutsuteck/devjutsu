@@ -17,7 +17,10 @@ class WorkItemService:
         self.workflow_service = WorkflowService(self.session)
         self.state_service = StateService(self.session)
 
-    def create_work_item(self, workflow_id: str, state_id: str, work_item_data: dict):
+    def create_work_item(self,  work_item_data: dict):
+        workflow_id = work_item_data["workflow_id"]
+        state_id = work_item_data["state_id"]
+
         self.workflow_service.get_workflow_or_404(workflow_id)
         self.state_service.get_state_or_404(state_id)
 

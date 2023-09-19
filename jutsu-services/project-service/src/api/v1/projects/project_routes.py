@@ -12,15 +12,13 @@ router = APIRouter(prefix="/api/v1")
 @router.post('/projects/new', response_model=ProjectReadSchema)
 def project_create(
         project_create_schema: ProjectCreateSchema,
-        service: ProjectService = Depends(ProjectService),
-        current_user=Depends(get_current_user)):
+        service: ProjectService = Depends(ProjectService)):
     return service.create_project(project_create_schema.dict())
 
 
 @router.get('/projects', response_model=List[ProjectReadSchema])
 def project_list(
-        service: ProjectService = Depends(ProjectService),
-        current_user=Depends(get_current_user)):
+        service: ProjectService = Depends(ProjectService)):
     return service.get_all_projects()
 
 

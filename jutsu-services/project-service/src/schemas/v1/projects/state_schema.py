@@ -21,6 +21,7 @@ class StateUpdateSchema(BaseModel):
 class StateReadSchema(BaseModel):
     id: str
     name: str
+    workflow_id: str
 
     class Config:
         orm_mode = True

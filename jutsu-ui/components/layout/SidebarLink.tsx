@@ -24,12 +24,13 @@ const SidebarLink: FC<Props> = ({
     router.asPath ===
     `/projects/${projectNameKey}/${name.toLowerCase()}?projectId=${projectId}`;
 
-  const baseClasses =
-    "text-center font-semibold font-sm p-2 rounded-full text-sm";
+  const baseClasses = "text-center font-sm p-2 rounded-full text-sm";
   const activeClasses =
-    isActive && !isHovered ? "text-nord-frost-dark bg-nord-frost-medium" : "";
+    isActive && !isHovered
+      ? "text-nord-frost-dark bg-nord-frost-medium font-semibold"
+      : "";
   const hoverClasses =
-    "hover:bg-nord-frost-medium hover:text-nord-frost-dark transition-colors duration-300";
+    "hover:bg-nord-frost-medium hover:text-nord-frost-dark font-semibold transition-colors duration-300";
 
   const finalClasses = `${baseClasses} ${activeClasses} ${hoverClasses}`;
 

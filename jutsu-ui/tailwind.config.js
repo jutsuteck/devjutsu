@@ -24,6 +24,7 @@ module.exports = {
           medium: "#C9CCBF", // More desaturated with a touch of warmth
         },
         "polar-night": {
+          darkest: "#282C36",
           dark: "#2E3440",
           medium: "#3e4451",
           light: "#575d6b",

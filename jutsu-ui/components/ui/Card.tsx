@@ -15,7 +15,7 @@ const Card: FC<Props> = ({
   className,
   onClick,
 }) => {
-  const baseClasses = "p-8 w-full rounded";
+  const baseClasses = "p-8 w-full rounded-lg";
   const sizeClasses = {
     fit: "max-w-fit",
     xs: "max-w-xs",

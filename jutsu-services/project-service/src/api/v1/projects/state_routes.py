@@ -11,19 +11,16 @@ router = APIRouter(prefix="/api/v1")
 
 @router.post('/states/new', response_model=StateReadSchema)
 def state_create(
-        workflow_id: str,
         state_create_schema: StateCreateSchema,
         service: StateService = Depends(StateService),
         current_user=Depends(get_current_user)):
-    return service.create_state(
-        workflow_id, state_create_schema.dict())
+    return service.create_state(state_create_schema.dict())
 
 
-@router.get('/states/', response_model=List[StateReadSchema])
+@router.get('/states/{workflow_id}', response_model=List[StateReadSchema])
 def state_list(
         workflow_id: str,
-        service: StateService = Depends(StateService),
-        current_user=Depends(get_current_user)):
+        service: StateService = Depends(StateService)):
     return service.get_all_workflow_states(workflow_id)
 
 

@@ -9,22 +9,18 @@ from src.services.projects.work_item_service import WorkItemService
 router = APIRouter(prefix="/api/v1")
 
 
-@router.post('/work-items/new', response_model=WorkItemReadSchema)
+@router.post('/work-items/new')
 def work_item_create(
-        workflow_id: str,
-        state_id: str,
         work_item_create_schema: WorkItemCreateSchema,
-        service: WorkItemService = Depends(WorkItemService),
-        current_user=Depends(get_current_user)):
-    return service.create_work_item(
-        workflow_id, state_id, work_item_create_schema.dict())
+        service: WorkItemService = Depends(WorkItemService)):
+    return service.create_work_item(work_item_create_schema.dict())
 
 
-@router.get('/work-items/state/{state_id}', response_model=List[WorkItemReadSchema])
+@router.get('/work-items/state/{state_id}',
+            response_model=List[WorkItemReadSchema])
 def state_work_items(
         state_id: str,
-        service: WorkItemService = Depends(WorkItemService),
-        current_user=Depends(get_current_user)):
+        service: WorkItemService = Depends(WorkItemService)):
     return service.get_all_state_work_items(state_id)
 
 

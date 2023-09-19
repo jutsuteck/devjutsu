@@ -40,7 +40,8 @@ class ProjectService:
 
         return project
 
-    def update_project(self, project_id: str, project_update_data: dict) -> Project:
+    def update_project(
+            self, project_id: str, project_update_data: dict) -> Project:
         project = self.get_project_or_404(project_id)
 
         updated_project = self.project_repository.update(

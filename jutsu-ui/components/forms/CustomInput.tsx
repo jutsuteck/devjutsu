@@ -6,6 +6,7 @@ interface Props {
   placeholder?: string;
   type?: string;
   error?: string;
+  ref?: any;
 }
 
 const CustomInput: FC<Props> = ({
@@ -14,6 +15,7 @@ const CustomInput: FC<Props> = ({
   placeholder,
   type = "text",
   error,
+  ref,
 }) => {
   const defaultStyle =
     "bg-nord-polar-night-medium text-nord-snowstorm-light rounded-md px-4 py-2 w-full focus:outline-none border-nord-polar-night-medium border-2";
@@ -26,6 +28,7 @@ const CustomInput: FC<Props> = ({
       <input
         placeholder={placeholder}
         className={`${defaultStyle} ${borderStyle}`}
+        ref={ref}
         type={type}
         {...register(name)}
       />

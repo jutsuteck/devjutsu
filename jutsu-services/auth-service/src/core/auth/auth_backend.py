@@ -27,7 +27,8 @@ redis = redis.asyncio.from_url(REDIS_URL, decode_responses=True)
 
 
 def get_redis_strategy() -> RedisStrategy:
-    return RedisStrategy(redis, lifetime_seconds=3600)  # type: ignore
+    lifetime_seconds = 30 * 24 * 60 * 60  # This is one month in seconds
+    return RedisStrategy(redis, lifetime_seconds=lifetime_seconds)
 
 
 auth_backend = AuthenticationBackend(

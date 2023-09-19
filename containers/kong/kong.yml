@@ -2,6 +2,7 @@ _format_version: "3.0"
 _transform: true
 
 services:
+  # AUTH SERVICE
   - name: auth-service
     url: http://auth_service:8000
     routes:
@@ -45,6 +46,7 @@ services:
           - /users/me
         strip_path: false
 
+  # PROJECT SERVICE
   - name: project-service
     url: http://project_service:8000
     routes:
@@ -66,3 +68,80 @@ services:
       - name: delete-project
         paths:
           - /api/v1/projects/delete/
+        strip_path: false
+
+      #### WORKFLOW ###
+      - name: create-workflow
+        paths:
+          - /api/v1/workflow/new
+        strip_path: false
+
+      - name: get-all-workflow
+        paths:
+          - /api/v1/workflow/all
+        strip_path: false
+
+      - name: get-current-worflow
+        paths:
+          - /api/v1/workflow/current
+        strip_path: false
+
+      - name: update-workflow
+        paths:
+          - /api/v1/workflow/update
+        strip_path: false
+
+      - name: delete-workflow
+        paths:
+          - /api/v1/workflow/delete
+        strip_path: false
+
+      - name: create-state
+        paths:
+          - /api/v1/states/new
+        strip_path: false
+
+      - name: get-states
+        paths:
+          - /api/v1/states
+        strip_path: false
+
+      - name: update-state
+        paths:
+          - /api/v1/states/update
+        strip_path: false
+
+      - name: delete-state
+        paths:
+          - /api/v1/states/delete
+        strip_path: false
+
+      # WORKITEM ENDPOINTS
+      - name: create-work-item
+        paths:
+          - /api/v1/work-items/new
+        strip_path: false
+
+      - name: get-work-item-by-state
+        paths:
+          - /api/v1/work-items/state
+        strip_path: false
+
+      - name: get-work-item-by-id
+        paths:
+          - /api/v1/work-items
+        strip_path: false
+
+      - name: update-work-item-state
+        paths:
+          - /api/v1/work-items/update-state
+        strip_path: false
+
+      - name: update-work-item
+        paths:
+          - /api/v1/work-items/update
+        strip_path: false
+
+      - name: delete-work-item
+        paths:
+          - /api/v1/work-items/delete

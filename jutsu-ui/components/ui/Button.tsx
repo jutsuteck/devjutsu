@@ -19,7 +19,7 @@ const Button: FC<Props> = ({
   ...props
 }) => {
   const baseClasses =
-    "w-full text-nord-snowstorm-light p-2 rounded flex items-center justify-center";
+    "w-full text-nord-frost-dark font-semibold p-2 rounded-lg flex items-center justify-center";
   const defaultClasses = "bg-nord-frost-medium hover:bg-nord-frost-light";
   const transparentClasses =
     "border border-nord-frost-medium hover:bg-nord-polar-night-medium focus:bg-nord-polar-night-medium";

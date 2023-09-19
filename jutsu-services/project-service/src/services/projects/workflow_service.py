@@ -17,7 +17,9 @@ class WorkflowService:
         self.workflow_repository = WorkflowRepository(self.session)
         self.project_service = ProjectService(self.session)
 
-    def create_workflow(self, project_id: str, workflow_data: dict) -> Workflow:
+    def create_workflow(self, workflow_data: dict) -> Workflow:
+        project_id = workflow_data["project_id"]
+
         project = self.project_service.get_project_or_404(project_id)
 
         if project.methodology != Methodology.SCRUM:
