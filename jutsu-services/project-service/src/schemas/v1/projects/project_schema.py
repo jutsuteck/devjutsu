@@ -8,8 +8,8 @@ from src.core.utils.helpers import generate_project_name_key
 class ProjectBaseSchema(BaseModel):
     name: str
     name_key: Optional[str]
-    description: str
-    methodology: Methodology
+    description: Optional[str]
+    methodology: Optional[Methodology] = Methodology.SCRUM
     security_level: SecurityLevel = SecurityLevel.LEVEL_1
 
 

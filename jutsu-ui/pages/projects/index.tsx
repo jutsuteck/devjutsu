@@ -1,41 +1,40 @@
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { IoMdAdd } from "react-icons/io";
 
 import { Project } from "@/models/projects";
-import projectService from "@/services/projects/ProjectService";
-import Container from "@/components/layout/Container";
 import ProjectCard from "@/components/projects/ProjectCard";
 import TopBar from "@/components/ui/TopBar";
+import Button from "@/components/ui/Button";
+import useProjects from "@/hooks/projects/useProjects";
+import NewProjectModal from "@/components/projects/NewProjectModal";
 
 const ProjectPage: NextPage = () => {
-  const [projects, setProjects] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const fetchProjects = await projectService.getAllProjects();
-
-        setProjects(fetchProjects);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const { data: projects, isLoading, isError } = useProjects();
 
   return (
     <>
+      {showModal && <NewProjectModal onClose={() => setShowModal(false)} />}
       <TopBar />
-      <Container>
-        <h1 className="text-4xl font-extrabold mb-8">My Projects</h1>
-        {projects.map((project: Project) => (
-          <ProjectCard
-            key={project.id}
-            nameKey={project.name_key}
-            methodology={project.methodology}
-            projectId={project.id}
-          />
-        ))}
-      </Container>
+      <div className="py-4 px-8">
+        <Button
+          icon={<IoMdAdd />}
+          text="New Project"
+          className="mb-8 bg-nord-polar-night-medium shadow-md hover:shadow-lg hover:bg-nord-polar-night-medium text-nord-snowstorm-light px-4"
+          onClick={() => setShowModal(true)}
+        />
+        <div className="flex flex-row space-x-4">
+          {projects?.map((project: Project) => (
+            <ProjectCard
+              key={project.id}
+              nameKey={project.name_key}
+              methodology={project.methodology}
+              projectId={project.id}
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 };

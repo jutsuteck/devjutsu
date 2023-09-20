@@ -8,7 +8,7 @@ import {
 import { motion } from "framer-motion";
 
 interface Props {
-  message: string;
+  message: string | null;
   severity: "error" | "warning" | "info" | "success";
   maxSize?: "sm" | "md" | "lg" | "xl" | "2xl";
 }
@@ -50,7 +50,7 @@ const Alert: FC<Props> = ({ message, severity, maxSize = "md" }) => {
       initial="hidden"
       animate="visible"
       variants={fadeIn}
-      className={`text-white p-2 rounded-md w-full text-center cursor-pointer ${severityClasses[severity]} ${sizeClasses[maxSize]}`}
+      className={`mb-4 text-white p-2 rounded-md w-full text-center cursor-pointer ${severityClasses[severity]}`}
       onClick={() => setIsVisble(false)}
     >
       <div className="flex items-center justify-center">

@@ -67,7 +67,7 @@ const LoginForm: FC = () => {
             error={errors.password?.message}
           />
         </FormGroup>
-        <Button type="submit" text="Login" />
+        <Button type="submit" text="Login" fullWidth />
       </form>
     </>
   );

@@ -28,6 +28,7 @@ module.exports = {
           dark: "#2E3440",
           medium: "#3e4451",
           light: "#575d6b",
+          lightest: "#606676",
         },
       },
       gruvbox: {

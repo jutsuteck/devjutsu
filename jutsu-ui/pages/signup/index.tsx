@@ -88,6 +88,7 @@ const SignUpPage: NextPage = () => {
             icon={<AiFillMail />}
             type="submit"
             text="Continue with email"
+            fullWidth
           />
         </form>
 

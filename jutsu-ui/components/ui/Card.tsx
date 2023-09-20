@@ -6,6 +6,7 @@ interface Props {
   transparent?: boolean;
   className?: string;
   onClick?: () => void;
+  fixedHeight?: string;
 }
 
 const Card: FC<Props> = ({
@@ -14,6 +15,7 @@ const Card: FC<Props> = ({
   transparent,
   className,
   onClick,
+  fixedHeight,
 }) => {
   const baseClasses = "p-8 w-full rounded-lg";
   const sizeClasses = {
@@ -31,7 +33,7 @@ const Card: FC<Props> = ({
   const finalClasses = `${baseClasses} ${sizeClasses[maxSize]} ${bgColor} ${className}`;
 
   return (
-    <div className={finalClasses} onClick={onClick}>
+    <div className={`${finalClasses} ${fixedHeight}`} onClick={onClick}>
       {children}
     </div>
   );

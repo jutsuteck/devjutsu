@@ -12,8 +12,6 @@ interface Props {
 const StateContainer: FC<Props> = ({ stateId, stateName, workflowId }) => {
   const { data: workItems, isLoading, isError } = useStateWorkItems(stateId);
 
-  console.log("StateContainer: ", stateId);
-
   return (
     <div className="w-72">
       <h1 className="text-lg font-semibold mb-4">{stateName}</h1>

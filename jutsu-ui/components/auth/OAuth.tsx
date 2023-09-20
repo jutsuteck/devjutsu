@@ -6,7 +6,12 @@ import Button from "../ui/Button";
 const OAuth: FC = () => {
   return (
     <>
-      <Button icon={<AiFillGithub />} text="Continue with Github" transparent />
+      <Button
+        icon={<AiFillGithub />}
+        text="Continue with Github"
+        transparent
+        fullWidth
+      />
     </>
   );
 };

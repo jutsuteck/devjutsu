@@ -6,7 +6,10 @@ interface Props {
   placeholder?: string;
   type?: string;
   error?: string;
-  ref?: any;
+  autoComplete?: "on" | "off";
+  className?: string;
+  bgColor?: string;
+  borderColor?: string;
 }
 
 const CustomInput: FC<Props> = ({
@@ -15,10 +18,12 @@ const CustomInput: FC<Props> = ({
   placeholder,
   type = "text",
   error,
-  ref,
+  autoComplete,
+  className,
+  borderColor,
+  bgColor = "bg-nord-polar-night-dark",
 }) => {
-  const defaultStyle =
-    "bg-nord-polar-night-medium text-nord-snowstorm-light rounded-md px-4 py-2 w-full focus:outline-none border-nord-polar-night-medium border-2";
+  const defaultStyle = `${bgColor} ${borderColor} border-2 p-2 rounded-md w-full focus:outline-none`;
   const borderStyle = error
     ? "focus:border-nord-aurora-red"
     : "focus:border-nord-meadow";
@@ -27,10 +32,12 @@ const CustomInput: FC<Props> = ({
     <>
       <input
         placeholder={placeholder}
-        className={`${defaultStyle} ${borderStyle}`}
-        ref={ref}
+        className={`${defaultStyle} ${borderStyle} ${className}`}
         type={type}
+        name={name}
         {...register(name)}
+        autoFocus
+        autoComplete={autoComplete}
       />
       <div className="h-3 mt-1">
         {error && <p className="text-sm text-nord-aurora-red">{error}</p>}

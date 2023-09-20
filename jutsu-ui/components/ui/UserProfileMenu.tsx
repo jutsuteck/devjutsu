@@ -70,6 +70,7 @@ const UserProfileMenu: FC = () => {
 
             <div className="absolute bottom-0 w-full p-4">
               <Button
+                fullWidth
                 icon={<AiOutlineLogout />}
                 text="Logout"
                 onClick={onClickLogout}

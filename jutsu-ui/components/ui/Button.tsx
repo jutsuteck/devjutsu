@@ -1,7 +1,8 @@
 import { FC, ReactNode } from "react";
 
 interface Props {
-  text: string;
+  text?: string;
+  fullWidth?: boolean;
   icon?: ReactNode;
   transparent?: boolean;
   className?: string;
@@ -11,6 +12,7 @@ interface Props {
 
 const Button: FC<Props> = ({
   text,
+  fullWidth,
   icon,
   transparent,
   className,
@@ -18,15 +20,16 @@ const Button: FC<Props> = ({
   type = "button",
   ...props
 }) => {
+  const wFull = fullWidth ? "w-full" : "";
   const baseClasses =
-    "w-full text-nord-frost-dark font-semibold p-2 rounded-lg flex items-center justify-center";
+    "text-nord-frost-dark font-semibold p-2 rounded-lg flex items-center justify-center";
   const defaultClasses = "bg-nord-frost-medium hover:bg-nord-frost-light";
   const transparentClasses =
     "border border-nord-frost-medium hover:bg-nord-polar-night-medium focus:bg-nord-polar-night-medium";
   const focusClasses =
     "focus:outline-none focus:ring-2 focus:ring-nord-frost-light";
 
-  const finalClasses = `${baseClasses} ${
+  const finalClasses = `${wFull} ${baseClasses} ${
     transparent ? transparentClasses : defaultClasses
   } ${focusClasses} ${className}`;
 

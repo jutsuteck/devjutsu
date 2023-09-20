@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from typing import List
 from src.core.security.auth import get_current_user
 
@@ -18,7 +18,9 @@ def project_create(
 
 @router.get('/projects', response_model=List[ProjectReadSchema])
 def project_list(
-        service: ProjectService = Depends(ProjectService)):
+        service: ProjectService = Depends(ProjectService),
+        current_user=Depends(get_current_user)):
+
     return service.get_all_projects()
 
 

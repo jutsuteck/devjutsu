@@ -32,7 +32,7 @@ const ProjectCard: FC<Props> = ({ nameKey, methodology, projectId }) => {
       <motion.div initial="hidden" animate="visible" variants={fadeIn}>
         <Card
           maxSize="fit"
-          className="hover:cursor-pointer hover:shadow-xl transition-shadow duration-200"
+          className="hover:cursor-pointer hover:shadow-xl transition-shadow duration-200 shadow-lg"
         >
           <div className="flex flex-col justify-between h-full items-center">
             <h2 className="text-xl font-bold mb-2 text-center">{nameKey}</h2>
