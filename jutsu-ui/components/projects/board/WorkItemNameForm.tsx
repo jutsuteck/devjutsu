@@ -91,6 +91,8 @@ const WorkItemNameForm: FC<Props> = ({ workflowId, stateId }) => {
               name="name"
               register={register}
               ref={inputRef}
+              autoComplete="off"
+              borderColor="focus:border-nord-polar-night-light"
             />
           </FormGroup>
         </form>
