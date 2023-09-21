@@ -12,7 +12,8 @@ router = APIRouter(prefix="/api/v1")
 @router.post('/projects/new', response_model=ProjectReadSchema)
 def project_create(
         project_create_schema: ProjectCreateSchema,
-        service: ProjectService = Depends(ProjectService)):
+        service: ProjectService = Depends(ProjectService),
+        current_user=Depends(get_current_user)):
     return service.create_project(project_create_schema.dict())
 
 
