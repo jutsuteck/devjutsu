@@ -1,18 +1,20 @@
 import { FC, useState } from "react";
-import { LuRocket } from "react-icons/lu";
-import BaseModal from "../ui/BaseModal";
-import { Methodology, NewProject } from "@/models/projects";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation, useQueryClient } from "react-query";
+import Image from "next/image";
+
+import BaseModal from "../ui/BaseModal";
 import FormGroup from "../forms/FormGroup";
 import CustomInput from "../forms/CustomInput";
 import CustomTextArea from "../forms/CustomTextArea";
-import Image from "next/image";
 import Button from "../ui/Button";
-import { projectSchema } from "@/utils/validationSchemas/projects";
-import { useMutation, useQueryClient } from "react-query";
-import projectService from "@/services/projects/ProjectService";
 import Alert from "../ui/Alert";
+
+import { Methodology, NewProject } from "@/models/projects";
+
+import projectService from "@/services/projects/ProjectService";
+
+import { LuRocket } from "react-icons/lu";
 
 interface Props {
   onClose?: () => void;
@@ -21,7 +23,6 @@ interface Props {
 interface FormProps {
   name: string;
   description?: string;
-  methodology: Methodology;
 }
 
 const NewProjectModal: FC<Props> = ({ onClose }) => {
@@ -40,19 +41,16 @@ const NewProjectModal: FC<Props> = ({ onClose }) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation((data: NewProject) =>
-    projectService.createProject(data.name, data.description)
+    projectService.createProject(data.name, data.description, data.methodology)
   );
 
-  const onSubmit = (data: FormProps) => {
-    console.log(data);
-    const projectData: NewProject = {
-      ...data,
+  const onSubmit = (formData: FormProps) => {
+    const data: NewProject = {
+      methodology: selectedMethodology,
+      ...formData,
     };
 
-    console.log("Selected Methodology: ", selectedMethodology);
-    console.log("Project Data", projectData);
-
-    mutation.mutate(projectData, {
+    mutation.mutate(data, {
       onSuccess: () => {
         queryClient.invalidateQueries(["projects"]);
         setErrMessage(null);
@@ -94,6 +92,7 @@ const NewProjectModal: FC<Props> = ({ onClose }) => {
             bgColor="bg-nord-polar-night-medium"
             borderColor="border-nord-polar-night-light"
             error={errors.description?.message}
+            autoFocus={false}
           />
         </FormGroup>
         <FormGroup label="Methodology" labelStyle="font-extrabold">

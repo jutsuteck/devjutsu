@@ -10,6 +10,8 @@ import Alert from "@/components/ui/Alert";
 import useCurrentWorkflow from "@/hooks/projects/useCurrentWorkflow";
 import useProjectDetail from "@/hooks/projects/useProjectDetail";
 
+import { LiaLaptopCodeSolid } from "react-icons/lia";
+
 const ProjectBoardPage: NextPage = () => {
   const router = useRouter();
   const { projectId } = router.query;
@@ -24,8 +26,6 @@ const ProjectBoardPage: NextPage = () => {
     isError: projectError,
   } = useProjectDetail(projectId);
 
-  console.log(isCurrentWorkflowError);
-
   return (
     <Dashboard
       projectId={projectId}
@@ -37,21 +37,31 @@ const ProjectBoardPage: NextPage = () => {
         <Alert message={isCurrentWorkflowError} severity="error" />
       )}
       <div className="flex justify-between mt-8">
-        <div className="space-x-3">
+        <div className="flex space-x-3">
           {/* Table Button */}
           <button className="bg-nord-polar-night-medium rounded-lg p-2 shadow-md">
             <FaTableList size={15} />
           </button>
+
           {/* Kanban Button */}
           <button className="bg-nord-polar-night-medium rounded-lg p-2 shadow-md">
             <PiKanbanFill size={15} />
           </button>
+
+          {/* Add Work Button */}
+          <button className="bg-nord-polar-night-medium rounded-lg py-2 px-4 shadow-md flex items-center justify-center">
+            <GrAdd />
+            <span className="ml-2 font-semibold">Add column</span>
+          </button>
         </div>
-        <button className="bg-nord-polar-night-medium rounded-lg py-2 px-4 shadow-md flex flex items-center justify-center">
-          <GrAdd />
-          <span className="ml-2 font-semibold"> Add column </span>
+
+        {/* Add Column Button */}
+        <button className="bg-nord-polar-night-medium rounded-lg py-2 px-4 shadow-md flex items-center justify-center">
+          <LiaLaptopCodeSolid size={20} />
+          <span className="ml-2 font-semibold">Create work</span>
         </button>
       </div>
+
       <StateList workflowId={currentWorkflow?.id} />
     </Dashboard>
   );

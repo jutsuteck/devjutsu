@@ -20,7 +20,7 @@ const ProjectCard: FC<Props> = ({ nameKey, methodology, projectId }) => {
   const iconSrc =
     methodology === Methodology.SCRUM
       ? "/icons/scrum.svg"
-      : "/icons/kanban.png";
+      : "/icons/kanban.svg";
 
   return (
     <Link

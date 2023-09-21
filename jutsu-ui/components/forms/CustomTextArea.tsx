@@ -11,6 +11,7 @@ interface Props {
   noPaddingX?: boolean;
   bgColor?: string;
   borderColor?: string;
+  autoFocus?: boolean;
 }
 
 const CustomTextArea: FC<Props> = ({
@@ -22,6 +23,7 @@ const CustomTextArea: FC<Props> = ({
   className,
   bgColor = "bg-nord-polar-night-dark",
   borderColor,
+  autoFocus,
 }) => {
   const adjustHeight = (element: HTMLTextAreaElement | null) => {
     if (element) {
@@ -44,7 +46,7 @@ const CustomTextArea: FC<Props> = ({
         {...register(name)} // <-- Use the spread syntax here
         onInput={(e) => adjustHeight(e.target)} // <-- Use the onInput event to adjust height
         autoComplete={autoComplete}
-        autoFocus
+        autoFocus={autoFocus}
       />
       <div className="h-3 mt-1">
         {error && <p className="text-sm text-nord-aurora-red">{error}</p>}

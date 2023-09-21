@@ -2,11 +2,16 @@ import { Methodology, SecurityLevel } from "@/models/projects";
 import JutsuService from "../jutsu-service";
 
 class ProjectService extends JutsuService {
-  createProject = async (name: string, description?: string) => {
+  createProject = async (
+    name: string,
+    description: string,
+    methodology: Methodology
+  ) => {
     try {
       const response = await this.api.post("/api/v1/projects/new", {
         name: name,
         description: description,
+        methodology: methodology,
       });
 
       return response.data;

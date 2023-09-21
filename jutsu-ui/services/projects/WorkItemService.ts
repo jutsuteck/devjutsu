@@ -14,7 +14,6 @@ class WorkItemService extends JutsuService {
         "http://localhost:8000/api/v1/work-items/new",
         { workflow_id: workflow_id, state_id: state_id, name: name }
       );
-      console.log(response.data);
       return response.data;
     } catch (error: any) {
       this.defaultErrorMessages(error);
@@ -27,10 +26,7 @@ class WorkItemService extends JutsuService {
       const response = await this.api.get(
         `http://localhost:8000/api/v1/work-items/state/${state_id}`
       );
-      console.log("TEST", response.data);
-      return response.data;
     } catch (error: any) {
-      console.log("Enntered catch: ", state_id);
       this.defaultErrorMessages(error);
     }
   };
