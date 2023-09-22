@@ -7,7 +7,7 @@ import { AiFillMail } from "react-icons/ai";
 import Cookies from "js-cookie";
 
 import authService from "@/services/auth";
-import CenteredContainer from "@/components/layout/CenteredContainer";
+import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import FormGroup from "@/components/forms/FormGroup";
@@ -51,7 +51,7 @@ const SignUpPage: NextPage = () => {
   };
 
   return (
-    <CenteredContainer>
+    <Container centered>
       <Card transparent>
         <h1 className="text-5xl font-extrabold text-nord-snowstorm-light mb-6 text-center">
           Sign Up
@@ -109,7 +109,7 @@ const SignUpPage: NextPage = () => {
           Already an account? Login here
         </p>
       </Card>
-    </CenteredContainer>
+    </Container>
   );
 };
 

@@ -1,9 +1,9 @@
 import { GetServerSideProps, NextPage } from "next";
 import { useEffect } from "react";
-
 import Cookies from "js-cookie";
-import CenteredContainer from "@/components/layout/CenteredContainer";
+
 import Card from "@/components/ui/Card";
+import Container from "@/components/layout/Container";
 
 const SignUpSuccessPage: NextPage = () => {
   const email = Cookies.get("registeredEmail") || "";
@@ -14,7 +14,7 @@ const SignUpSuccessPage: NextPage = () => {
   }, []);
 
   return (
-    <CenteredContainer>
+    <Container centered>
       <Card>
         <h1 className="text-4xl font-extrabold mb-4">
           Registration successful!
@@ -24,7 +24,7 @@ const SignUpSuccessPage: NextPage = () => {
           <span className="underline">{email}</span>
         </p>
       </Card>
-    </CenteredContainer>
+    </Container>
   );
 };
 

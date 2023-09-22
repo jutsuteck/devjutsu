@@ -1,13 +1,23 @@
+import Link from "next/link";
 import Image from "next/image";
+
 import { FC, useState } from "react";
 import { motion } from "framer-motion";
-import { AiOutlineLogout } from "react-icons/ai";
-import Button from "./Button";
+
 import { useAuth } from "@/hooks/auth/useAuth";
+import useCurrentUser from "@/hooks/users/useCurrentUser";
+
+import Button from "./Button";
+
+import { AiOutlineLogout } from "react-icons/ai";
+import { RiUserSettingsLine } from "react-icons/ri";
 
 const UserProfileMenu: FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { logout, token } = useAuth();
+  const { data: currentUser, isLoading, isError } = useCurrentUser();
+
+  const username = `${currentUser?.first_name} ${currentUser?.last_name}`;
 
   const sidebarVariants = {
     open: { x: 0 },
@@ -15,7 +25,6 @@ const UserProfileMenu: FC = () => {
   };
 
   const onClickLogout = () => {
-    console.log(token);
     logout();
   };
 
@@ -60,12 +69,18 @@ const UserProfileMenu: FC = () => {
               />
               <div className="ml-2">
                 <h1 className="font-bold">Tenant name</h1>
-                <h2>Username</h2>
+                <h2>{isLoading ? "Loading..." : `${username}`}</h2>
               </div>
             </div>
 
             <div className="p-4">
-              <span>Settings</span>
+              <Link
+                href="/settings/profile"
+                className="flex items-center transition-colors duration-3000 rounded-md p-2 hover:bg-nord-polar-night-dark"
+              >
+                <RiUserSettingsLine />
+                <span className="ml-4">Settings</span>
+              </Link>
             </div>
 
             <div className="absolute bottom-0 w-full p-4">

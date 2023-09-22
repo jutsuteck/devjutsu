@@ -9,11 +9,11 @@ class WorkItemService extends JutsuService {
     name: string
   ) => {
     try {
-      console.log({ workflow_id, state_id, name });
-      const response = await this.api.post(
-        "http://localhost:8000/api/v1/work-items/new",
-        { workflow_id: workflow_id, state_id: state_id, name: name }
-      );
+      const response = await this.api.post("/api/v1/work-items/new", {
+        workflow_id: workflow_id,
+        state_id: state_id,
+        name: name,
+      });
       return response.data;
     } catch (error: any) {
       this.defaultErrorMessages(error);
@@ -21,11 +21,12 @@ class WorkItemService extends JutsuService {
   };
 
   getWorkItemsByStateId = async (state_id: string) => {
-    console.log("Before catch: ", state_id);
     try {
       const response = await this.api.get(
-        `http://localhost:8000/api/v1/work-items/state/${state_id}`
+        `/api/v1/work-items/state/${state_id}`
       );
+
+      return response.data;
     } catch (error: any) {
       this.defaultErrorMessages(error);
     }

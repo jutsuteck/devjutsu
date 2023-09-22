@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import useProjectDetail from "@/hooks/projects/useProjectDetail";
 import Header from "./Header";
 import TopBar from "../ui/TopBar";
+import CreateButton from "../ui/CreateButton";
 
 interface Props {
   children: ReactNode;
@@ -28,24 +29,27 @@ const Dashboard: FC<Props> = ({
   const { data: project, isLoading, isError } = useProjectDetail(projectId);
 
   return (
-    <div className="flex flex-col h-full">
-      <TopBar />
-      <div className="flex h-full">
-        <Sidebar projectId={projectId} />
-        <div className="flex-grow p-8">
-          <Header
-            projectName={project?.name}
-            pageName={pageName}
-            hasButton={headerButton}
-            headerButton={headerButtonText}
-            onClick={headerButtonAction}
-            isScrum={isScrum}
-            scrumHeader={scrumHeader}
-          />
-          {children}
+    <>
+      <div className="flex flex-col h-full">
+        <TopBar />
+        <div className="flex h-full">
+          <Sidebar projectId={projectId} />
+          <div className="flex-grow p-8">
+            <Header
+              projectName={project?.name}
+              pageName={pageName}
+              hasButton={headerButton}
+              headerButton={headerButtonText}
+              onClick={headerButtonAction}
+              isScrum={isScrum}
+              scrumHeader={scrumHeader}
+            />
+            {children}
+          </div>
         </div>
       </div>
-    </div>
+      <CreateButton />
+    </>
   );
 };
 

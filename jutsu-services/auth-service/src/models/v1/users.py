@@ -25,7 +25,7 @@ class Member(SQLAlchemyBaseUserTableUUID, Base):
 
     roles = relationship(
         'Role', secondary="member_roles", back_populates="members")
-    teams = relationship('Team', secondary='team_members',
+    clans = relationship('Clan', secondary='clan_members',
                          back_populates='members')
     oauth_accounts: Mapped[List[OAuthAccount]] = relationship(
         "OAuthAccount", lazy="joined")
@@ -60,19 +60,19 @@ class Tenant(Base):
                 server_default=text("gen_random_uuid()"))
     name = Column(String, unique=True, nullable=False)
     members = relationship('Member', back_populates='tenant')
-    teams = relationship("Team", back_populates="tenant")
+    clans = relationship("Clan", back_populates="tenant")
 
 
-class Team(Base):
-    __tablename__ = "teams"
+class Clan(Base):
+    __tablename__ = "clans"
 
     id = Column(UUID(as_uuid=True), primary_key=True,
                 server_default=text("gen_random_uuid()"))
     name = Column(String, unique=True, index=True)
     tenant_id = Column(UUID(as_uuid=True), ForeignKey('tenants.id'))
-    tenant = relationship('Tenant', back_populates='teams')
+    tenant = relationship('Tenant', back_populates='clans')
     members = relationship(
-        'Member', secondary='team_members', back_populates='teams')
+        'Member', secondary='clan_members', back_populates='clans')
 
 
 member_roles = Table(
@@ -88,8 +88,8 @@ role_permissions = Table(
 )
 
 
-team_members = Table(
-    'team_members', Base.metadata,
-    Column('team_id', UUID(as_uuid=True), ForeignKey('teams.id')),
+clan_members = Table(
+    'clan_members', Base.metadata,
+    Column('clan_id', UUID(as_uuid=True), ForeignKey('clans.id')),
     Column('member_id', UUID(as_uuid=True), ForeignKey('members.id')),
 )

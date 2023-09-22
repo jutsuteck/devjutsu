@@ -21,8 +21,9 @@ const ProjectPage: NextPage = () => {
         <Button
           icon={<IoMdAdd />}
           text="New Project"
-          className="mb-8 bg-nord-polar-night-medium shadow-md hover:shadow-lg hover:bg-nord-polar-night-medium text-nord-snowstorm-light px-4"
           onClick={() => setShowModal(true)}
+          polarNightMedium
+          className="mb-4"
         />
         <div className="flex flex-row space-x-4">
           {projects?.map((project: Project) => (

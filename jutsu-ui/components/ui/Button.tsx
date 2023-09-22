@@ -8,33 +8,32 @@ interface Props {
   className?: string;
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
+  polarNightMedium?: boolean;
+  bgFrost?: boolean;
 }
 
 const Button: FC<Props> = ({
   text,
   fullWidth,
   icon,
-  transparent,
-  className,
   onClick,
   type = "button",
-  ...props
+  polarNightMedium,
+  bgFrost,
+  className,
 }) => {
   const wFull = fullWidth ? "w-full" : "";
-  const baseClasses =
-    "text-nord-frost-dark font-semibold p-2 rounded-lg flex items-center justify-center";
-  const defaultClasses = "bg-nord-frost-medium hover:bg-nord-frost-light";
-  const transparentClasses =
-    "border border-nord-frost-medium hover:bg-nord-polar-night-medium focus:bg-nord-polar-night-medium";
-  const focusClasses =
-    "focus:outline-none focus:ring-2 focus:ring-nord-frost-light";
-
-  const finalClasses = `${wFull} ${baseClasses} ${
-    transparent ? transparentClasses : defaultClasses
-  } ${focusClasses} ${className}`;
+  const baseStyle = "rounded-lg p-2 shadow-lg flex items-center font-bold mb-2";
+  const polarNightMd =
+    polarNightMedium && "bg-nord-polar-night-medium text-nord-snowstorm-light";
+  const frost = bgFrost && "bg-nord-frost-medium text-nord-frost-dark";
 
   return (
-    <button type={type} className={finalClasses} onClick={onClick} {...props}>
+    <button
+      type={type}
+      className={`${wFull} ${baseStyle} ${polarNightMd} ${frost} ${className}`}
+      onClick={onClick}
+    >
       {icon && <span className="mr-2">{icon}</span>}
       {text}
     </button>

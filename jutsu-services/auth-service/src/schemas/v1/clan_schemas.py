@@ -2,7 +2,7 @@ from uuid import UUID
 from pydantic import BaseModel
 
 
-class TeamReadSchema(BaseModel):
+class ClanReadSchema(BaseModel):
     id: UUID
     name: str
 
@@ -10,9 +10,9 @@ class TeamReadSchema(BaseModel):
         from_attributes = True
 
 
-class TeamCreateSchema(BaseModel):
+class ClanCreateSchema(BaseModel):
     name: str
 
 
-class TeamUpdateSchema(BaseModel):
+class ClanUpdateSchema(BaseModel):
     name: str

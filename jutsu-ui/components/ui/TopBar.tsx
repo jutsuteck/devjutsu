@@ -14,13 +14,10 @@ interface Props {
 
 const TopBar: FC<Props> = ({ showBottomSection = true, title }) => {
   const router = useRouter();
-  const transparentTopBar = showBottomSection
-    ? "bg-nord-polar-night-darkest"
-    : "";
 
   return (
     <div
-      className={`w-full mb-2 transition duration-500 ease-in-out ${transparentTopBar}`}
+      className={`w-full mb-2 transition duration-500 ease-in-out bg-nord-polar-night-darkest`}
     >
       {/* Top section */}
       <div className="flex justify-between items-center py-4 px-8">
@@ -49,7 +46,11 @@ const TopBar: FC<Props> = ({ showBottomSection = true, title }) => {
           <div className="flex items-center py-2 px-8 space-x-4">
             <TopBarLink href="/projects" icon={<LuRocket />} name="Projects" />
             <TopBarLink href="/dojo" icon={<LuSchool />} name="Dojo" />
-            <TopBarLink href="/dojo" icon={<BiCheckShield />} name="Security Controls" />
+            <TopBarLink
+              href="/dojo"
+              icon={<BiCheckShield />}
+              name="Security Controls"
+            />
           </div>
         )}
       </div>

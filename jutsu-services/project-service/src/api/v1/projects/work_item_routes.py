@@ -9,7 +9,7 @@ from src.services.projects.work_item_service import WorkItemService
 router = APIRouter(prefix="/api/v1")
 
 
-@router.post('/work-items/new')
+@router.post('/work-items/new', response_model=WorkItemReadSchema)
 def work_item_create(
         work_item_create_schema: WorkItemCreateSchema,
         service: WorkItemService = Depends(WorkItemService)):
