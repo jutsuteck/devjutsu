@@ -33,9 +33,6 @@ const ProjectBoardPage: NextPage = () => {
       isScrum
       scrumHeader={currentWorkflow?.name}
     >
-      {isCurrentWorkflowError && (
-        <Alert message={isCurrentWorkflowError} severity="error" />
-      )}
       <div className="flex justify-between mt-8">
         <div className="flex space-x-3">
           {/* Table Button */}

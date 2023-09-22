@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { useState } from "react";
 
-import CenteredContainer from "@/components/layout/CenteredContainer";
+import Container from "@/components/layout/Container";
 import Card from "@/components/ui/Card";
 import OAuth from "@/components/auth/OAuth";
 import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
@@ -15,7 +15,7 @@ const LoginPage: NextPage = () => {
   };
 
   return (
-    <CenteredContainer flexCol>
+    <Container flexCol centered>
       <Card transparent>
         <h1 className="text-5xl font-extrabold text-nord-snowstorm-light mb-6 text-center">
           Login
@@ -34,7 +34,7 @@ const LoginPage: NextPage = () => {
           {forgotPassword ? "Back to login" : "Forgot password?"}
         </p>
       </Card>
-    </CenteredContainer>
+    </Container>
   );
 };
 

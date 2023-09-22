@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from src.api.v1.role_routes import router as role_routes
-from src.api.v1.team_routes import router as team_routes
+from src.api.v1.clan_routes import router as clan_routes
 from src.core.auth.auth_backend import users as fastapi_users
 from src.schemas.v1.member_schemas import (
     MemberCreateSchema,
@@ -59,7 +59,7 @@ def include_routes(app: FastAPI) -> None:
         tags=["roles"]
     )
     app.include_router(
-        team_routes,
-        prefix="/teams",
-        tags=["teams"]
+        clan_routes,
+        prefix="/clans",
+        tags=["clans"]
     )

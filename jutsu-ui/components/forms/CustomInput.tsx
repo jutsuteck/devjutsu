@@ -8,7 +8,11 @@ interface Props {
   error?: string;
   autoComplete?: "on" | "off";
   className?: string;
-  bgColor?: string;
+  bgColor?:
+    | "bg-nord-polar-night-darkest"
+    | "bg-nord-polar-night-dark"
+    | "bg-nord-polar-night-medium"
+    | "bg-nordr-polar-night-light";
   borderColor?: string;
 }
 
@@ -20,7 +24,7 @@ const CustomInput: FC<Props> = ({
   error,
   autoComplete,
   className,
-  borderColor,
+  borderColor = "border-nord-polar-night-light",
   bgColor = "bg-nord-polar-night-dark",
 }) => {
   const defaultStyle = `${bgColor} ${borderColor} border-2 p-2 rounded-md w-full focus:outline-none`;

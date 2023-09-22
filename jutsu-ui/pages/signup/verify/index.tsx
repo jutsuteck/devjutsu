@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import CenteredContainer from "@/components/layout/CenteredContainer";
+import Container from "@/components/layout/Container";
 import { useVerifyUser } from "@/hooks/auth/useVerifyUser";
 import { useRouter } from "next/router";
 import Card from "@/components/ui/Card";
@@ -11,7 +11,7 @@ const VerifyPage: NextPage = () => {
   const { isVerified, message } = useVerifyUser(token as string);
 
   return (
-    <CenteredContainer>
+    <Container centered>
       <Card>
         <h1 className="text-4xl font-extrabold mb-4">
           Verification Successful!
@@ -27,7 +27,7 @@ const VerifyPage: NextPage = () => {
           Login here
         </p>
       </Card>
-    </CenteredContainer>
+    </Container>
   );
 };
 

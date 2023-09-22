@@ -131,7 +131,12 @@ const NewProjectModal: FC<Props> = ({ onClose }) => {
             </div>
           </div>
         </FormGroup>
-        <Button icon={<LuRocket />} text="Launch project" type="submit" />
+        <Button
+          icon={<LuRocket />}
+          text="Launch project"
+          type="submit"
+          bgFrost
+        />
       </form>
     </BaseModal>
   );

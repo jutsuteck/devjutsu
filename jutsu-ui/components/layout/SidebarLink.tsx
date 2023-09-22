@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { FC, ReactNode } from "react";
 
 interface Props {
-  projectId: string;
-  projectNameKey: string;
+  projectId?: string;
+  projectNameKey?: string;
   name: string;
   icon: ReactNode;
   isHovered: boolean;

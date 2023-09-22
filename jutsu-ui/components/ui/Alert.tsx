@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import {
   AiOutlineCheckCircle,
   AiOutlineExclamationCircle,
@@ -25,7 +25,7 @@ const severityClasses = {
   error: "bg-nord-aurora-red",
   warning: "bg-nord-golden",
   info: "bg-nord-frost-medium",
-  success: "bg-nord-meaduw",
+  success: "bg-nord-meadow",
 };
 
 const icons = {
@@ -50,8 +50,8 @@ const Alert: FC<Props> = ({ message, severity, maxSize = "md" }) => {
       initial="hidden"
       animate="visible"
       variants={fadeIn}
-      className={`mb-4 text-white p-2 rounded-md w-full text-center cursor-pointer ${severityClasses[severity]}`}
-      onClick={() => setIsVisble(false)}
+      className={`fixed top-4 shadow-lg text-white p-2 rounded-md w-full text-center cursor-pointer ${sizeClasses[maxSize]} ${severityClasses[severity]} z-50`}
+      onClick={() => setIsVisble(!isVisible)}
     >
       <div className="flex items-center justify-center">
         {severity === "error" && icons.error}
