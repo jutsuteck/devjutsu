@@ -1,14 +1,18 @@
+from typing import List, Optional
 from pydantic import BaseModel
 
 
 class TenantCreateSchema(BaseModel):
     name: str
+    member_ids: List[str] = []
 
-    json_schema_extra = {
-        "example": {
-            "name": "Chatterbot"
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "name": "Chatterbot",
+                "member_ids": ["member_id1", "member_id2"]
+            }
         }
-    }
 
 
 class TenantUpdateSchema(BaseModel):
@@ -18,6 +22,7 @@ class TenantUpdateSchema(BaseModel):
 class TenantReadSchema(BaseModel):
     id: str
     name: str
+    member_ids: Optional[List[str]]
 
     class Config:
         from_attributes = True

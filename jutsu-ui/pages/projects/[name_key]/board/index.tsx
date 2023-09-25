@@ -1,15 +1,15 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { FaTableList } from "react-icons/fa6";
-import { PiKanbanFill } from "react-icons/pi";
-import { GrAdd } from "react-icons/gr";
 
 import Dashboard from "@/components/layout/Dashboard";
 import StateList from "@/components/projects/board/StateList";
-import Alert from "@/components/ui/Alert";
+
 import useCurrentWorkflow from "@/hooks/projects/useCurrentWorkflow";
 import useProjectDetail from "@/hooks/projects/useProjectDetail";
 
+import { FaTableList } from "react-icons/fa6";
+import { PiKanbanFill } from "react-icons/pi";
+import { GrAdd } from "react-icons/gr";
 import { LiaLaptopCodeSolid } from "react-icons/lia";
 
 const ProjectBoardPage: NextPage = () => {

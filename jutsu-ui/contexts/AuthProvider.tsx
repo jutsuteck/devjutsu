@@ -1,3 +1,4 @@
+import useCurrentUser from "@/hooks/users/useCurrentUser";
 import authService from "@/services/auth";
 import { useRouter } from "next/router";
 import { FC, ReactNode, createContext, useEffect, useState } from "react";
@@ -31,6 +32,11 @@ export const AuthProvider: FC<ProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const {
+    data: currentUser,
+    isLoading: isLoadingCurrentUser,
+    isError: isCurrentUserError,
+  } = useCurrentUser();
   const router = useRouter();
 
   useEffect(() => {
@@ -44,11 +50,22 @@ export const AuthProvider: FC<ProviderProps> = ({ children }) => {
     setIsLoading(false);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    if (currentUser?.is_onboarded === false) {
+      setTimeout(() => {
+        router.push("/onboarding");
+      }, 100);
+    }
+  }, [currentUser, router]);
+
   const loginMutation = useMutation(authService.login, {
     onSuccess: (data: any) => {
       setToken(data.access_token);
       setIsAuthenticated(true);
       localStorage.setItem("access_token", data.access_token);
+
       router.push("/projects");
     },
     onError: (error: any) => {

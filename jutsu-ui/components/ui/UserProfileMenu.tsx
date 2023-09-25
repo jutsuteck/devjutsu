@@ -69,7 +69,7 @@ const UserProfileMenu: FC = () => {
               />
               <div className="ml-2">
                 <h1 className="font-bold">Tenant name</h1>
-                <h2>{isLoading ? "Loading..." : `${username}`}</h2>
+                <h2>{isLoading ? "Loading..." : `${currentUser?.name}`}</h2>
               </div>
             </div>
 
@@ -89,6 +89,7 @@ const UserProfileMenu: FC = () => {
                 icon={<AiOutlineLogout />}
                 text="Logout"
                 onClick={onClickLogout}
+                bgFrost
               />
             </div>
           </motion.div>

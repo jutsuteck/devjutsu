@@ -18,8 +18,7 @@ import { useState } from "react";
 import Alert from "@/components/ui/Alert";
 
 interface FormProps {
-  firstName?: string;
-  lastName?: string;
+  name?: string;
   email?: string;
   password?: string;
 }
@@ -37,17 +36,10 @@ const ProfileSettingsPage: NextPage = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation((data: UpdateUser) =>
-    userService.updateCurrentUser(data.first_name, data.last_name)
+    userService.updateCurrentUser(data.name)
   );
 
-  const onSubmit = (formData: FormProps) => {
-    const data = {
-      first_name: formData.firstName,
-      last_name: formData.lastName,
-    };
-
-    console.log(data);
-
+  const onSubmit = (data: FormProps) => {
     mutation.mutate(data, {
       onSuccess: () => {
         queryClient.invalidateQueries("currentUser");
@@ -72,36 +64,21 @@ const ProfileSettingsPage: NextPage = () => {
           <h1 className="text-2xl font-extrabold">Account</h1>
           <hr className="bg-nord-polar-night-medium h-0.5 border-none my-6" />
           <form onSubmit={handleSubmit(onSubmit)}>
-            <FormGroup label="Firstname">
+            <FormGroup label="Name">
               <CustomInput
                 name="firstName"
-                placeholder={
-                  currentUser?.first_name
-                    ? currentUser?.first_name
-                    : "Firstname ..."
-                }
+                placeholder={currentUser?.name}
                 register={register}
-                error={errors?.firstName?.message}
+                error={errors?.name?.message}
               />
             </FormGroup>
-            <FormGroup label="Lastname">
-              <CustomInput
-                name="lastName"
-                placeholder={
-                  currentUser?.last_name
-                    ? currentUser?.last_name
-                    : "Lastname ..."
-                }
-                register={register}
-                error={errors?.lastName?.message}
-              />
-              <Button
-                icon={<RxUpdate />}
-                text="Update profile"
-                type="submit"
-                bgFrost
-              />
-            </FormGroup>
+
+            <Button
+              icon={<RxUpdate />}
+              text="Update profile"
+              type="submit"
+              bgFrost
+            />
           </form>
         </div>
       </Container>

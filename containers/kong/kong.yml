@@ -46,6 +46,11 @@ services:
           - /users/me
         strip_path: false
 
+      - name: create-tenant
+        paths:
+          - /api/v1/tenant/new
+        strip_path: false
+
   # PROJECT SERVICE
   - name: project-service
     url: http://project_service:8000

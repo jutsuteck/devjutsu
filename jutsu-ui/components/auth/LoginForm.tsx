@@ -9,6 +9,8 @@ import { useAuth } from "@/hooks/auth/useAuth";
 import { loginSchema } from "@/utils/validationSchemas/auth";
 import Alert from "../ui/Alert";
 
+import {AiOutlineLogin} from "react-icons/ai"
+
 interface LoginFormProps {
   username: string;
   password: string;
@@ -67,7 +69,7 @@ const LoginForm: FC = () => {
             error={errors.password?.message}
           />
         </FormGroup>
-        <Button type="submit" text="Login" fullWidth />
+        <Button icon={<AiOutlineLogin />} type="submit" text="Login" fullWidth bgFrost />
       </form>
     </>
   );

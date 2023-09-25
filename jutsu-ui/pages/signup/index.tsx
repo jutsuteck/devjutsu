@@ -3,17 +3,19 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
-import { AiFillMail } from "react-icons/ai";
 import Cookies from "js-cookie";
 
 import authService from "@/services/auth";
+import { signUpSchema } from "@/utils/validationSchemas/auth";
+
 import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import FormGroup from "@/components/forms/FormGroup";
 import CustomInput from "@/components/forms/CustomInput";
-import { signUpSchema } from "@/utils/validationSchemas/auth";
 import OAuth from "@/components/auth/OAuth";
+
+import { AiFillMail } from "react-icons/ai";
 
 interface SignUpFormData {
   email: string;
@@ -52,7 +54,7 @@ const SignUpPage: NextPage = () => {
 
   return (
     <Container centered>
-      <Card transparent>
+      <Card transparent fixedSize="w-1/4">
         <h1 className="text-5xl font-extrabold text-nord-snowstorm-light mb-6 text-center">
           Sign Up
         </h1>
@@ -89,6 +91,7 @@ const SignUpPage: NextPage = () => {
             type="submit"
             text="Continue with email"
             fullWidth
+            bgFrost
           />
         </form>
 
@@ -98,7 +101,7 @@ const SignUpPage: NextPage = () => {
           </div>
         ) : null}
 
-        <hr className="my-6 border-t border-nord-polar-night-light" />
+        <hr className="my-6 border-t border-nord-polar-night-medium" />
 
         <OAuth />
 

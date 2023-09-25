@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from src.api.v1.tenant_routes import router as tenant_routes
 from src.api.v1.role_routes import router as role_routes
 from src.api.v1.clan_routes import router as clan_routes
 from src.core.auth.auth_backend import users as fastapi_users
@@ -62,4 +63,8 @@ def include_routes(app: FastAPI) -> None:
         clan_routes,
         prefix="/clans",
         tags=["clans"]
+    )
+    app.include_router(
+        tenant_routes,
+        tags=["tenants"]
     )

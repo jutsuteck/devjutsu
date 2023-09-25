@@ -2,22 +2,20 @@ import { FC, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
-  maxSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "fit";
   transparent?: boolean;
-  className?: string;
+  maxSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "fit";
+  fixedSize?: "w-1/4" | "w-1/3" | "w-1/2" | "w-2/3" | "w-3/4";
   onClick?: () => void;
-  fixedHeight?: string;
 }
 
 const Card: FC<Props> = ({
   children,
-  maxSize = "md",
+  maxSize,
   transparent,
-  className,
   onClick,
-  fixedHeight,
+  fixedSize,
 }) => {
-  const baseClasses = "p-8 w-full rounded-lg";
+  const baseClasses = "p-8 rounded-lg";
   const sizeClasses = {
     fit: "max-w-fit",
     xs: "max-w-xs",
@@ -27,13 +25,19 @@ const Card: FC<Props> = ({
     xl: "max-w-xl",
     "2xl": "max-w-2xl",
   };
-
   const bgColor = transparent ? "" : "bg-nord-polar-night-medium";
 
-  const finalClasses = `${baseClasses} ${sizeClasses[maxSize]} ${bgColor} ${className}`;
+  let sizeClass;
+  if (maxSize) {
+    sizeClass = sizeClasses[maxSize];
+  } else if (fixedSize) {
+    sizeClass = fixedSize;
+  }
+
+  const finalClasses = `${baseClasses} ${sizeClass} ${bgColor}`;
 
   return (
-    <div className={`${finalClasses} ${fixedHeight}`} onClick={onClick}>
+    <div className={finalClasses} onClick={onClick}>
       {children}
     </div>
   );

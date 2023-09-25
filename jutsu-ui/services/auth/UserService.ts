@@ -1,3 +1,4 @@
+import { UpdateUser } from "@/models/users";
 import JutsuService from "../jutsu-service";
 
 class UserService extends JutsuService {
@@ -11,12 +12,10 @@ class UserService extends JutsuService {
     }
   };
 
-  updateCurrentUser = async (first_name: string, last_name: string) => {
+  updateCurrentUser = async (data: UpdateUser) => {
+    console.log(name);
     try {
-      const response = await this.api.patch("/users/me", {
-        first_name,
-        last_name,
-      });
+      const response = await this.api.patch("/users/me", { ...data });
 
       return response.data;
     } catch (error) {

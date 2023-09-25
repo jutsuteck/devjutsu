@@ -26,3 +26,7 @@ export const signUpSchema = yup.object().shape({
 export const forgotPasswordSchema = yup.object().shape({
   email: yup.string().required().email("Invalid email format"),
 });
+
+export const isRequiredValidation = yup.object().shape({
+  name: yup.string().required(),
+});

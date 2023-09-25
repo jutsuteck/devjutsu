@@ -16,7 +16,7 @@ const LoginPage: NextPage = () => {
 
   return (
     <Container flexCol centered>
-      <Card transparent>
+      <Card transparent fixedSize="w-1/4">
         <h1 className="text-5xl font-extrabold text-nord-snowstorm-light mb-6 text-center">
           Login
         </h1>

@@ -59,10 +59,10 @@ services:
       - ./jutsu-services/project-service/.env
     command: ["./scripts/startup.sh"]
 
-  mailhog:
-    image: mailhog/mailhog
-    ports:
-      - "8025:8025"
+  # mailhog:
+  #   image: mailhog/mailhog
+  #   ports:
+  #     - "8025:8025"
 
   kong:
     image: kong:latest

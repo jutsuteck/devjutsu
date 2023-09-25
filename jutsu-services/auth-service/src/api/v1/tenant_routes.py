@@ -4,10 +4,10 @@ from src.services.tenant_schemas import TenantCreateSchema, TenantReadSchema
 from src.services.tenant_service import TenantService
 
 
-router = APIRouter()
+router = APIRouter(prefix="/api/v1/tenant")
 
 
-@router.post('/new', response_model=TenantReadSchema)
+@router.post('/new')
 async def create_tenant(
         tenant_create_schema: TenantCreateSchema,
         service: TenantService = Depends(TenantService)):

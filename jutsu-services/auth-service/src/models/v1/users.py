@@ -3,7 +3,7 @@ from fastapi_users.db import (
     SQLAlchemyBaseOAuthAccountTableUUID,
     SQLAlchemyBaseUserTableUUID
 )
-from sqlalchemy import UUID, Column, ForeignKey, String, Table, text
+from sqlalchemy import UUID, Boolean, Column, ForeignKey, String, Table, text
 from sqlalchemy.orm import Mapped, declarative_base, relationship
 
 Base = declarative_base()
@@ -17,8 +17,8 @@ class OAuthAccount(SQLAlchemyBaseOAuthAccountTableUUID, Base):
 class Member(SQLAlchemyBaseUserTableUUID, Base):
     __tablename__ = "members"
 
-    first_name = Column(String, nullable=True)
-    last_name = Column(String, nullable=True)
+    name = Column(String, nullable=True)
+    is_onboarded = Column(Boolean, default=False, nullable=False)
 
     tenant_id = Column(UUID(as_uuid=True), ForeignKey('tenants.id'))
     tenant = relationship('Tenant', back_populates='members')
