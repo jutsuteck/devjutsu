@@ -14,6 +14,7 @@ interface Props {
     | "bg-nord-polar-night-medium"
     | "bg-nordr-polar-night-light";
   borderColor?: string;
+  noHeight?: boolean;
 }
 
 const CustomInput: FC<Props> = ({
@@ -26,11 +27,13 @@ const CustomInput: FC<Props> = ({
   className,
   borderColor = "border-nord-polar-night-light",
   bgColor = "bg-nord-polar-night-dark",
+  noHeight,
 }) => {
-  const defaultStyle = `${bgColor} ${borderColor} border-2 p-2 rounded-md w-full focus:outline-none`;
+  const defaultStyle = `${bgColor} ${borderColor} border p-2 rounded-md w-full focus:outline-none`;
   const borderStyle = error
     ? "focus:border-nord-aurora-red"
     : "focus:border-nord-meadow";
+  const hasHeight = noHeight ? "" : "h-3 mt-1";
 
   return (
     <>
@@ -43,7 +46,7 @@ const CustomInput: FC<Props> = ({
         autoFocus
         autoComplete={autoComplete}
       />
-      <div className="h-3 mt-1">
+      <div className={`${hasHeight}`}>
         {error && <p className="text-sm text-nord-aurora-red">{error}</p>}
       </div>
     </>

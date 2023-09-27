@@ -1,12 +1,10 @@
+import { NewState } from "@/models/projects";
 import JutsuService from "../jutsu-service";
 
 class StateService extends JutsuService {
-  createState = async (workflow_id: string, name: string) => {
+  createState = async (data: NewState) => {
     try {
-      const response = await this.api.post("/api/v1/states/new", {
-        name,
-        workflow_id,
-      });
+      const response = await this.api.post("/api/v1/states/new", { ...data });
       return response.data;
     } catch (error) {
       this.defaultErrorMessages(error);
@@ -19,6 +17,28 @@ class StateService extends JutsuService {
 
       return response.data;
     } catch (error: any) {
+      this.defaultErrorMessages(error);
+    }
+  };
+
+  updateState = async (state_id: string, name: string) => {
+    try {
+      const response = await this.api.patch(
+        `/api/v1/states/update/${state_id}`,
+        { name }
+      );
+
+      return response.data;
+    } catch (error: any) {
+      this.defaultErrorMessages(error);
+    }
+  };
+
+  deleteState = async (state_id: string) => {
+    console.log(state_id);
+    try {
+      await this.api.delete(`/api/v1/states/delete/${state_id}`);
+    } catch (error) {
       this.defaultErrorMessages(error);
     }
   };

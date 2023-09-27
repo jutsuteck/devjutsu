@@ -9,11 +9,15 @@ import useProjectDetail from "@/hooks/projects/useProjectDetail";
 
 import { FaTableList } from "react-icons/fa6";
 import { PiKanbanFill } from "react-icons/pi";
-import { GrAdd } from "react-icons/gr";
 import { LiaLaptopCodeSolid } from "react-icons/lia";
+import NewStateForm from "@/components/projects/board/NewStateForm";
+import { useState } from "react";
+import Alert from "@/components/ui/Alert";
 
 const ProjectBoardPage: NextPage = () => {
   const router = useRouter();
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  const [errMsg, setErrMsg] = useState<string | null>(null);
   const { projectId } = router.query;
   const {
     data: currentWorkflow,
@@ -27,40 +31,46 @@ const ProjectBoardPage: NextPage = () => {
   } = useProjectDetail(projectId);
 
   return (
-    <Dashboard
-      projectId={projectId}
-      pageName="Board"
-      isScrum
-      scrumHeader={currentWorkflow?.name}
-    >
-      <div className="flex justify-between mt-8">
-        <div className="flex space-x-3">
-          {/* Table Button */}
-          <button className="bg-nord-polar-night-medium rounded-lg p-2 shadow-md">
-            <FaTableList size={15} />
-          </button>
+    <>
+      {errMsg && <Alert message={errMsg} severity="error" />}
+      {successMsg && <Alert message={successMsg} severity="success" />}
+      <Dashboard
+        projectId={projectId}
+        pageName="Board"
+        isScrum
+        scrumHeader={currentWorkflow?.name}
+      >
+        <div className="flex justify-between mt-8">
+          <div className="flex space-x-3">
+            {/* Table Button */}
+            <button className="bg-nord-polar-night-medium rounded-lg p-2 shadow-md">
+              <FaTableList size={15} />
+            </button>
 
-          {/* Kanban Button */}
-          <button className="bg-nord-polar-night-medium rounded-lg p-2 shadow-md">
-            <PiKanbanFill size={15} />
-          </button>
+            {/* Kanban Button */}
+            <button className="bg-nord-polar-night-medium rounded-lg p-2 shadow-md">
+              <PiKanbanFill size={15} />
+            </button>
+            {/* State Button and Form */}
+            <NewStateForm
+              workflowId={currentWorkflow?.id}
+              successMsg={successMsg}
+              errMsg={errMsg}
+              setSuccessMsg={setSuccessMsg}
+              setErrMsg={setErrMsg}
+            />
+          </div>
 
-          {/* Add Work Button */}
+          {/* Add Column Button */}
           <button className="bg-nord-polar-night-medium rounded-lg py-2 px-4 shadow-md flex items-center justify-center">
-            <GrAdd />
-            <span className="ml-2 font-semibold">Add column</span>
+            <LiaLaptopCodeSolid size={20} />
+            <span className="ml-2 font-semibold">Create work</span>
           </button>
         </div>
 
-        {/* Add Column Button */}
-        <button className="bg-nord-polar-night-medium rounded-lg py-2 px-4 shadow-md flex items-center justify-center">
-          <LiaLaptopCodeSolid size={20} />
-          <span className="ml-2 font-semibold">Create work</span>
-        </button>
-      </div>
-
-      <StateList workflowId={currentWorkflow?.id} />
-    </Dashboard>
+        <StateList workflowId={currentWorkflow?.id} />
+      </Dashboard>
+    </>
   );
 };
 

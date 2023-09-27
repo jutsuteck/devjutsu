@@ -58,6 +58,8 @@ export interface Workflow {
   states: State[];
 }
 
+export type NewState = Pick<State, "name" | "workflow_id">
+
 export type NewProject = Pick<Project, "name" | "description" | "methodology">;
 
 export type NewWorkItem = Pick<WorkItem, "workflow_id" | "state_id" | "name">;

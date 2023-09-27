@@ -17,7 +17,7 @@ const fadeIn = {
 const WorkItemCard: FC<Props> = ({ name, description, workItemType }) => {
   return (
     <motion.div initial="hidden" animate="visible" variants={fadeIn}>
-      <Card className="hover:shadow-xl cursor-pointer mb-4 shadow-md">
+      <Card>
         <h1 className="text-md font-semibold">{name}</h1>
         <p>{description}</p>
       </Card>

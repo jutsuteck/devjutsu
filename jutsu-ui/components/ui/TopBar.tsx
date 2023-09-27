@@ -6,6 +6,7 @@ import TopBarLink from "./TopBarLink";
 import UserProfileMenu from "./UserProfileMenu";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import useCurrentUser from "@/hooks/users/useCurrentUser";
 
 interface Props {
   showBottomSection?: boolean;
@@ -14,6 +15,7 @@ interface Props {
 
 const TopBar: FC<Props> = ({ showBottomSection = true, title }) => {
   const router = useRouter();
+  const { data: currentUser, isLoading, isError } = useCurrentUser();
 
   return (
     <div
@@ -30,7 +32,9 @@ const TopBar: FC<Props> = ({ showBottomSection = true, title }) => {
             onClick={() => router.push("/projects")}
             className="cursor-pointer"
           />
-          <span className="font-semibold">{title ? title : "Tenant name"}</span>
+          <span className="font-semibold">
+            {title ? title : `Devjutsu / ${currentUser?.name}`}
+          </span>
         </div>
 
         <UserProfileMenu />

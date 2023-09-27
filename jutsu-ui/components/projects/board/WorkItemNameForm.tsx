@@ -1,11 +1,15 @@
-import CustomInput from "@/components/forms/CustomInput";
-import FormGroup from "@/components/forms/FormGroup";
-import { NewWorkItem } from "@/models/projects";
-import workItemService from "@/services/projects/WorkItemService";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
+
+import CustomInput from "@/components/forms/CustomInput";
+import FormGroup from "@/components/forms/FormGroup";
+
 import { GrAdd } from "react-icons/gr";
+
+import { NewWorkItem } from "@/models/projects";
+import useHideForm from "@/hooks/useHideForm";
+import workItemService from "@/services/projects/WorkItemService";
 
 interface Props {
   workflowId: string;
@@ -24,13 +28,7 @@ const WorkItemNameForm: FC<Props> = ({ workflowId, stateId }) => {
   } = useForm<FormProps>();
   const [showForm, setShowForm] = useState<boolean>(false);
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (showForm && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [showForm]);
+  useHideForm(showForm, () => setShowForm(false));
 
   const queryClient = useQueryClient();
 
@@ -53,30 +51,6 @@ const WorkItemNameForm: FC<Props> = ({ workflowId, stateId }) => {
     });
   };
 
-  useEffect(() => {
-    const handleEscapePress = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setShowForm(false);
-      }
-    };
-
-    const handleFocusOut = (event: FocusEvent) => {
-      if (!event.currentTarget.contains(event.relatedTarget as Node)) {
-        setShowForm(false);
-      }
-    };
-
-    if (showForm) {
-      document.addEventListener("keydown", handleEscapePress);
-      document.addEventListener("focusout", handleFocusOut);
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleEscapePress);
-      document.removeEventListener("focusout", handleFocusOut);
-    };
-  }, [showForm]);
-
   const onClickToggleForm = () => {
     setShowForm(true);
   };
@@ -90,9 +64,8 @@ const WorkItemNameForm: FC<Props> = ({ workflowId, stateId }) => {
               placeholder="Enter you work ..."
               name="name"
               register={register}
-              ref={inputRef}
               autoComplete="off"
-              borderColor="focus:border-nord-polar-night-light"
+              borderColor="focus:border-nord-frost-medium"
             />
           </FormGroup>
         </form>

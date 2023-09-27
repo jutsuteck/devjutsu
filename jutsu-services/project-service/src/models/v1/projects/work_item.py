@@ -10,6 +10,7 @@ from src.core.types.enums import WorkItemType
 class WorkItem(SQLModel, table=True):
     id: Optional[str] = Field(default_factory=lambda: str(
         uuid.uuid4()), primary_key=True, nullable=False)
+    name_key: Optional[str] = Field(max_length=12, unique=True)
     name: str = Field(max_length=255)
     description: Optional[str] = Field(default=None, max_length=1000)
     effort: Optional[int] = Field(default=0)

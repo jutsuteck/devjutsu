@@ -32,13 +32,15 @@ def generate_project_name_key(name: str) -> str:
     return name_key
 
 
-def generate_workflow_name(project_name_key: str, number: int = 1, name: str = "") -> str:
+def generate_workflow_name(
+        project_name_key: str,
+        number: int = 1, name: str = "") -> str:
     """
     Generate a workflow name based on given parameters.
 
-    This function generates a workflow name based on a provided project name key and number. 
-    If a name is provided, it sanitizes it by replacing spaces with hyphens. 
-    If no name is provided, it generates a name in the format of 'project_name_key-number-year'. 
+    This function generates a workflow name based on a provided project name key and number.
+    If a name is provided, it sanitizes it by replacing spaces with hyphens.
+    If no name is provided, it generates a name in the format of 'project_name_key-number-year'.
     The number is formatted as a two-digit number, and the year is the last two digits of the current year.
 
     Args:
@@ -65,6 +67,10 @@ def generate_workflow_name(project_name_key: str, number: int = 1, name: str = "
         sanitized_name = f'{project_name_key}-{formatted_number}-{current_year}'
 
     return sanitized_name
+
+
+def generate_work_item_name_key(project_name_key: str):
+    pass
 
 
 def format_datetime(dt: datetime) -> str:
