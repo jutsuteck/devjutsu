@@ -13,7 +13,7 @@ class UserService extends JutsuService {
   };
 
   updateCurrentUser = async (data: UpdateUser) => {
-    console.log(name);
+    console.log(data);
     try {
       const response = await this.api.patch("/users/me", { ...data });
 

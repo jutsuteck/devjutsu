@@ -36,7 +36,7 @@ const ProfileSettingsPage: NextPage = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation((data: UpdateUser) =>
-    userService.updateCurrentUser(data.name)
+    userService.updateCurrentUser(data)
   );
 
   const onSubmit = (data: FormProps) => {
@@ -66,7 +66,7 @@ const ProfileSettingsPage: NextPage = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup label="Name">
               <CustomInput
-                name="firstName"
+                name="name"
                 placeholder={currentUser?.name}
                 register={register}
                 error={errors?.name?.message}

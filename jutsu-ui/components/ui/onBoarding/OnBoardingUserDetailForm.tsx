@@ -34,7 +34,7 @@ const OnBoardingUserDetail: FC<Props> = ({ onNextStep }) => {
   const [errMsg, setErrMsg] = useState<string | null>(null);
 
   const mutation = useMutation((data: UpdateUser) =>
-    userService.updateCurrentUser(data.name)
+    userService.updateCurrentUser(data)
   );
 
   const onSubmit = (data: UserDetailform) => {

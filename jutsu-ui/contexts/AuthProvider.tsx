@@ -1,8 +1,9 @@
 import useCurrentUser from "@/hooks/users/useCurrentUser";
 import authService from "@/services/auth";
+import userService from "@/services/auth/UserService";
 import { useRouter } from "next/router";
 import { FC, ReactNode, createContext, useEffect, useState } from "react";
-import { useMutation } from "react-query";
+import { QueryClient, useMutation } from "react-query";
 
 interface AuthContextType {
   token: string | null;
@@ -41,6 +42,7 @@ export const AuthProvider: FC<ProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("access_token");
+    console.log("Loading user: ", isLoadingCurrentUser);
 
     if (storedToken) {
       setToken(storedToken);
@@ -48,25 +50,37 @@ export const AuthProvider: FC<ProviderProps> = ({ children }) => {
     }
 
     setIsLoading(false);
-  }, []);
+  }, [isLoadingCurrentUser]);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    if (currentUser?.is_onboarded === false) {
-      setTimeout(() => {
+    const handleRouteChange = (url: string) => {
+      if (currentUser?.is_onboarded === false && url !== "/onboarding") {
         router.push("/onboarding");
-      }, 100);
-    }
+      }
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
   }, [currentUser, router]);
 
+  const queryClient = new QueryClient();
+
   const loginMutation = useMutation(authService.login, {
-    onSuccess: (data: any) => {
+    onSuccess: async (data: any) => {
       setToken(data.access_token);
       setIsAuthenticated(true);
       localStorage.setItem("access_token", data.access_token);
 
-      router.push("/projects");
+      const user = await userService.getCurrentUser();
+
+      if (user?.is_onboarded === false) {
+        router.push("/onboarding");
+      } else {
+        router.push("/projects");
+      }
     },
     onError: (error: any) => {
       setErrorMessage(error);
@@ -82,6 +96,8 @@ export const AuthProvider: FC<ProviderProps> = ({ children }) => {
       await authService.logout();
       setIsAuthenticated(false);
       localStorage.removeItem("access_token");
+      // Clear currentUser data on logout
+      queryClient.removeQueries("currentUser");
       router.push("/login");
     } catch (error) {
       throw error;
