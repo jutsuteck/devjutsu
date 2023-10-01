@@ -1,3 +1,5 @@
+import { List } from "postcss/lib/list";
+
 export enum Methodology {
   SCRUM = "Scrum",
   KANBAN = "Kanban",
@@ -58,7 +60,29 @@ export interface Workflow {
   states: State[];
 }
 
-export type NewState = Pick<State, "name" | "workflow_id">
+export interface AsvsCategory {
+  id: string;
+  name: string;
+  objective?: string;
+  sub_categories: AsvsSubCategory[];
+}
+
+export interface AsvsSubCategory {
+  id: string;
+  name: string;
+  objective?: string;
+  security_requirements: AsvsRequirement[];
+}
+
+export interface AsvsRequirement {
+  id: string;
+  requirement_id: string;
+  description: string;
+  objective?: string;
+  value?: string;
+}
+
+export type NewState = Pick<State, "name" | "workflow_id">;
 
 export type NewProject = Pick<Project, "name" | "description" | "methodology">;
 

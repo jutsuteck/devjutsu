@@ -24,7 +24,7 @@ const SidebarLink: FC<Props> = ({
     router.asPath ===
     `/projects/${projectNameKey}/${name.toLowerCase()}?projectId=${projectId}`;
 
-  const baseClasses = "text-center font-sm p-2 rounded-full text-sm";
+  const baseClasses = "font-sm py-2 rounded-full text-sm";
   const activeClasses =
     isActive && !isHovered
       ? "text-nord-frost-dark bg-nord-frost-medium font-semibold"

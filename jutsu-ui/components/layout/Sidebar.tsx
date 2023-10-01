@@ -1,8 +1,12 @@
-import useProjectDetail from "@/hooks/projects/useProjectDetail";
 import { FC, useState } from "react";
 import SidebarLink from "./SidebarLink";
+
+import useProjectDetail from "@/hooks/projects/useProjectDetail";
+
 import { AiFillBook } from "react-icons/ai";
 import { PiKanbanFill } from "react-icons/pi";
+import { GiSwordman } from "react-icons/gi";
+import { BsArrowClockwise } from "react-icons/bs";
 
 interface Props {
   projectId: string;
@@ -26,6 +30,22 @@ const Sidebar: FC<Props> = ({ projectId }) => {
         <SidebarLink
           name="Board"
           icon={<PiKanbanFill />}
+          projectId={project?.id}
+          projectNameKey={project?.name_key}
+          isHovered={isLinkHovered}
+          setIsHovered={setIsLinkHovered}
+        />
+        <SidebarLink
+          name="Epics"
+          icon={<GiSwordman />}
+          projectId={project?.id}
+          projectNameKey={project?.name_key}
+          isHovered={isLinkHovered}
+          setIsHovered={setIsLinkHovered}
+        />
+        <SidebarLink
+          name="Sprints"
+          icon={<BsArrowClockwise />}
           projectId={project?.id}
           projectNameKey={project?.name_key}
           isHovered={isLinkHovered}

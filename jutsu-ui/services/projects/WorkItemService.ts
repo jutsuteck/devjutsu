@@ -1,6 +1,5 @@
-import { NewWorkItem, UpdateWorkItem } from "@/models/projects";
+import { UpdateWorkItem } from "@/models/projects";
 import JutsuService from "../jutsu-service";
-import axios from "axios";
 
 class WorkItemService extends JutsuService {
   createWorkItem = async (
@@ -56,8 +55,9 @@ class WorkItemService extends JutsuService {
     try {
       const response = await this.api.patch(
         `/api/v1/work-items/update/${work_item_id}`,
-        { data }
+        { ...data }
       );
+      console.log("API: ", response.data);
       return response.data;
     } catch (error: any) {
       this.defaultErrorMessages(error);

@@ -10,7 +10,7 @@ class ASVSSubCategory(SQLModel, table=True):
     id: Optional[str] = Field(default_factory=lambda: str(
         uuid.uuid4()), primary_key=True, nullable=False)
     name: str = Field(unique=True)
-    objective: str = Field(...)
+    objective: Optional[str] = Field(...)
 
     category_id: str = Field(foreign_key="asvs_category.id")
     category: Optional["ASVSCategory"] = Relationship(

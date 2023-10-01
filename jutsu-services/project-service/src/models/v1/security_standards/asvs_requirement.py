@@ -16,7 +16,7 @@ class ASVSRequirement(SQLModel, table=True):
 
     sub_category_id: str = Field(foreign_key="asvs_sub_category.id")
     sub_category: Optional["ASVSSubCategory"] = Relationship(
-        back_populates="security_requirement")
+        back_populates="security_requirements")
 
 
 from src.models.v1.security_standards.asvs_sub_category import ASVSSubCategory  # noqa

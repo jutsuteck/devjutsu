@@ -10,10 +10,10 @@ class ASVSCategory(SQLModel, table=True):
     id: Optional[str] = Field(default_factory=lambda: str(
         uuid.uuid4()), primary_key=True, nullable=False)
     name: str = Field(unique=True)
-    objective: str = Field(...)
+    objective: Optional[str] = Field(...)
 
     sub_categories: List["ASVSSubCategory"] = Relationship(
-        back_populates="asvs_category")
+        back_populates="category")
 
 
 from src.models.v1.security_standards.asvs_sub_category import ASVSSubCategory  # noqa

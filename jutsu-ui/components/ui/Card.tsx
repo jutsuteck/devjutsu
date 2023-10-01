@@ -6,6 +6,16 @@ interface Props {
   maxSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "fit";
   fixedSize?: "w-1/4" | "w-1/3" | "w-1/2" | "w-2/3" | "w-3/4";
   onClick?: () => void;
+  className?: string;
+  boxShadow?:
+    | "shadow-sm"
+    | "shadow"
+    | "shadow-md"
+    | "shadow-lg"
+    | "shadow-lg"
+    | "shadow-xl"
+    | "shadow-2xl";
+  ref?: any;
 }
 
 const Card: FC<Props> = ({
@@ -14,6 +24,9 @@ const Card: FC<Props> = ({
   transparent,
   onClick,
   fixedSize,
+  className,
+  boxShadow,
+  ref,
 }) => {
   const baseClasses = "p-8 rounded-lg";
   const sizeClasses = {
@@ -34,10 +47,12 @@ const Card: FC<Props> = ({
     sizeClass = fixedSize;
   }
 
-  const finalClasses = `${baseClasses} ${sizeClass} ${bgColor}`;
+  const finalClasses = `${baseClasses} ${sizeClass} ${bgColor} ${
+    boxShadow && boxShadow
+  } ${className}`;
 
   return (
-    <div className={finalClasses} onClick={onClick}>
+    <div className={finalClasses} onClick={onClick} ref={ref}>
       {children}
     </div>
   );

@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
 import Dashboard from "@/components/layout/Dashboard";
 import StateList from "@/components/projects/board/StateList";
+import NewStateForm from "@/components/projects/board/NewStateForm";
+import Alert from "@/components/ui/Alert";
 
 import useCurrentWorkflow from "@/hooks/projects/useCurrentWorkflow";
 import useProjectDetail from "@/hooks/projects/useProjectDetail";
@@ -10,9 +13,6 @@ import useProjectDetail from "@/hooks/projects/useProjectDetail";
 import { FaTableList } from "react-icons/fa6";
 import { PiKanbanFill } from "react-icons/pi";
 import { LiaLaptopCodeSolid } from "react-icons/lia";
-import NewStateForm from "@/components/projects/board/NewStateForm";
-import { useState } from "react";
-import Alert from "@/components/ui/Alert";
 
 const ProjectBoardPage: NextPage = () => {
   const router = useRouter();

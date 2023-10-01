@@ -20,7 +20,6 @@ services:
         paths:
           - /auth/logout
         strip_path: false
-
       - name: auth-request-verify-token-route
         paths:
           - /auth/request-verify-token
@@ -150,3 +149,9 @@ services:
       - name: delete-work-item
         paths:
           - /api/v1/work-items/delete
+        strip_path: false
+
+      - name: get-asvs-categories
+        paths:
+          - /api/v1/asvs/categories
+        strip_path: false

@@ -51,9 +51,9 @@ const TopBar: FC<Props> = ({ showBottomSection = true, title }) => {
             <TopBarLink href="/projects" icon={<LuRocket />} name="Projects" />
             <TopBarLink href="/dojo" icon={<LuSchool />} name="Dojo" />
             <TopBarLink
-              href="/dojo"
+              href="/security-checklists"
               icon={<BiCheckShield />}
-              name="Security Controls"
+              name="Security Checklists"
             />
           </div>
         )}

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 interface Props {
   children: ReactNode;
   maxSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  fixedSize?: "w-1/4" | "w-1/3" | "w-1/2" | "w-2/3" | "w-3/4";
   className?: string;
   onClose?: () => void; // Callback function to handle modal close
 }
@@ -19,7 +20,8 @@ const sizeClasses = {
 
 const BaseModal: FC<Props> = ({
   children,
-  maxSize = "md",
+  maxSize,
+  fixedSize,
   className,
   onClose,
 }) => {
@@ -35,14 +37,17 @@ const BaseModal: FC<Props> = ({
       ></motion.div>
 
       {/* Modal Content */}
-      <div className="relative z-10">
-        {" "}
-        {/* This container ensures the modal content is above the pixelated background */}
+      <div
+        className={`relative z-10 ${maxSize ? sizeClasses[maxSize] : ""} ${
+          fixedSize || ""
+        } ${
+          className || ""
+        } bg-nord-polar-night-medium shadow-xl rounded-lg p-6`}
+      >
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
-          className={`${sizeClasses[maxSize]} ${className} bg-nord-polar-night-medium shadow-xl rounded-lg p-6`}
         >
           {children}
         </motion.div>

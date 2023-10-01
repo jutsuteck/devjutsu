@@ -1,11 +1,13 @@
-import { FC } from "react";
+import { FC, useState } from "react";
+
 import WorkItemCard from "./WorkItemCard";
 import useStateWorkItems from "@/hooks/projects/useStateWorkItems";
 import WorkItemNameForm from "./WorkItemNameForm";
 
+import stateService from "@/services/projects/StateService";
+
 import { BiTrash } from "react-icons/bi";
 import { useMutation, useQueryClient } from "react-query";
-import stateService from "@/services/projects/StateService";
 
 interface Props {
   stateId: string;
@@ -14,6 +16,7 @@ interface Props {
 }
 
 const StateContainer: FC<Props> = ({ stateId, stateName, workflowId }) => {
+  const [errMsg, setErrMsg] = useState<string | null>(null);
   const { data: workItems, isLoading, isError } = useStateWorkItems(stateId);
 
   const queryClient = useQueryClient();
@@ -23,7 +26,6 @@ const StateContainer: FC<Props> = ({ stateId, stateName, workflowId }) => {
   );
 
   const onClick = () => {
-    console.log("clicked");
     const data = {
       state_id: stateId,
     };
@@ -32,13 +34,17 @@ const StateContainer: FC<Props> = ({ stateId, stateName, workflowId }) => {
         queryClient.invalidateQueries(["states", workflowId]);
       },
       onError: (error: any) => {
-        console.log(error);
+        setErrMsg(error);
       },
     });
   };
 
+  if (isLoading) {
+    return <p>Loading ...</p>;
+  }
+
   return (
-    <div className="w-72 border-dotted border-2 border-nord-polar-night-medium hover:cursor-pointer rounded-md p-4">
+    <div className="w-72 border-dotted border-2 border-nord-polar-night-medium rounded-md p-4">
       <h1 className="text-lg font-semibold mb-4 flex items-center justify-between">
         {stateName}
         <button onClick={onClick}>
@@ -51,10 +57,13 @@ const StateContainer: FC<Props> = ({ stateId, stateName, workflowId }) => {
       {workItems?.map((item) => (
         <>
           <WorkItemCard
+            id={item.id}
             key={item.id}
             name={item.name}
             description={item?.description}
             workItemType={item.work_item_type}
+            stateId={stateId}
+            stateName={item.state.name}
           />
         </>
       ))}

@@ -6,6 +6,7 @@ from src.api.v1.projects.state_routes import router as state_routes
 from src.api.v1.projects.work_item_routes import router as work_item_routes
 from src.api.v1.projects.task_routes import router as task_routes
 from src.api.v1.projects.label_routes import router as label_routes
+from src.api.v1.security_standards.asvs_routes import router as asvs_routes
 
 
 def include_routes(app: FastAPI) -> None:
@@ -29,4 +30,7 @@ def include_routes(app: FastAPI) -> None:
     )
     app.include_router(
         label_routes, tags=["labels"]
+    )
+    app.include_router(
+        asvs_routes, tags=["asvs"]
     )
