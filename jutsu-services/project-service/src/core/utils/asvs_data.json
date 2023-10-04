@@ -1,0 +1,1807 @@
+[
+  {
+    "category": "Architecture, Design And Threat Modeling",
+    "sub_category": [
+      {
+        "name": "Secure Software Development Lifecycle",
+        "requirements": [
+          {
+            "id": "v1.1.1",
+            "description": "Verify The Use Of A Secure Software Development Lifecycle That Addresses Security In All Stages Of Development. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.1.2",
+            "description": "Verify The Use Of Threat Modeling For Every Design Change Or Sprint Planning To Identify Threats, Plan For Countermeasures, Facilitate Appropriate Risk Responses, And Guide Security Testing.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.1.3",
+            "description": "Verify That All User Stories And Features Contain Functional Security Constraints, Such As \"As A User, I Should Be Able To View And Edit My Profile. I Should Not Be Able To View Or Edit Anyone Else'S Profile\"",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.1.4",
+            "description": "Verify Documentation And Justification Of All The Application'S Trust Boundaries, Components, And Significant Data Flows.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.1.5",
+            "description": "Verify Definition And Security Analysis Of The Application'S High-Level Architecture And All Connected Remote Services. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.1.6",
+            "description": "Verify Implementation Of Centralized, Simple (Economy Of Design), Vetted, Secure, And Reusable Security Controls To Avoid Duplicate, Missing, Ineffective, Or Insecure Controls. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.1.7",
+            "description": "Verify Availability Of A Secure Coding Checklist, Security Requirements, Guideline, Or Policy To All Developers And Testers.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Authentication Architecture",
+        "requirements": [
+          {
+            "id": "v1.2.1",
+            "description": "Verify The Use Of Unique Or Special Low-Privilege Operating System Accounts For All Application Components, Services, And Servers. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.2.2",
+            "description": "Verify That Communications Between Application Components, Including Apis, Middleware And Data Layers, Are Authenticated. Components Should Have The Least Necessary Privileges Needed. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.2.3",
+            "description": "Verify That The Application Uses A Single Vetted Authentication Mechanism That Is Known To Be Secure, Can Be Extended To Include Strong Authentication, And Has Sufficient Logging And Monitoring To Detect Account Abuse Or Breaches.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.2.4",
+            "description": "Verify That All Authentication Pathways And Identity Management Apis Implement Consistent Authentication Security Control Strength, Such That There Are No Weaker Alternatives Per The Risk Of The Application.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Access Control Architecture",
+        "requirements": [
+          {
+            "id": "v1.4.1",
+            "description": "Verify That Trusted Enforcement Points, Such As Access Control Gateways, Servers, And Serverless Functions, Enforce Access Controls. Never Enforce Access Controls On The Client.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.4.4",
+            "description": "Verify The Application Uses A Single And Well-Vetted Access Control Mechanism For Accessing Protected Data And Resources. All Requests Must Pass Through This Single Mechanism To Avoid Copy And Paste Or Insecure Alternative Paths. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.4.5",
+            "description": "Verify That Attribute Or Feature-Based Access Control Is Used Whereby The Code Checks The User'S Authorization For A Feature/Data Item Rather Than Just Their Role. Permissions Should Still Be Allocated Using Roles. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Input And Output Architecture",
+        "requirements": [
+          {
+            "id": "v1.5.1",
+            "description": "Verify That Input And Output Requirements Clearly Define How To Handle And Process Data Based On Type, Content, And Applicable Laws, Regulations, And Other Policy Compliance.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.5.2",
+            "description": "Verify That Serialization Is Not Used When Communicating With Untrusted Clients. If This Is Not Possible, Ensure That Adequate Integrity Controls (And Possibly Encryption If Sensitive Data Is Sent) Are Enforced To Prevent Deserialization Attacks Including Object Injection.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.5.3",
+            "description": "Verify That Input Validation Is Enforced On A Trusted Service Layer. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.5.4",
+            "description": "Verify That Output Encoding Occurs Close To Or By The Interpreter For Which It Is Intended. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Cryptographic Architecture",
+        "requirements": [
+          {
+            "id": "v1.6.1",
+            "description": "Verify That There Is An Explicit Policy For Management Of Cryptographic Keys And That A Cryptographic Key Lifecycle Follows A Key Management Standard Such As Nist Sp 800-57.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.6.2",
+            "description": "Verify That Consumers Of Cryptographic Services Protect Key Material And Other Secrets By Using Key Vaults Or Api Based Alternatives.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.6.3",
+            "description": "Verify That All Keys And Passwords Are Replaceable And Are Part Of A Well-Defined Process To Re-Encrypt Sensitive Data.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.6.4",
+            "description": "Verify That The Architecture Treats Client-Side Secrets--Such As Symmetric Keys, Passwords, Or Api Tokens--As Insecure And Never Uses Them To Protect Or Access Sensitive Data.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Errors, Logging And Auditing Architecture",
+        "requirements": [
+          {
+            "id": "v1.7.1",
+            "description": "Verify That A Common Logging Format And Approach Is Used Across The System. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.7.2",
+            "description": "Verify That Logs Are Securely Transmitted To A Preferably Remote System For Analysis, Detection, Alerting, And Escalation. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Data Protection And Privacy Architecture",
+        "requirements": [
+          {
+            "id": "v1.8.1",
+            "description": "Verify That All Sensitive Data Is Identified And Classified Into Protection Levels.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.8.2",
+            "description": "Verify That All Protection Levels Have An Associated Set Of Protection Requirements, Such As Encryption Requirements, Integrity Requirements, Retention, Privacy And Other Confidentiality Requirements, And That These Are Applied In The Architecture.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Communications Architecture",
+        "requirements": [
+          {
+            "id": "v1.9.1",
+            "description": "Verify The Application Encrypts Communications Between Components, Particularly When These Components Are In Different Containers, Systems, Sites, Or Cloud Providers. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.9.2",
+            "description": "Verify That Application Components Verify The Authenticity Of Each Side In A Communication Link To Prevent Person-In-The-Middle Attacks. For Example, Application Components Should Validate Tls Certificates And Chains.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Malicious Software Architecture",
+        "requirements": [
+          {
+            "id": "v1.10.1",
+            "description": "Verify That A Source Code Control System Is In Use, With Procedures To Ensure That Check-Ins Are Accompanied By Issues Or Change Tickets. The Source Code Control System Should Have Access Control And Identifiable Users To Allow Traceability Of Any Changes.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Business Logic Architecture",
+        "requirements": [
+          {
+            "id": "v1.11.1",
+            "description": "Verify The Definition And Documentation Of All Application Components In Terms Of The Business Or Security Functions They Provide.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.11.2",
+            "description": "Verify That All High-Value Business Logic Flows, Including Authentication, Session Management And Access Control, Do Not Share Unsynchronized State.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.11.3",
+            "description": "Verify That All High-Value Business Logic Flows, Including Authentication, Session Management And Access Control Are Thread Safe And Resistant To Time-Of-Check And Time-Of-Use Race Conditions.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Secure File Upload Architecture",
+        "requirements": [
+          {
+            "id": "v1.12.2",
+            "description": "Verify That User-Uploaded Files - If Required To Be Displayed Or Downloaded From The Application - Are Served By Either Octet Stream Downloads, Or From An Unrelated Domain, Such As A Cloud File Storage Bucket. Implement A Suitable Content Security Policy (Csp) To Reduce The Risk From Xss Vectors Or Other Attacks From The Uploaded File.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Configuration Architecture",
+        "requirements": [
+          {
+            "id": "v1.14.1",
+            "description": "Verify The Segregation Of Components Of Differing Trust Levels Through Well-Defined Security Controls, Firewall Rules, Api Gateways, Reverse Proxies, Cloud-Based Security Groups, Or Similar Mechanisms.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.14.2",
+            "description": "Verify That Binary Signatures, Trusted Connections, And Verified Endpoints Are Used To Deploy Binaries To Remote Devices.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.14.3",
+            "description": "Verify That The Build Pipeline Warns Of Out-Of-Date Or Insecure Components And Takes Appropriate Actions.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.14.4",
+            "description": "Verify That The Build Pipeline Contains A Build Step To Automatically Build And Verify The Secure Deployment Of The Application, Particularly If The Application Infrastructure Is Software Defined, Such As Cloud Environment Build Scripts.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.14.5",
+            "description": "Verify That Application Deployments Adequately Sandbox, Containerize And/Or Isolate At The Network Level To Delay And Deter Attackers From Attacking Other Applications, Especially When They Are Performing Sensitive Or Dangerous Actions Such As Deserialization. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v1.14.6",
+            "description": "Verify The Application Does Not Use Unsupported, Insecure, Or Deprecated Client-Side Technologies Such As Nsapi Plugins, Flash, Shockwave, Activex, Silverlight, Nacl, Or Client-Side Java Applets.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Authentication",
+    "sub_category": [
+      {
+        "name": "Password Security",
+        "requirements": [
+          {
+            "id": "v2.1.1",
+            "description": "Verify That User Set Passwords Are At Least 12 Characters In Length (After Multiple Spaces Are Combined). ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.1.2",
+            "description": "Verify That Passwords Of At Least 64 Characters Are Permitted, And That Passwords Of More Than 128 Characters Are Denied. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.1.3",
+            "description": "Verify That Password Truncation Is Not Performed. However, Consecutive Multiple Spaces May Be Replaced By A Single Space. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.1.4",
+            "description": "Verify That Any Printable Unicode Character, Including Language Neutral Characters Such As Spaces And Emojis Are Permitted In Passwords.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.1.5",
+            "description": "Verify Users Can Change Their Password.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.1.6",
+            "description": "Verify That Password Change Functionality Requires The User'S Current And New Password.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.1.7",
+            "description": "Verify That Passwords Submitted During Account Registration, Login, And Password Change Are Checked Against A Set Of Breached Passwords Either Locally (Such As The Top 1,000 Or 10,000 Most Common Passwords Which Match The System'S Password Policy) Or Using An External Api. If Using An Api A Zero Knowledge Proof Or Other Mechanism Should Be Used To Ensure That The Plain Text Password Is Not Sent Or Used In Verifying The Breach Status Of The Password. If The Password Is Breached, The Application Must Require The User To Set A New Non-Breached Password. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.1.8",
+            "description": "Verify That A Password Strength Meter Is Provided To Help Users Set A Stronger Password.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.1.9",
+            "description": "Verify That There Are No Password Composition Rules Limiting The Type Of Characters Permitted. There Should Be No Requirement For Upper Or Lower Case Or Numbers Or Special Characters. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.1.10",
+            "description": "Verify That There Are No Periodic Credential Rotation Or Password History Requirements.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.1.11",
+            "description": "Verify That \"Paste\" Functionality, Browser Password Helpers, And External Password Managers Are Permitted.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.1.12",
+            "description": "Verify That The User Can Choose To Either Temporarily View The Entire Masked Password, Or Temporarily View The Last Typed Character Of The Password On Platforms That Do Not Have This As Built-In Functionality.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "General Authenticator Security",
+        "requirements": [
+          {
+            "id": "v2.2.1",
+            "description": "Verify That Anti-Automation Controls Are Effective At Mitigating Breached Credential Testing, Brute Force, And Account Lockout Attacks. Such Controls Include Blocking The Most Common Breached Passwords, Soft Lockouts, Rate Limiting, Captcha, Ever Increasing Delays Between Attempts, Ip Address Restrictions, Or Risk-Based Restrictions Such As Location, First Login On A Device, Recent Attempts To Unlock The Account, Or Similar. Verify That No More Than 100 Failed Attempts Per Hour Is Possible On A Single Account.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.2.2",
+            "description": "Verify That The Use Of Weak Authenticators (Such As Sms And Email) Is Limited To Secondary Verification And Transaction Approval And Not As A Replacement For More Secure Authentication Methods. Verify That Stronger Methods Are Offered Before Weak Methods, Users Are Aware Of The Risks, Or That Proper Measures Are In Place To Limit The Risks Of Account Compromise.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.2.3",
+            "description": "Verify That Secure Notifications Are Sent To Users After Updates To Authentication Details, Such As Credential Resets, Email Or Address Changes, Logging In From Unknown Or Risky Locations. The Use Of Push Notifications - Rather Than Sms Or Email - Is Preferred, But In The Absence Of Push Notifications, Sms Or Email Is Acceptable As Long As No Sensitive Information Is Disclosed In The Notification.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.2.4",
+            "description": "Verify Impersonation Resistance Against Phishing, Such As The Use Of Multi-Factor Authentication, Cryptographic Devices With Intent (Such As Connected Keys With A Push To Authenticate), Or At Higher Aal Levels, Client-Side Certificates.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.2.5",
+            "description": "Verify That Where A Credential Service Provider (Csp) And The Application Verifying Authentication Are Separated, Mutually Authenticated Tls Is In Place Between The Two Endpoints.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.2.6",
+            "description": "Verify Replay Resistance Through The Mandated Use Of One-Time Passwords (Otp) Devices, Cryptographic Authenticators, Or Lookup Codes.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.2.7",
+            "description": "Verify Intent To Authenticate By Requiring The Entry Of An Otp Token Or User-Initiated Action Such As A Button Press On A Fido Hardware Key.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Authenticator Lifecycle",
+        "requirements": [
+          {
+            "id": "v2.3.1",
+            "description": "Verify System Generated Initial Passwords Or Activation Codes Should Be Securely Randomly Generated, Should Be At Least 6 Characters Long, And May Contain Letters And Numbers, And Expire After A Short Period Of Time. These Initial Secrets Must Not Be Permitted To Become The Long Term Password.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.3.2",
+            "description": "Verify That Enrollment And Use Of User-Provided Authentication Devices Are Supported, Such As A U2F Or Fido Tokens.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.3.3",
+            "description": "Verify That Renewal Instructions Are Sent With Sufficient Time To Renew Time Bound Authenticators.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Credential Storage",
+        "requirements": [
+          {
+            "id": "v2.4.1",
+            "description": "Verify That Passwords Are Stored In A Form That Is Resistant To Offline Attacks. Passwords Shall Be Salted And Hashed Using An Approved One-Way Key Derivation Or Password Hashing Function. Key Derivation And Password Hashing Functions Take A Password, A Salt, And A Cost Factor As Inputs When Generating A Password Hash. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.4.2",
+            "description": "Verify That The Salt Is At Least 32 Bits In Length And Be Chosen Arbitrarily To Minimize Salt Value Collisions Among Stored Hashes. For Each Credential, A Unique Salt Value And The Resulting Hash Shall Be Stored. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.4.3",
+            "description": "Verify That If Pbkdf2 Is Used, The Iteration Count Should Be As Large As Verification Server Performance Will Allow, Typically At Least 100,000 Iterations. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.4.4",
+            "description": "Verify That If Bcrypt Is Used, The Work Factor Should Be As Large As Verification Server Performance Will Allow, With A Minimum Of 10. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.4.5",
+            "description": "Verify That An Additional Iteration Of A Key Derivation Function Is Performed, Using A Salt Value That Is Secret And Known Only To The Verifier. Generate The Salt Value Using An Approved Random Bit Generator [Sp 800-90Ar1] And Provide At Least The Minimum Security Strength Specified In The Latest Revision Of Sp 800-131A. The Secret Salt Value Shall Be Stored Separately From The Hashed Passwords (E.G., In A Specialized Device Like A Hardware Security Module).",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Credential Recovery",
+        "requirements": [
+          {
+            "id": "v2.5.1",
+            "description": "Verify That A System Generated Initial Activation Or Recovery Secret Is Not Sent In Clear Text To The User. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.5.2",
+            "description": "Verify Password Hints Or Knowledge-Based Authentication (So-Called \"Secret Questions\") Are Not Present.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.5.3",
+            "description": "Verify Password Credential Recovery Does Not Reveal The Current Password In Any Way. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.5.4",
+            "description": "Verify Shared Or Default Accounts Are Not Present (E.G. \"Root\", \"Admin\", Or \"Sa\").",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.5.5",
+            "description": "Verify That If An Authentication Factor Is Changed Or Replaced, That The User Is Notified Of This Event.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.5.6",
+            "description": "Verify Forgotten Password, And Other Recovery Paths Use A Secure Recovery Mechanism, Such As Time-Based Otp (Totp) Or Other Soft Token, Mobile Push, Or Another Offline Recovery Mechanism. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.5.7",
+            "description": "Verify That If Otp Or Multi-Factor Authentication Factors Are Lost, That Evidence Of Identity Proofing Is Performed At The Same Level As During Enrollment.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Look-Up Secret Verifier",
+        "requirements": [
+          {
+            "id": "v2.6.1",
+            "description": "Verify That Lookup Secrets Can Be Used Only Once.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.6.2",
+            "description": "Verify That Lookup Secrets Have Sufficient Randomness (112 Bits Of Entropy), Or If Less Than 112 Bits Of Entropy, Salted With A Unique And Random 32-Bit Salt And Hashed With An Approved One-Way Hash.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.6.3",
+            "description": "Verify That Lookup Secrets Are Resistant To Offline Attacks, Such As Predictable Values.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Out Of Band Verifier",
+        "requirements": [
+          {
+            "id": "v2.7.1",
+            "description": "Verify That Clear Text Out Of Band (Nist \"Restricted\") Authenticators, Such As Sms Or Pstn, Are Not Offered By Default, And Stronger Alternatives Such As Push Notifications Are Offered First.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.7.2",
+            "description": "Verify That The Out Of Band Verifier Expires Out Of Band Authentication Requests, Codes, Or Tokens After 10 Minutes.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.7.3",
+            "description": "Verify That The Out Of Band Verifier Authentication Requests, Codes, Or Tokens Are Only Usable Once, And Only For The Original Authentication Request.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.7.4",
+            "description": "Verify That The Out Of Band Authenticator And Verifier Communicates Over A Secure Independent Channel.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.7.5",
+            "description": "Verify That The Out Of Band Verifier Retains Only A Hashed Version Of The Authentication Code.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.7.6",
+            "description": "Verify That The Initial Authentication Code Is Generated By A Secure Random Number Generator, Containing At Least 20 Bits Of Entropy (Typically A Six Digital Random Number Is Sufficient).",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "One Time Verifier",
+        "requirements": [
+          {
+            "id": "v2.8.1",
+            "description": "Verify That Time-Based Otps Have A Defined Lifetime Before Expiring.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.8.2",
+            "description": "Verify That Symmetric Keys Used To Verify Submitted Otps Are Highly Protected, Such As By Using A Hardware Security Module Or Secure Operating System Based Key Storage.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.8.3",
+            "description": "Verify That Approved Cryptographic Algorithms Are Used In The Generation, Seeding, And Verification Of Otps.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.8.4",
+            "description": "Verify That Time-Based Otp Can Be Used Only Once Within The Validity Period.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.8.5",
+            "description": "Verify That If A Time-Based Multi-Factor Otp Token Is Re-Used During The Validity Period, It Is Logged And Rejected With Secure Notifications Being Sent To The Holder Of The Device.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.8.6",
+            "description": "Verify Physical Single-Factor Otp Generator Can Be Revoked In Case Of Theft Or Other Loss. Ensure That Revocation Is Immediately Effective Across Logged In Sessions, Regardless Of Location.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.8.7",
+            "description": "Verify That Biometric Authenticators Are Limited To Use Only As Secondary Factors In Conjunction With Either Something You Have And Something You Know.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Cryptographic Verifier",
+        "requirements": [
+          {
+            "id": "v2.9.1",
+            "description": "Verify That Cryptographic Keys Used In Verification Are Stored Securely And Protected Against Disclosure, Such As Using A Trusted Platform Module (Tpm) Or Hardware Security Module (Hsm), Or An Os Service That Can Use This Secure Storage.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.9.2",
+            "description": "Verify That The Challenge Nonce Is At Least 64 Bits In Length, And Statistically Unique Or Unique Over The Lifetime Of The Cryptographic Device.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.9.3",
+            "description": "Verify That Approved Cryptographic Algorithms Are Used In The Generation, Seeding, And Verification.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Service Authentication",
+        "requirements": [
+          {
+            "id": "v2.10.1",
+            "description": "Verify That Intra-Service Secrets Do Not Rely On Unchanging Credentials Such As Passwords, Api Keys Or Shared Accounts With Privileged Access.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.10.2",
+            "description": "Verify That If Passwords Are Required For Service Authentication, The Service Account Used Is Not A Default Credential. (E.G. Root/Root Or Admin/Admin Are Default In Some Services During Installation).",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.10.3",
+            "description": "Verify That Passwords Are Stored With Sufficient Protection To Prevent Offline Recovery Attacks, Including Local System Access.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v2.10.4",
+            "description": "Verify Passwords, Integrations With Databases And Third-Party Systems, Seeds And Internal Secrets, And Api Keys Are Managed Securely And Not Included In The Source Code Or Stored Within Source Code Repositories. Such Storage Should Resist Offline Attacks. The Use Of A Secure Software Key Store (L1), Hardware Tpm, Or An Hsm (L3) Is Recommended For Password Storage.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Session Management",
+    "sub_category": [
+      {
+        "name": "Fundamental Session Management Security",
+        "requirements": [
+          {
+            "id": "v3.1.1",
+            "description": "Verify The Application Never Reveals Session Tokens In Url Parameters.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Session Binding",
+        "requirements": [
+          {
+            "id": "v3.2.1",
+            "description": "Verify The Application Generates A New Session Token On User Authentication. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.2.2",
+            "description": "Verify That Session Tokens Possess At Least 64 Bits Of Entropy. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.2.3",
+            "description": "Verify The Application Only Stores Session Tokens In The Browser Using Secure Methods Such As Appropriately Secured Cookies (See Section 3.4) Or Html 5 Session Storage.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.2.4",
+            "description": "Verify That Session Tokens Are Generated Using Approved Cryptographic Algorithms. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Session Termination",
+        "requirements": [
+          {
+            "id": "v3.3.1",
+            "description": "Verify That Logout And Expiration Invalidate The Session Token, Such That The Back Button Or A Downstream Relying Party Does Not Resume An Authenticated Session, Including Across Relying Parties. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.3.2",
+            "description": "If Authenticators Permit Users To Remain Logged In, Verify That Re-Authentication Occurs Periodically Both When Actively Used Or After An Idle Period. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.3.3",
+            "description": "Verify That The Application Gives The Option To Terminate All Other Active Sessions After A Successful Password Change (Including Change Via Password Reset/Recovery), And That This Is Effective Across The Application, Federated Login (If Present), And Any Relying Parties.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.3.4",
+            "description": "Verify That Users Are Able To View And (Having Re-Entered Login Credentials) Log Out Of Any Or All Currently Active Sessions And Devices.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Cookie-Based Session Management",
+        "requirements": [
+          {
+            "id": "v3.4.1",
+            "description": "Verify That Cookie-Based Session Tokens Have The 'Secure' Attribute Set. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.4.2",
+            "description": "Verify That Cookie-Based Session Tokens Have The 'Httponly' Attribute Set. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.4.3",
+            "description": "Verify That Cookie-Based Session Tokens Utilize The 'Samesite' Attribute To Limit Exposure To Cross-Site Request Forgery Attacks. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.4.4",
+            "description": "Verify That Cookie-Based Session Tokens Use The \"__Host-\" Prefix So Cookies Are Only Sent To The Host That Initially Set The Cookie.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.4.5",
+            "description": "Verify That If The Application Is Published Under A Domain Name With Other Applications That Set Or Use Session Cookies That Might Disclose The Session Cookies, Set The Path Attribute In Cookie-Based Session Tokens Using The Most Precise Path Possible. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Token-Based Session Management",
+        "requirements": [
+          {
+            "id": "v3.5.1",
+            "description": "Verify The Application Allows Users To Revoke Oauth Tokens That Form Trust Relationships With Linked Applications.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.5.2",
+            "description": "Verify The Application Uses Session Tokens Rather Than Static Api Secrets And Keys, Except With Legacy Implementations.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.5.3",
+            "description": "Verify That Stateless Session Tokens Use Digital Signatures, Encryption, And Other Countermeasures To Protect Against Tampering, Enveloping, Replay, Null Cipher, And Key Substitution Attacks.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Federated Re-Authentication",
+        "requirements": [
+          {
+            "id": "v3.6.1",
+            "description": "Verify That Relying Parties (Rps) Specify The Maximum Authentication Time To Credential Service Providers (Csps) And That Csps Re-Authenticate The User If They Haven'T Used A Session Within That Period.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v3.6.2",
+            "description": "Verify That Credential Service Providers (Csps) Inform Relying Parties (Rps) Of The Last Authentication Event, To Allow Rps To Determine If They Need To Re-Authenticate The User.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Defenses Against Session Management Exploits",
+        "requirements": [
+          {
+            "id": "v3.7.1",
+            "description": "Verify The Application Ensures A Full, Valid Login Session Or Requires Re-Authentication Or Secondary Verification Before Allowing Any Sensitive Transactions Or Account Modifications.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Access Control",
+    "sub_category": [
+      {
+        "name": "General Access Control Design",
+        "requirements": [
+          {
+            "id": "v4.1.1",
+            "description": "Verify That The Application Enforces Access Control Rules On A Trusted Service Layer, Especially If Client-Side Access Control Is Present And Could Be Bypassed.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v4.1.2",
+            "description": "Verify That All User And Data Attributes And Policy Information Used By Access Controls Cannot Be Manipulated By End Users Unless Specifically Authorized.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v4.1.3",
+            "description": "Verify That The Principle Of Least Privilege Exists - Users Should Only Be Able To Access Functions, Data Files, Urls, Controllers, Services, And Other Resources, For Which They Possess Specific Authorization. This Implies Protection Against Spoofing And Elevation Of Privilege. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v4.1.5",
+            "description": "Verify That Access Controls Fail Securely Including When An Exception Occurs. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Operation Level Access Control",
+        "requirements": [
+          {
+            "id": "v4.2.1",
+            "description": "Verify That Sensitive Data And Apis Are Protected Against Insecure Direct Object Reference (Idor) Attacks Targeting Creation, Reading, Updating And Deletion Of Records, Such As Creating Or Updating Someone Else'S Record, Viewing Everyone'S Records, Or Deleting All Records.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v4.2.2",
+            "description": "Verify That The Application Or Framework Enforces A Strong Anti-Csrf Mechanism To Protect Authenticated Functionality, And Effective Anti-Automation Or Anti-Csrf Protects Unauthenticated Functionality.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Other Access Control Considerations",
+        "requirements": [
+          {
+            "id": "v4.3.1",
+            "description": "Verify Administrative Interfaces Use Appropriate Multi-Factor Authentication To Prevent Unauthorized Use.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v4.3.2",
+            "description": "Verify That Directory Browsing Is Disabled Unless Deliberately Desired. Additionally, Applications Should Not Allow Discovery Or Disclosure Of File Or Directory Metadata, Such As Thumbs.Db, .Ds_Store, .Git Or .Svn Folders.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v4.3.3",
+            "description": "Verify The Application Has Additional Authorization (Such As Step Up Or Adaptive Authentication) For Lower Value Systems, And / Or Segregation Of Duties For High Value Applications To Enforce Anti-Fraud Controls As Per The Risk Of Application And Past Fraud.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Validation, Sanitization And Encoding",
+    "sub_category": [
+      {
+        "name": "Input Validation",
+        "requirements": [
+          {
+            "id": "v5.1.1",
+            "description": "Verify That The Application Has Defenses Against Http Parameter Pollution Attacks, Particularly If The Application Framework Makes No Distinction About The Source Of Request Parameters (Get, Post, Cookies, Headers, Or Environment Variables).",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.1.2",
+            "description": "Verify That Frameworks Protect Against Mass Parameter Assignment Attacks, Or That The Application Has Countermeasures To Protect Against Unsafe Parameter Assignment, Such As Marking Fields Private Or Similar. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.1.3",
+            "description": "Verify That All Input (Html Form Fields, Rest Requests, Url Parameters, Http Headers, Cookies, Batch Files, Rss Feeds, Etc) Is Validated Using Positive Validation (Allow Lists). ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.1.4",
+            "description": "Verify That Structured Data Is Strongly Typed And Validated Against A Defined Schema Including Allowed Characters, Length And Pattern (E.G. Credit Card Numbers, E-Mail Addresses, Telephone Numbers, Or Validating That Two Related Fields Are Reasonable, Such As Checking That Suburb And Zip/Postcode Match). ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.1.5",
+            "description": "Verify That Url Redirects And Forwards Only Allow Destinations Which Appear On An Allow List, Or Show A Warning When Redirecting To Potentially Untrusted Content.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Sanitization And Sandboxing",
+        "requirements": [
+          {
+            "id": "v5.2.1",
+            "description": "Verify That All Untrusted Html Input From Wysiwyg Editors Or Similar Is Properly Sanitized With An Html Sanitizer Library Or Framework Feature. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.2.2",
+            "description": "Verify That Unstructured Data Is Sanitized To Enforce Safety Measures Such As Allowed Characters And Length.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.2.3",
+            "description": "Verify That The Application Sanitizes User Input Before Passing To Mail Systems To Protect Against Smtp Or Imap Injection.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.2.4",
+            "description": "Verify That The Application Avoids The Use Of Eval Or Other Dynamic Code Execution Features. Where There Is No Alternative, Any User Input Being Included Must Be Sanitized Or Sandboxed Before Being Executed.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.2.5",
+            "description": "Verify That The Application Protects Against Template Injection Attacks By Ensuring That Any User Input Being Included Is Sanitized Or Sandboxed.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.2.6",
+            "description": "Verify That The Application Protects Against Ssrf Attacks, By Validating Or Sanitizing Untrusted Data Or Http File Metadata, Such As Filenames And Url Input Fields, And Uses Allow Lists Of Protocols, Domains, Paths And Ports.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.2.7",
+            "description": "Verify That The Application Sanitizes, Disables, Or Sandboxes User-Supplied Scalable Vector Graphics (Svg) Scriptable Content, Especially As They Relate To Xss Resulting From Inline Scripts, And Foreignobject.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.2.8",
+            "description": "Verify That The Application Sanitizes, Disables, Or Sandboxes User-Supplied Scriptable Or Expression Template Language Content, Such As Markdown, Css Or Xsl Stylesheets, Bbcode, Or Similar.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Output Encoding And Injection Prevention",
+        "requirements": [
+          {
+            "id": "v5.3.1",
+            "description": "Verify That Output Encoding Is Relevant For The Interpreter And Context Required. For Example, Use Encoders Specifically For Html Values, Html Attributes, Javascript, Url Parameters, Http Headers, Smtp, And Others As The Context Requires, Especially From Untrusted Inputs (E.G. Names With Unicode Or Apostrophes, Such As \u306d\u3053 Or O'Hara). ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.3.2",
+            "description": "Verify That Output Encoding Preserves The User'S Chosen Character Set And Locale, Such That Any Unicode Character Point Is Valid And Safely Handled. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.3.3",
+            "description": "Verify That Context-Aware, Preferably Automated - Or At Worst, Manual - Output Escaping Protects Against Reflected, Stored, And Dom Based Xss. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.3.4",
+            "description": "Verify That Data Selection Or Database Queries (E.G. Sql, Hql, Orm, Nosql) Use Parameterized Queries, Orms, Entity Frameworks, Or Are Otherwise Protected From Database Injection Attacks. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.3.5",
+            "description": "Verify That Where Parameterized Or Safer Mechanisms Are Not Present, Context-Specific Output Encoding Is Used To Protect Against Injection Attacks, Such As The Use Of Sql Escaping To Protect Against Sql Injection. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.3.6",
+            "description": "Verify That The Application Protects Against Json Injection Attacks, Json Eval Attacks, And Javascript Expression Evaluation. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.3.7",
+            "description": "Verify That The Application Protects Against Ldap Injection Vulnerabilities, Or That Specific Security Controls To Prevent Ldap Injection Have Been Implemented. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.3.8",
+            "description": "Verify That The Application Protects Against Os Command Injection And That Operating System Calls Use Parameterized Os Queries Or Use Contextual Command Line Output Encoding. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.3.9",
+            "description": "Verify That The Application Protects Against Local File Inclusion (Lfi) Or Remote File Inclusion (Rfi) Attacks.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.3.10",
+            "description": "Verify That The Application Protects Against Xpath Injection Or Xml Injection Attacks. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Memory, String, And Unmanaged Code",
+        "requirements": [
+          {
+            "id": "v5.4.1",
+            "description": "Verify That The Application Uses Memory-Safe String, Safer Memory Copy And Pointer Arithmetic To Detect Or Prevent Stack, Buffer, Or Heap Overflows.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.4.2",
+            "description": "Verify That Format Strings Do Not Take Potentially Hostile Input, And Are Constant.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.4.3",
+            "description": "Verify That Sign, Range, And Input Validation Techniques Are Used To Prevent Integer Overflows.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Deserialization Prevention",
+        "requirements": [
+          {
+            "id": "v5.5.1",
+            "description": "Verify That Serialized Objects Use Integrity Checks Or Are Encrypted To Prevent Hostile Object Creation Or Data Tampering. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.5.2",
+            "description": "Verify That The Application Correctly Restricts Xml Parsers To Only Use The Most Restrictive Configuration Possible And To Ensure That Unsafe Features Such As Resolving External Entities Are Disabled To Prevent Xml External Entity (Xxe) Attacks.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.5.3",
+            "description": "Verify That Deserialization Of Untrusted Data Is Avoided Or Is Protected In Both Custom Code And Third-Party Libraries (Such As Json, Xml And Yaml Parsers).",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v5.5.4",
+            "description": "Verify That When Parsing Json In Browsers Or Javascript-Based Backends, Json.Parse Is Used To Parse The Json Document. Do Not Use Eval To Parse Json.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Stored Cryptography",
+    "sub_category": [
+      {
+        "name": "Data Classification",
+        "requirements": [
+          {
+            "id": "v6.1.1",
+            "description": "Verify That Regulated Private Data Is Stored Encrypted While At Rest, Such As Personally Identifiable Information (Pii), Sensitive Personal Information, Or Data Assessed Likely To Be Subject To Eu'S Gdpr.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.1.2",
+            "description": "Verify That Regulated Health Data Is Stored Encrypted While At Rest, Such As Medical Records, Medical Device Details, Or De-Anonymized Research Records.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.1.3",
+            "description": "Verify That Regulated Financial Data Is Stored Encrypted While At Rest, Such As Financial Accounts, Defaults Or Credit History, Tax Records, Pay History, Beneficiaries, Or De-Anonymized Market Or Research Records.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Algorithms",
+        "requirements": [
+          {
+            "id": "v6.2.1",
+            "description": "Verify That All Cryptographic Modules Fail Securely, And Errors Are Handled In A Way That Does Not Enable Padding Oracle Attacks.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.2.2",
+            "description": "Verify That Industry Proven Or Government Approved Cryptographic Algorithms, Modes, And Libraries Are Used, Instead Of Custom Coded Cryptography. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.2.3",
+            "description": "Verify That Encryption Initialization Vector, Cipher Configuration, And Block Modes Are Configured Securely Using The Latest Advice.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.2.4",
+            "description": "Verify That Random Number, Encryption Or Hashing Algorithms, Key Lengths, Rounds, Ciphers Or Modes, Can Be Reconfigured, Upgraded, Or Swapped At Any Time, To Protect Against Cryptographic Breaks. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.2.5",
+            "description": "Verify That Known Insecure Block Modes (I.E. Ecb, Etc.), Padding Modes (I.E. Pkcs#1 V1.5, Etc.), Ciphers With Small Block Sizes (I.E. Triple-Des, Blowfish, Etc.), And Weak Hashing Algorithms (I.E. Md5, Sha1, Etc.) Are Not Used Unless Required For Backwards Compatibility.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.2.6",
+            "description": "Verify That Nonces, Initialization Vectors, And Other Single Use Numbers Must Not Be Used More Than Once With A Given Encryption Key. The Method Of Generation Must Be Appropriate For The Algorithm Being Used.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.2.7",
+            "description": "Verify That Encrypted Data Is Authenticated Via Signatures, Authenticated Cipher Modes, Or Hmac To Ensure That Ciphertext Is Not Altered By An Unauthorized Party.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.2.8",
+            "description": "Verify That All Cryptographic Operations Are Constant-Time, With No 'Short-Circuit' Operations In Comparisons, Calculations, Or Returns, To Avoid Leaking Information.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Random Values",
+        "requirements": [
+          {
+            "id": "v6.3.1",
+            "description": "Verify That All Random Numbers, Random File Names, Random Guids, And Random Strings Are Generated Using The Cryptographic Module'S Approved Cryptographically Secure Random Number Generator When These Random Values Are Intended To Be Not Guessable By An Attacker.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.3.2",
+            "description": "Verify That Random Guids Are Created Using The Guid V4 Algorithm, And A Cryptographically-Secure Pseudo-Random Number Generator (Csprng). Guids Created Using Other Pseudo-Random Number Generators May Be Predictable.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.3.3",
+            "description": "Verify That Random Numbers Are Created With Proper Entropy Even When The Application Is Under Heavy Load, Or That The Application Degrades Gracefully In Such Circumstances.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Secret Management",
+        "requirements": [
+          {
+            "id": "v6.4.1",
+            "description": "Verify That A Secrets Management Solution Such As A Key Vault Is Used To Securely Create, Store, Control Access To And Destroy Secrets. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v6.4.2",
+            "description": "Verify That Key Material Is Not Exposed To The Application But Instead Uses An Isolated Security Module Like A Vault For Cryptographic Operations. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Error Handling And Logging",
+    "sub_category": [
+      {
+        "name": "Log Content",
+        "requirements": [
+          {
+            "id": "v7.1.1",
+            "description": "Verify That The Application Does Not Log Credentials Or Payment Details. Session Tokens Should Only Be Stored In Logs In An Irreversible, Hashed Form. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v7.1.2",
+            "description": "Verify That The Application Does Not Log Other Sensitive Data As Defined Under Local Privacy Laws Or Relevant Security Policy. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v7.1.3",
+            "description": "Verify That The Application Logs Security Relevant Events Including Successful And Failed Authentication Events, Access Control Failures, Deserialization Failures And Input Validation Failures. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v7.1.4",
+            "description": "Verify That Each Log Event Includes Necessary Information That Would Allow For A Detailed Investigation Of The Timeline When An Event Happens. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Log Processing",
+        "requirements": [
+          {
+            "id": "v7.2.1",
+            "description": "Verify That All Authentication Decisions Are Logged, Without Storing Sensitive Session Tokens Or Passwords. This Should Include Requests With Relevant Metadata Needed For Security Investigations.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v7.2.2",
+            "description": "Verify That All Access Control Decisions Can Be Logged And All Failed Decisions Are Logged. This Should Include Requests With Relevant Metadata Needed For Security Investigations.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Log Protection",
+        "requirements": [
+          {
+            "id": "v7.3.1",
+            "description": "Verify That All Logging Components Appropriately Encode Data To Prevent Log Injection. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v7.3.3",
+            "description": "Verify That Security Logs Are Protected From Unauthorized Access And Modification. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v7.3.4",
+            "description": "Verify That Time Sources Are Synchronized To The Correct Time And Time Zone. Strongly Consider Logging Only In Utc If Systems Are Global To Assist With Post-Incident Forensic Analysis. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Error Handling",
+        "requirements": [
+          {
+            "id": "v7.4.1",
+            "description": "Verify That A Generic Message Is Shown When An Unexpected Or Security Sensitive Error Occurs, Potentially With A Unique Id Which Support Personnel Can Use To Investigate. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v7.4.2",
+            "description": "Verify That Exception Handling (Or A Functional Equivalent) Is Used Across The Codebase To Account For Expected And Unexpected Error Conditions. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v7.4.3",
+            "description": "Verify That A \"Last Resort\" Error Handler Is Defined Which Will Catch All Unhandled Exceptions. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Data Protection",
+    "sub_category": [
+      {
+        "name": "General Data Protection",
+        "requirements": [
+          {
+            "id": "v8.1.1",
+            "description": "Verify The Application Protects Sensitive Data From Being Cached In Server Components Such As Load Balancers And Application Caches.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.1.2",
+            "description": "Verify That All Cached Or Temporary Copies Of Sensitive Data Stored On The Server Are Protected From Unauthorized Access Or Purged/Invalidated After The Authorized User Accesses The Sensitive Data.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.1.3",
+            "description": "Verify The Application Minimizes The Number Of Parameters In A Request, Such As Hidden Fields, Ajax Variables, Cookies And Header Values.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.1.4",
+            "description": "Verify The Application Can Detect And Alert On Abnormal Numbers Of Requests, Such As By Ip, User, Total Per Hour Or Day, Or Whatever Makes Sense For The Application.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.1.5",
+            "description": "Verify That Regular Backups Of Important Data Are Performed And That Test Restoration Of Data Is Performed.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.1.6",
+            "description": "Verify That Backups Are Stored Securely To Prevent Data From Being Stolen Or Corrupted.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Client-Side Data Protection",
+        "requirements": [
+          {
+            "id": "v8.2.1",
+            "description": "Verify The Application Sets Sufficient Anti-Caching Headers So That Sensitive Data Is Not Cached In Modern Browsers.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.2.2",
+            "description": "Verify That Data Stored In Browser Storage (Such As Localstorage, Sessionstorage, Indexeddb, Or Cookies) Does Not Contain Sensitive Data.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.2.3",
+            "description": "Verify That Authenticated Data Is Cleared From Client Storage, Such As The Browser Dom, After The Client Or Session Is Terminated.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Sensitive Private Data",
+        "requirements": [
+          {
+            "id": "v8.3.1",
+            "description": "Verify That Sensitive Data Is Sent To The Server In The Http Message Body Or Headers, And That Query String Parameters From Any Http Verb Do Not Contain Sensitive Data.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.3.2",
+            "description": "Verify That Users Have A Method To Remove Or Export Their Data On Demand.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.3.3",
+            "description": "Verify That Users Are Provided Clear Language Regarding Collection And Use Of Supplied Personal Information And That Users Have Provided Opt-In Consent For The Use Of That Data Before It Is Used In Any Way.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.3.4",
+            "description": "Verify That All Sensitive Data Created And Processed By The Application Has Been Identified, And Ensure That A Policy Is In Place On How To Deal With Sensitive Data. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.3.5",
+            "description": "Verify Accessing Sensitive Data Is Audited (Without Logging The Sensitive Data Itself), If The Data Is Collected Under Relevant Data Protection Directives Or Where Logging Of Access Is Required.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.3.6",
+            "description": "Verify That Sensitive Information Contained In Memory Is Overwritten As Soon As It Is No Longer Required To Mitigate Memory Dumping Attacks, Using Zeroes Or Random Data.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.3.7",
+            "description": "Verify That Sensitive Or Private Information That Is Required To Be Encrypted, Is Encrypted Using Approved Algorithms That Provide Both Confidentiality And Integrity. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v8.3.8",
+            "description": "Verify That Sensitive Personal Information Is Subject To Data Retention Classification, Such That Old Or Out Of Date Data Is Deleted Automatically, On A Schedule, Or As The Situation Requires.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Communication",
+    "sub_category": [
+      {
+        "name": "Client Communication Security",
+        "requirements": [
+          {
+            "id": "v9.1.1",
+            "description": "Verify That Tls Is Used For All Client Connectivity, And Does Not Fall Back To Insecure Or Unencrypted Communications. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v9.1.2",
+            "description": "Verify Using Up To Date Tls Testing Tools That Only Strong Cipher Suites Are Enabled, With The Strongest Cipher Suites Set As Preferred.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v9.1.3",
+            "description": "Verify That Only The Latest Recommended Versions Of The Tls Protocol Are Enabled, Such As Tls 1.2 And Tls 1.3. The Latest Version Of The Tls Protocol Should Be The Preferred Option.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Server Communication Security",
+        "requirements": [
+          {
+            "id": "v9.2.1",
+            "description": "Verify That Connections To And From The Server Use Trusted Tls Certificates. Where Internally Generated Or Self-Signed Certificates Are Used, The Server Must Be Configured To Only Trust Specific Internal Cas And Specific Self-Signed Certificates. All Others Should Be Rejected.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v9.2.2",
+            "description": "Verify That Encrypted Communications Such As Tls Is Used For All Inbound And Outbound Connections, Including For Management Ports, Monitoring, Authentication, Api, Or Web Service Calls, Database, Cloud, Serverless, Mainframe, External, And Partner Connections. The Server Must Not Fall Back To Insecure Or Unencrypted Protocols.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v9.2.3",
+            "description": "Verify That All Encrypted Connections To External Systems That Involve Sensitive Information Or Functions Are Authenticated.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v9.2.4",
+            "description": "Verify That Proper Certification Revocation, Such As Online Certificate Status Protocol (Ocsp) Stapling, Is Enabled And Configured.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v9.2.5",
+            "description": "Verify That Backend Tls Connection Failures Are Logged.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Malicious Code",
+    "sub_category": [
+      {
+        "name": "Code Integrity",
+        "requirements": [
+          {
+            "id": "v10.1.1",
+            "description": "Verify That A Code Analysis Tool Is In Use That Can Detect Potentially Malicious Code, Such As Time Functions, Unsafe File Operations And Network Connections.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Malicious Code Search",
+        "requirements": [
+          {
+            "id": "v10.2.1",
+            "description": "Verify That The Application Source Code And Third Party Libraries Do Not Contain Unauthorized Phone Home Or Data Collection Capabilities. Where Such Functionality Exists, Obtain The User'S Permission For It To Operate Before Collecting Any Data.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v10.2.2",
+            "description": "Verify That The Application Does Not Ask For Unnecessary Or Excessive Permissions To Privacy Related Features Or Sensors, Such As Contacts, Cameras, Microphones, Or Location.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v10.2.3",
+            "description": "Verify That The Application Source Code And Third Party Libraries Do Not Contain Back Doors, Such As Hard-Coded Or Additional Undocumented Accounts Or Keys, Code Obfuscation, Undocumented Binary Blobs, Rootkits, Or Anti-Debugging, Insecure Debugging Features, Or Otherwise Out Of Date, Insecure, Or Hidden Functionality That Could Be Used Maliciously If Discovered.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v10.2.4",
+            "description": "Verify That The Application Source Code And Third Party Libraries Do Not Contain Time Bombs By Searching For Date And Time Related Functions.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v10.2.5",
+            "description": "Verify That The Application Source Code And Third Party Libraries Do Not Contain Malicious Code, Such As Salami Attacks, Logic Bypasses, Or Logic Bombs.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v10.2.6",
+            "description": "Verify That The Application Source Code And Third Party Libraries Do Not Contain Easter Eggs Or Any Other Potentially Unwanted Functionality.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Application Integrity",
+        "requirements": [
+          {
+            "id": "v10.3.1",
+            "description": "Verify That If The Application Has A Client Or Server Auto-Update Feature, Updates Should Be Obtained Over Secure Channels And Digitally Signed. The Update Code Must Validate The Digital Signature Of The Update Before Installing Or Executing The Update.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v10.3.2",
+            "description": "Verify That The Application Employs Integrity Protections, Such As Code Signing Or Subresource Integrity. The Application Must Not Load Or Execute Code From Untrusted Sources, Such As Loading Includes, Modules, Plugins, Code, Or Libraries From Untrusted Sources Or The Internet.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v10.3.3",
+            "description": "Verify That The Application Has Protection From Subdomain Takeovers If The Application Relies Upon Dns Entries Or Dns Subdomains, Such As Expired Domain Names, Out Of Date Dns Pointers Or Cnames, Expired Projects At Public Source Code Repos, Or Transient Cloud Apis, Serverless Functions, Or Storage Buckets (*Autogen-Bucket-Id*.Cloud.Example.Com) Or Similar. Protections Can Include Ensuring That Dns Names Used By Applications Are Regularly Checked For Expiry Or Change.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Business Logic",
+    "sub_category": [
+      {
+        "name": "Business Logic Security",
+        "requirements": [
+          {
+            "id": "v11.1.1",
+            "description": "Verify That The Application Will Only Process Business Logic Flows For The Same User In Sequential Step Order And Without Skipping Steps.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v11.1.2",
+            "description": "Verify That The Application Will Only Process Business Logic Flows With All Steps Being Processed In Realistic Human Time, I.E. Transactions Are Not Submitted Too Quickly.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v11.1.3",
+            "description": "Verify The Application Has Appropriate Limits For Specific Business Actions Or Transactions Which Are Correctly Enforced On A Per User Basis.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v11.1.4",
+            "description": "Verify That The Application Has Anti-Automation Controls To Protect Against Excessive Calls Such As Mass Data Exfiltration, Business Logic Requests, File Uploads Or Denial Of Service Attacks.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v11.1.5",
+            "description": "Verify The Application Has Business Logic Limits Or Validation To Protect Against Likely Business Risks Or Threats, Identified Using Threat Modeling Or Similar Methodologies.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v11.1.6",
+            "description": "Verify That The Application Does Not Suffer From \"Time Of Check To Time Of Use\" (Toctou) Issues Or Other Race Conditions For Sensitive Operations.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v11.1.7",
+            "description": "Verify That The Application Monitors For Unusual Events Or Activity From A Business Logic Perspective. For Example, Attempts To Perform Actions Out Of Order Or Actions Which A Normal User Would Never Attempt. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v11.1.8",
+            "description": "Verify That The Application Has Configurable Alerting When Automated Attacks Or Unusual Activity Is Detected.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Files And Resources",
+    "sub_category": [
+      {
+        "name": "File Upload",
+        "requirements": [
+          {
+            "id": "v12.1.1",
+            "description": "Verify That The Application Will Not Accept Large Files That Could Fill Up Storage Or Cause A Denial Of Service.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v12.1.2",
+            "description": "Verify That The Application Checks Compressed Files (E.G. Zip, Gz, Docx, Odt) Against Maximum Allowed Uncompressed Size And Against Maximum Number Of Files Before Uncompressing The File.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v12.1.3",
+            "description": "Verify That A File Size Quota And Maximum Number Of Files Per User Is Enforced To Ensure That A Single User Cannot Fill Up The Storage With Too Many Files, Or Excessively Large Files.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "File Integrity",
+        "requirements": [
+          {
+            "id": "v12.2.1",
+            "description": "Verify That Files Obtained From Untrusted Sources Are Validated To Be Of Expected Type Based On The File'S Content.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "File Execution",
+        "requirements": [
+          {
+            "id": "v12.3.1",
+            "description": "Verify That User-Submitted Filename Metadata Is Not Used Directly By System Or Framework Filesystems And That A Url Api Is Used To Protect Against Path Traversal.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v12.3.2",
+            "description": "Verify That User-Submitted Filename Metadata Is Validated Or Ignored To Prevent The Disclosure, Creation, Updating Or Removal Of Local Files (Lfi).",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v12.3.3",
+            "description": "Verify That User-Submitted Filename Metadata Is Validated Or Ignored To Prevent The Disclosure Or Execution Of Remote Files Via Remote File Inclusion (Rfi) Or Server-Side Request Forgery (Ssrf) Attacks.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v12.3.4",
+            "description": "Verify That The Application Protects Against Reflective File Download (Rfd) By Validating Or Ignoring User-Submitted Filenames In A Json, Jsonp, Or Url Parameter, The Response Content-Type Header Should Be Set To Text/Plain, And The Content-Disposition Header Should Have A Fixed Filename.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v12.3.5",
+            "description": "Verify That Untrusted File Metadata Is Not Used Directly With System Api Or Libraries, To Protect Against Os Command Injection.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v12.3.6",
+            "description": "Verify That The Application Does Not Include And Execute Functionality From Untrusted Sources, Such As Unverified Content Distribution Networks, Javascript Libraries, Node Npm Libraries, Or Server-Side Dlls.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "File Storage",
+        "requirements": [
+          {
+            "id": "v12.4.1",
+            "description": "Verify That Files Obtained From Untrusted Sources Are Stored Outside The Web Root, With Limited Permissions.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v12.4.2",
+            "description": "Verify That Files Obtained From Untrusted Sources Are Scanned By Antivirus Scanners To Prevent Upload And Serving Of Known Malicious Content.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "File Download",
+        "requirements": [
+          {
+            "id": "v12.5.1",
+            "description": "Verify That The Web Tier Is Configured To Serve Only Files With Specific File Extensions To Prevent Unintentional Information And Source Code Leakage. For Example, Backup Files (E.G. .Bak), Temporary Working Files (E.G. .Swp), Compressed Files (.Zip, .Tar.Gz, Etc) And Other Extensions Commonly Used By Editors Should Be Blocked Unless Required.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v12.5.2",
+            "description": "Verify That Direct Requests To Uploaded Files Will Never Be Executed As Html/Javascript Content.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Ssrf Protection",
+        "requirements": [
+          {
+            "id": "v12.6.1",
+            "description": "Verify That The Web Or Application Server Is Configured With An Allow List Of Resources Or Systems To Which The Server Can Send Requests Or Load Data/Files From.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Api And Web Service",
+    "sub_category": [
+      {
+        "name": "Generic Web Service Security",
+        "requirements": [
+          {
+            "id": "v13.1.1",
+            "description": "Verify That All Application Components Use The Same Encodings And Parsers To Avoid Parsing Attacks That Exploit Different Uri Or File Parsing Behavior That Could Be Used In Ssrf And Rfi Attacks.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v13.1.3",
+            "description": "Verify Api Urls Do Not Expose Sensitive Information, Such As The Api Key, Session Tokens Etc.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v13.1.4",
+            "description": "Verify That Authorization Decisions Are Made At Both The Uri, Enforced By Programmatic Or Declarative Security At The Controller Or Router, And At The Resource Level, Enforced By Model-Based Permissions.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v13.1.5",
+            "description": "Verify That Requests Containing Unexpected Or Missing Content Types Are Rejected With Appropriate Headers (Http Response Status 406 Unacceptable Or 415 Unsupported Media Type).",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Restful Web Service",
+        "requirements": [
+          {
+            "id": "v13.2.1",
+            "description": "Verify That Enabled Restful Http Methods Are A Valid Choice For The User Or Action, Such As Preventing Normal Users Using Delete Or Put On Protected Api Or Resources.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v13.2.2",
+            "description": "Verify That Json Schema Validation Is In Place And Verified Before Accepting Input.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v13.2.3",
+            "description": "Verify That Restful Web Services That Utilize Cookies Are Protected From Cross-Site Request Forgery Via The Use Of At Least One Or More Of The Following: Double Submit Cookie Pattern, Csrf Nonces, Or Origin Request Header Checks.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v13.2.5",
+            "description": "Verify That Rest Services Explicitly Check The Incoming Content-Type To Be The Expected One, Such As Application/Xml Or Application/Json.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v13.2.6",
+            "description": "Verify That The Message Headers And Payload Are Trustworthy And Not Modified In Transit. Requiring Strong Encryption For Transport (Tls Only) May Be Sufficient In Many Cases As It Provides Both Confidentiality And Integrity Protection. Per-Message Digital Signatures Can Provide Additional Assurance On Top Of The Transport Protections For High-Security Applications But Bring With Them Additional Complexity And Risks To Weigh Against The Benefits.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Soap Web Service",
+        "requirements": [
+          {
+            "id": "v13.3.1",
+            "description": "Verify That Xsd Schema Validation Takes Place To Ensure A Properly Formed Xml Document, Followed By Validation Of Each Input Field Before Any Processing Of That Data Takes Place.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v13.3.2",
+            "description": "Verify That The Message Payload Is Signed Using Ws-Security To Ensure Reliable Transport Between Client And Service.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Graphql",
+        "requirements": [
+          {
+            "id": "v13.4.1",
+            "description": "Verify That A Query Allow List Or A Combination Of Depth Limiting And Amount Limiting Is Used To Prevent Graphql Or Data Layer Expression Denial Of Service (Dos) As A Result Of Expensive, Nested Queries. For More Advanced Scenarios, Query Cost Analysis Should Be Used.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v13.4.2",
+            "description": "Verify That Graphql Or Other Data Layer Authorization Logic Should Be Implemented At The Business Logic Layer Instead Of The Graphql Layer.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Configuration",
+    "sub_category": [
+      {
+        "name": "Build And Deploy",
+        "requirements": [
+          {
+            "id": "v14.1.1",
+            "description": "Verify That The Application Build And Deployment Processes Are Performed In A Secure And Repeatable Way, Such As Ci / Cd Automation, Automated Configuration Management, And Automated Deployment Scripts.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.1.2",
+            "description": "Verify That Compiler Flags Are Configured To Enable All Available Buffer Overflow Protections And Warnings, Including Stack Randomization, Data Execution Prevention, And To Break The Build If An Unsafe Pointer, Memory, Format String, Integer, Or String Operations Are Found.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.1.3",
+            "description": "Verify That Server Configuration Is Hardened As Per The Recommendations Of The Application Server And Frameworks In Use.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.1.4",
+            "description": "Verify That The Application, Configuration, And All Dependencies Can Be Re-Deployed Using Automated Deployment Scripts, Built From A Documented And Tested Runbook In A Reasonable Time, Or Restored From Backups In A Timely Fashion.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.1.5",
+            "description": "Verify That Authorized Administrators Can Verify The Integrity Of All Security-Relevant Configurations To Detect Tampering.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Dependency",
+        "requirements": [
+          {
+            "id": "v14.2.1",
+            "description": "Verify That All Components Are Up To Date, Preferably Using A Dependency Checker During Build Or Compile Time. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.2.2",
+            "description": "Verify That All Unneeded Features, Documentation, Sample Applications And Configurations Are Removed.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.2.3",
+            "description": "Verify That If Application Assets, Such As Javascript Libraries, Css Or Web Fonts, Are Hosted Externally On A Content Delivery Network (Cdn) Or External Provider, Subresource Integrity (Sri) Is Used To Validate The Integrity Of The Asset.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.2.4",
+            "description": "Verify That Third Party Components Come From Pre-Defined, Trusted And Continually Maintained Repositories. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.2.5",
+            "description": "Verify That A Software Bill Of Materials (Sbom) Is Maintained Of All Third Party Libraries In Use. ",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.2.6",
+            "description": "Verify That The Attack Surface Is Reduced By Sandboxing Or Encapsulating Third Party Libraries To Expose Only The Required Behaviour Into The Application. ",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Unintended Security Disclosure",
+        "requirements": [
+          {
+            "id": "v14.3.2",
+            "description": "Verify That Web Or Application Server And Application Framework Debug Modes Are Disabled In Production To Eliminate Debug Features, Developer Consoles, And Unintended Security Disclosures.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.3.3",
+            "description": "Verify That The Http Headers Or Any Part Of The Http Response Do Not Expose Detailed Version Information Of System Components.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Http Security Headers",
+        "requirements": [
+          {
+            "id": "v14.4.1",
+            "description": "Verify That Every Http Response Contains A Content-Type Header. Also Specify A Safe Character Set (E.G., Utf-8, Iso-8859-1) If The Content Types Are Text/*, /+Xml And Application/Xml. Content Must Match With The Provided Content-Type Header.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.4.2",
+            "description": "Verify That All Api Responses Contain A Content-Disposition: Attachment; Filename=\"Api.Json\" Header (Or Other Appropriate Filename For The Content Type).",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.4.3",
+            "description": "Verify That A Content Security Policy (Csp) Response Header Is In Place That Helps Mitigate Impact For Xss Attacks Like Html, Dom, Json, And Javascript Injection Vulnerabilities.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.4.4",
+            "description": "Verify That All Responses Contain A X-Content-Type-Options: Nosniff Header.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.4.5",
+            "description": "Verify That A Strict-Transport-Security Header Is Included On All Responses And For All Subdomains, Such As Strict-Transport-Security: Max-Age=15724800; Includesubdomains.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.4.6",
+            "description": "Verify That A Suitable Referrer-Policy Header Is Included To Avoid Exposing Sensitive Information In The Url Through The Referer Header To Untrusted Parties.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.4.7",
+            "description": "Verify That The Content Of A Web Application Cannot Be Embedded In A Third-Party Site By Default And That Embedding Of The Exact Resources Is Only Allowed Where Necessary By Using Suitable Content-Security-Policy: Frame-Ancestors And X-Frame-Options Response Headers.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      },
+      {
+        "name": "Http Request Header Validation",
+        "requirements": [
+          {
+            "id": "v14.5.1",
+            "description": "Verify That The Application Server Only Accepts The Http Methods In Use By The Application/Api, Including Pre-Flight Options, And Logs/Alerts On Any Requests That Are Not Valid For The Application Context.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.5.2",
+            "description": "Verify That The Supplied Origin Header Is Not Used For Authentication Or Access Control Decisions, As The Origin Header Can Easily Be Changed By An Attacker.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.5.3",
+            "description": "Verify That The Cross-Origin Resource Sharing (Cors) Access-Control-Allow-Origin Header Uses A Strict Allow List Of Trusted Domains And Subdomains To Match Against And Does Not Support The \"Null\" Origin.",
+            "levels": "Level 1, Level 2, Level 3"
+          },
+          {
+            "id": "v14.5.4",
+            "description": "Verify That Http Headers Added By A Trusted Proxy Or Sso Devices, Such As A Bearer Token, Are Authenticated By The Application.",
+            "levels": "Level 1, Level 2, Level 3"
+          }
+        ]
+      }
+    ]
+  }
+]

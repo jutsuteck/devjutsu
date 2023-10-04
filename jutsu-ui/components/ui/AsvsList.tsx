@@ -51,6 +51,8 @@ const AsvsList: FC = () => {
       (!selectedSubCategory || req.subCategoryName === selectedSubCategory)
   );
 
+  console.log(asvsCategories);
+
   return (
     <>
       <div className="space-x-4">
