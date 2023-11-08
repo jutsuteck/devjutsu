@@ -43,7 +43,8 @@ def seed_data_to_db(json_filepath: str):
                         description=req_data["description"],
                         objective="",
                         value="",
-                        sub_category_id=sub_category.id
+                        sub_category_id=sub_category.id,
+                        levels=req_data["levels"]
                     )
                     session.add(requirement)
                     session.commit()

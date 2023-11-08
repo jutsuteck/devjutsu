@@ -50,17 +50,20 @@ const WorkItemDescriptionModalForm: FC<Props> = ({
 
   return (
     <>
-      <h1 className="mb-2 text-nord-polar-night-light font-semibold">
-        Description
-      </h1>
+      <h1 className="mb-2 font-extrabold">Description</h1>
       {showForm && (
         <form>
-          <CustomTextArea name="description" register={register} />
+          <CustomTextArea
+            name="description"
+            placeholder={description ? description : "No description ..."}
+            register={register}
+            autoFocus
+          />
         </form>
       )}
       {!showForm && (
-        <p onClick={() => setShowForm(true)}>
-          {description ? description : "No description"}
+        <p className="" onClick={() => setShowForm(true)}>
+          {description ? description : "No description ..."}
         </p>
       )}
     </>

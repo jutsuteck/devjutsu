@@ -9,6 +9,8 @@ interface Props {
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
   polarNightMedium?: boolean;
+  bgPolarNightDarkest?: boolean;
+  bgPolarNightLight?: boolean;
   bgFrost?: boolean;
   rounded?: "rounded-sm" | "rounded-md" | "rounded-lg" | "rounded-full";
   shadow?: "shadow-md" | "shadow-lg" | "shadow-xl";
@@ -22,6 +24,8 @@ const Button: FC<Props> = ({
   transparent,
   polarNightMedium,
   bgFrost,
+  bgPolarNightDarkest,
+  bgPolarNightLight,
   className,
   shadow,
   type = "button",
@@ -33,11 +37,17 @@ const Button: FC<Props> = ({
   const polarNightMd =
     polarNightMedium && "bg-nord-polar-night-medium text-nord-snowstorm-light";
   const frost = bgFrost && "bg-nord-frost-medium text-nord-frost-dark";
+  const polarNightDarkest =
+    bgPolarNightDarkest &&
+    "bg-nord-polar-night-darkest hover:bg-nord-polar-night-light transition-colors duration-5000";
+  const polarNightLight =
+    bgPolarNightLight &&
+    "bg-nord-polar-night-ligt hover:bg-nord-polar-night-darkest transition-colors duration-5000";
 
   return (
     <button
       type={type}
-      className={`${wFull} ${baseStyle} ${polarNightMd} ${frost} ${className} ${btnTransparent} ${rounded} ${
+      className={`${wFull} ${baseStyle} ${polarNightLight} ${polarNightDarkest} ${polarNightMd} ${frost} ${className} ${btnTransparent} ${rounded} ${
         shadow && shadow
       }`}
       onClick={onClick}

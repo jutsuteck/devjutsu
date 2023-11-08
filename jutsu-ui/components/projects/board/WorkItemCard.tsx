@@ -13,6 +13,7 @@ interface Props {
   workItemType: WorkItemType;
   stateId: string;
   stateName: string;
+  creationDate: Date;
 }
 
 const fadeIn = {
@@ -24,6 +25,7 @@ const WorkItemCard: FC<Props> = ({
   id,
   name,
   description,
+  creationDate,
   workItemType,
   stateId,
   stateName,
@@ -38,6 +40,7 @@ const WorkItemCard: FC<Props> = ({
           name={name}
           description={description}
           effort={0}
+          creationDate={creationDate}
           stateId={stateId}
           stateName={stateName}
           onClose={() => setShowModal(false)}
@@ -51,6 +54,7 @@ const WorkItemCard: FC<Props> = ({
         >
           <h1 className="text-md font-semibold">{name}</h1>
           <p>{description}</p>
+          <span>{workItemType}</span>
         </Card>
       </motion.div>
     </>

@@ -42,7 +42,9 @@ export interface WorkItem {
   description?: string;
   effort?: number;
   ready_for_development: boolean;
+  created_on: Date;
   work_item_type: WorkItemType;
+  workflow: Workflow;
   workflow_id: string;
   state_id: string;
   epic_id: string;
@@ -78,6 +80,7 @@ export interface AsvsRequirement {
   id: string;
   requirement_id: string;
   description: string;
+  levels: string;
   objective?: string;
   value?: string;
 }

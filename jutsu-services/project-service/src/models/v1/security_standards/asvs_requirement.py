@@ -13,6 +13,7 @@ class ASVSRequirement(SQLModel, table=True):
     description: str = Field(...)
     objective: Optional[str] = Field(default="")
     value: Optional[str] = Field(default="")
+    levels: Optional[str] = Field(default="")
 
     sub_category_id: str = Field(foreign_key="asvs_sub_category.id")
     sub_category: Optional["ASVSSubCategory"] = Relationship(

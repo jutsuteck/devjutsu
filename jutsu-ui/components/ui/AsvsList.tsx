@@ -5,7 +5,9 @@ import useAsvs from "@/hooks/projects/useAsvs";
 
 import Masonry from "../layout/Masonry";
 import Card from "./Card";
-import CustomDropdown from "./CustomDropdown";
+import Button from "./Button";
+
+import { MdOutlineCancel } from "react-icons/md";
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -22,52 +24,80 @@ const AsvsList: FC = () => {
     null
   );
 
-  const categoryOptions =
-    asvsCategories?.map((category) => category.name) || [];
-  const subCategoryOptions = selectedCategory
-    ? asvsCategories
-        ?.find((category) => category.name === selectedCategory)
-        ?.sub_categories.map((sub) => sub.name) || []
-    : [];
-
   if (isLoading) {
     return <p>Is loading ...</p>;
   }
 
-  const asvsRequirements =
-    asvsCategories?.flatMap((category) =>
-      category.sub_categories.flatMap((subCategory) =>
-        subCategory.security_requirements.map((requirement) => ({
-          ...requirement,
-          categoryName: category.name,
-          subCategoryName: subCategory.name,
-        }))
+  const handleCategoryClick = (categoryName: string) => {
+    if (selectedCategory === categoryName) {
+      setSelectedCategory(null);
+      setSelectedSubCategory(null);
+    } else {
+      setSelectedCategory(categoryName);
+      setSelectedSubCategory(null);
+    }
+  };
+
+  const handleSubCategoryClick = (subCategoryName: string) => {
+    if (selectedSubCategory === subCategoryName) {
+      setSelectedSubCategory(null);
+    } else {
+      setSelectedSubCategory(subCategoryName);
+    }
+  };
+
+  const filteredRequirements =
+    asvsCategories
+      ?.flatMap((category) =>
+        category.sub_categories.flatMap((subCategory) =>
+          subCategory.security_requirements.map((requirement) => ({
+            ...requirement,
+            categoryName: category.name,
+            subCategoryName: subCategory.name,
+          }))
+        )
       )
-    ) || [];
-
-  const filteredRequirements = asvsRequirements.filter(
-    (req) =>
-      (!selectedCategory || req.categoryName === selectedCategory) &&
-      (!selectedSubCategory || req.subCategoryName === selectedSubCategory)
-  );
-
-  console.log(asvsCategories);
+      .filter(
+        (req) =>
+          (!selectedCategory || req.categoryName === selectedCategory) &&
+          (!selectedSubCategory || req.subCategoryName === selectedSubCategory)
+      ) || [];
 
   return (
     <>
-      <div className="space-x-4">
-        <CustomDropdown
-          options={categoryOptions}
-          onSelect={setSelectedCategory}
-          label="Select Category"
-        />
-        {selectedCategory && (
-          <CustomDropdown
-            options={subCategoryOptions}
-            onSelect={setSelectedSubCategory}
-            label="Select SubCategory"
+      <div className="flex space-x-4 mb-4">
+        {selectedCategory ? (
+          <Button
+            icon={<MdOutlineCancel />}
+            text={selectedCategory}
+            shadow="shadow-md"
+            polarNightMedium
+            onClick={() => handleCategoryClick(selectedCategory)}
           />
+        ) : (
+          asvsCategories?.map((category) => (
+            <Button
+              key={category.id}
+              onClick={() => handleCategoryClick(category.name)}
+              text={category.name}
+              bgPolarNightDarkest
+              shadow="shadow-md"
+            />
+          ))
         )}
+
+        {selectedCategory &&
+          asvsCategories
+            ?.find((category) => category.name === selectedCategory)
+            ?.sub_categories.map((subCategory) => (
+              <Button
+                key={subCategory.id}
+                onClick={() => handleSubCategoryClick(subCategory.name)}
+                text={subCategory.name}
+                bgPolarNightDarkest
+                shadow="shadow-md"
+              />
+            ))}
       </div>
 
       <div className="mb-4 flex space-x-4">
@@ -90,7 +120,8 @@ const AsvsList: FC = () => {
                 <h2 className="mb-2 font-bold text-nord-polar-night-light">
                   {requirement.subCategoryName}
                 </h2>
-                <p>{requirement.description}</p>
+                <p className="mb-2">{requirement.description}</p>
+                <p className="text-sm">{requirement.levels}</p>
               </Card>
             </motion.div>
           ))}

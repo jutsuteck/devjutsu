@@ -61,6 +61,7 @@ const StateContainer: FC<Props> = ({ stateId, stateName, workflowId }) => {
             key={item.id}
             name={item.name}
             description={item?.description}
+            creationDate={item.created_on}
             workItemType={item.work_item_type}
             stateId={stateId}
             stateName={item.state.name}

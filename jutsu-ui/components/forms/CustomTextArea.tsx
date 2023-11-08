@@ -9,8 +9,6 @@ interface Props {
   transparent?: boolean;
   className?: string;
   noPaddingX?: boolean;
-  bgColor?: string;
-  borderColor?: string;
   autoFocus?: boolean;
 }
 
@@ -21,8 +19,6 @@ const CustomTextArea: FC<Props> = ({
   error,
   autoComplete,
   className,
-  bgColor = "bg-nord-polar-night-dark",
-  borderColor,
   autoFocus,
 }) => {
   const adjustHeight = (element: HTMLTextAreaElement | null) => {
@@ -33,7 +29,7 @@ const CustomTextArea: FC<Props> = ({
     }
   };
 
-  const defaultStyle = `${bgColor} ${borderColor} rounded-md p-4 border-2 text-nord-snowstorm-light w-full focus:outline-none`;
+  const defaultStyle = `bg-nord-polar-night-medium text-nord-snowstorm-light w-full focus:outline-none`;
   const borderStyle = error
     ? "focus:border-nord-aurora-red"
     : "focus:border-nord-meadow";

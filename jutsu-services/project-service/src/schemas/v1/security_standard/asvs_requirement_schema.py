@@ -7,6 +7,7 @@ class ASVSRequirementReadSchema(BaseModel):
     description: str
     objective: str
     value: str
+    levels: str
 
     class Config:
         orm_mode = True

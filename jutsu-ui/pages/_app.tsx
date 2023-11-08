@@ -7,7 +7,10 @@ import { AuthProvider } from "@/contexts/AuthProvider";
 
 const queryClient = new QueryClient();
 
-const fontFamily = Manrope({ subsets: ["latin"], weight: ["400"] });
+const fontFamily = Manrope({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
